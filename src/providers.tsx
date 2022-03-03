@@ -1,4 +1,4 @@
-import { ThemeProvider } from './theme';
+import { ThemeProvider } from 'theme';
 
 const Providers = ({ children }) => {
   return <ThemeProvider>{children}</ThemeProvider>;

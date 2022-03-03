@@ -1,5 +1,11 @@
-import { ContentType, GenderType, LanguageCode, StatusGlobal, VisiblePost } from '../models/enum';
-import { ControlType } from '../models';
+import {
+  ContentType,
+  GenderType,
+  LanguageCode,
+  StatusGlobal,
+  VisiblePost,
+} from 'common/models/enum';
+import { ControlType } from 'common/models';
 
 export const ConvertType = (typeEnum: ControlType) => {
   switch (typeEnum) {

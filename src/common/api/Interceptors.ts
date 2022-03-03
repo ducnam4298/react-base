@@ -3,7 +3,7 @@ import { Endpoint } from './endpoint';
 // import { store } from 'index';
 // import { ActionType } from 'store/context';
 // import { SwitchAuthenticated } from 'models/context';
-import { clientStorage } from '../utils/clientStorage';
+import { clientStorage } from 'common/utils/clientStorage';
 
 axios.interceptors.response.use(
   res => res,

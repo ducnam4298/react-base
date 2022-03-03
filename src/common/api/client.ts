@@ -1,6 +1,6 @@
 // import axios from './Interceptors'
 import axios from 'axios';
-import { clientStorage } from '../utils/clientStorage';
+import { clientStorage } from 'common/utils/clientStorage';
 
 /**
  * Sử dụng setToken nếu cần thiết

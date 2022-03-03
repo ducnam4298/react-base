@@ -1,7 +1,7 @@
 import i18next from 'i18next';
-import common_en from './translations/en/common.json';
-import common_vi from './translations/vi/common.json';
-import common_my from './translations/my/common.json';
+import common_en from 'translations/en/common.json';
+import common_vi from 'translations/vi/common.json';
+import common_my from 'translations/my/common.json';
 
 i18next.init({
   interpolation: { escapeValue: false },

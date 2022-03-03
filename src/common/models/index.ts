@@ -1,4 +1,4 @@
-import { IOption } from '../utils/optionMirror';
+import { IOption } from 'common/utils/optionMirror';
 export interface Root {
   id?: string;
   createdBy?: ByPerson;

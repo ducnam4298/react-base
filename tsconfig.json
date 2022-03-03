@@ -19,19 +19,16 @@
     "skipLibCheck": true,
     "strict": true,
     "suppressImplicitAnyIndexErrors": true,
-    "target": "es5",
+    "target": "es5"
   },
   "paths": {
-    "api/*": "api/*",
-    "layouts/*": "layouts/*",
     "assets/*": "assets/*",
-    "constant/*": "constant/*",
-    "locales/*": "locales/*",
-    "store/*": "store/*",
     "components/*": "components/*",
-    "shared/*": "shared/*",
-    "templates/*": "templates/*",
-    "pages/*": "pages/*"
+    "common/*": "common/*",
+    "hook/*": "hook/*",
+    "layouts/*": "layouts/*",
+    "module/*": "module/*",
+    "translations/*": "translations/*"
   },
   "include": ["src"]
 }
