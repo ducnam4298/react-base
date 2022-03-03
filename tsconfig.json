@@ -1,26 +1,37 @@
+// a b c d e f g h i j k l m n o p q r s t u v w x y z
 {
   "compilerOptions": {
-    "target": "es5",
-    "lib": [
-      "dom",
-      "dom.iterable",
-      "esnext"
-    ],
     "allowJs": true,
-    "skipLibCheck": true,
-    "esModuleInterop": true,
     "allowSyntheticDefaultImports": true,
-    "strict": true,
+    "baseUrl": "./src",
+    "esModuleInterop": true,
+    "experimentalDecorators": true,
     "forceConsistentCasingInFileNames": true,
-    "noFallthroughCasesInSwitch": true,
+    "isolatedModules": true,
+    "jsx": "react-jsx",
+    "lib": ["dom", "dom.iterable", "esnext"],
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "noEmit": true,
-    "jsx": "react-jsx"
+    "noFallthroughCasesInSwitch": true,
+    "noImplicitAny": false,
+    "resolveJsonModule": true,
+    "skipLibCheck": true,
+    "strict": true,
+    "suppressImplicitAnyIndexErrors": true,
+    "target": "es5",
   },
-  "include": [
-    "src"
-  ]
+  "paths": {
+    "api/*": "api/*",
+    "layouts/*": "layouts/*",
+    "assets/*": "assets/*",
+    "constant/*": "constant/*",
+    "locales/*": "locales/*",
+    "store/*": "store/*",
+    "components/*": "components/*",
+    "shared/*": "shared/*",
+    "templates/*": "templates/*",
+    "pages/*": "pages/*"
+  },
+  "include": ["src"]
 }
