@@ -1,5 +1,5 @@
 import React, { useContext } from 'react';
-import { Theme } from 'theme';
+import { Theme } from 'themes';
 import { Route, Routes, BrowserRouter as Router } from 'react-router-dom';
 import styled from '@emotion/styled';
 
