@@ -105,3 +105,8 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+
+/* development support when developing applications */
+iframe {
+  display: none;
+}
