@@ -52,7 +52,6 @@
   "scripts": {
     "i": "yarn install",
     "a": "yarn add",
-    "t":"yarn add @types/",
     "r": "yarn remove",
     "start": "react-scripts start",
     "build": "react-scripts build",
