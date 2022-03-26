@@ -1,8 +1,5 @@
 import { faker } from '@faker-js/faker';
-// utils
 import { mockImgCover } from '../utils/mockImages';
-
-// ----------------------------------------------------------------------
 
 const POST_TITLES = [
   'Whiteboard Templates By Industry Leaders',
@@ -28,10 +25,27 @@ const POST_TITLES = [
   'Akkers van Margraten',
   'Gradient Ticket icon',
   'Here’s a Dyson motorcycle concept that doesn’t ‘suck’!',
-  'How to Animate a SVG with border-image'
+  'How to Animate a SVG with border-image',
 ];
 
-const posts = [...Array(23)].map((_, index) => ({
+export interface Posts {
+  id: string;
+  cover: string;
+  title: string;
+  createdAt: Date;
+  view: number;
+  comment: number;
+  share: number;
+  favorite: number;
+  author: Author;
+}
+
+export interface Author {
+  name: string;
+  avatarUrl: string;
+}
+
+const posts: Posts[] = [...Array(23)].map((_, index) => ({
   id: faker.datatype.uuid(),
   cover: mockImgCover(index + 1),
   title: POST_TITLES[index + 1],
@@ -42,8 +56,8 @@ const posts = [...Array(23)].map((_, index) => ({
   favorite: faker.datatype.number(),
   author: {
     name: faker.name.findName(),
-    avatarUrl: `/static/mock-images/avatars/avatar_${index + 1}.jpg`
-  }
+    avatarUrl: `/static/mock-images/avatars/avatar_${index + 1}.jpg`,
+  },
 }));
 
 export default posts;

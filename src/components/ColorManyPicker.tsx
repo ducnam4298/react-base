@@ -1,16 +1,12 @@
-import PropTypes from 'prop-types';
-// material
 import { Box, Checkbox } from '@mui/material';
-//
 import Iconify from './Iconify';
+import { SxProps, Theme } from '@mui/system';
 
-// ----------------------------------------------------------------------
+interface IconColorProps {
+  sx: SxProps<Theme>;
+}
 
-IconColor.propTypes = {
-  sx: PropTypes.object
-};
-
-function IconColor({ sx, ...other }) {
+const IconColor = (props: IconColorProps) => {
   return (
     <Box
       sx={{
@@ -22,44 +18,42 @@ function IconColor({ sx, ...other }) {
         alignItems: 'center',
         justifyContent: 'center',
         bgcolor: 'currentColor',
-        transition: (theme) =>
+        transition: theme =>
           theme.transitions.create('all', {
-            duration: theme.transitions.duration.shortest
+            duration: theme.transitions.duration.shortest,
           }),
-        ...sx
+        ...props.sx,
       }}
-      {...other}
     >
-      <Iconify icon="eva:checkmark-fill" />
+      <Iconify icon="eva:checkmark-fill" sx={undefined} />
     </Box>
   );
-}
-
-ColorManyPicker.propTypes = {
-  colors: PropTypes.array.isRequired,
-  onChecked: PropTypes.func,
-  sx: PropTypes.object
 };
 
-export default function ColorManyPicker({ colors, onChecked, sx, ...other }) {
-  return (
-    <Box sx={sx}>
-      {colors.map((color) => {
-        const isWhite = color === '#FFFFFF' || color === 'white';
+interface UIProps {
+  colors: any[];
+  onChecked: (color:string) => boolean;
+  sx: SxProps<Theme>;
+}
 
+const ColorManyPicker = (props: UIProps) => {
+  return (
+    <Box sx={props.sx}>
+      {props.colors.map(color => {
+        const isWhite = color === '#FFFFFF' || color === 'white';
         return (
           <Checkbox
             key={color}
             size="small"
             value={color}
             color="default"
-            checked={onChecked(color)}
+            checked={props.onChecked(color)}
             icon={
               <IconColor
                 sx={{
                   ...(isWhite && {
-                    border: (theme) => `solid 1px ${theme.palette.divider}`
-                  })
+                    border: theme => `solid 1px ${theme.palette.divider}`,
+                  }),
                 }}
               />
             }
@@ -74,25 +68,26 @@ export default function ColorManyPicker({ colors, onChecked, sx, ...other }) {
                     height: '100%',
                     borderRadius: '50%',
                     position: 'absolute',
-                    boxShadow: '4px 4px 8px 0 currentColor'
+                    boxShadow: '4px 4px 8px 0 currentColor',
                   },
                   '& svg': { width: 12, height: 12, color: 'common.white' },
                   ...(isWhite && {
-                    border: (theme) => `solid 1px ${theme.palette.divider}`,
-                    boxShadow: (theme) => `4px 4px 8px 0 ${theme.palette.grey[500_24]}`,
-                    '& svg': { width: 12, height: 12, color: 'common.black' }
-                  })
+                    border: theme => `solid 1px ${theme.palette.divider}`,
+                    boxShadow: theme => `4px 4px 8px 0 ${theme.palette.grey[500_24]}`,
+                    '& svg': { width: 12, height: 12, color: 'common.black' },
+                  }),
                 }}
               />
             }
             sx={{
               color,
-              '&:hover': { opacity: 0.72 }
+              '&:hover': { opacity: 0.72 },
             }}
-            {...other}
           />
         );
       })}
     </Box>
   );
-}
+};
+
+export default ColorManyPicker;

@@ -1,2 +1,2 @@
-export * from './Wrap';
+export * from './wrap';
 export * from './bounce';
