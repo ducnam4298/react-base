@@ -1,6 +1,5 @@
 import { Icon } from '@iconify/react';
-import { Box } from '@mui/material';
-import { SxProps, Theme } from '@mui/system';
+import { Box, SxProps, Theme } from '@mui/material';
 
 interface UIProps {
   icon: any;

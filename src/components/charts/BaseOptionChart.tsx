@@ -1,8 +1,5 @@
-// material
 import { alpha, useTheme } from '@mui/material/styles';
 import { GlobalStyles } from '@mui/material';
-
-// ----------------------------------------------------------------------
 
 export const BaseOptionChartStyle = () => {
   const theme = useTheme();
@@ -59,9 +56,9 @@ export const BaseOptionChartStyle = () => {
       }}
     />
   );
-}
+};
 
-export default function BaseOptionChart() {
+const BaseOptionChart = () => {
   const theme = useTheme();
 
   const LABEL_TOTAL = {
@@ -241,4 +238,6 @@ export default function BaseOptionChart() {
       },
     ],
   };
-}
+};
+
+export default BaseOptionChart;

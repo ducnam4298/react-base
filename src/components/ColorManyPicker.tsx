@@ -1,9 +1,8 @@
-import { Box, Checkbox } from '@mui/material';
+import { Box, Checkbox, SxProps, Theme } from '@mui/material';
 import Iconify from './Iconify';
-import { SxProps, Theme } from '@mui/system';
 
 interface IconColorProps {
-  sx: SxProps<Theme>;
+  sx?: SxProps<Theme>;
 }
 
 const IconColor = (props: IconColorProps) => {
@@ -32,8 +31,8 @@ const IconColor = (props: IconColorProps) => {
 
 interface UIProps {
   colors: any[];
-  onChecked: (color:string) => boolean;
-  sx: SxProps<Theme>;
+  onChecked: (color: string) => boolean;
+  sx?: SxProps<Theme>;
 }
 
 const ColorManyPicker = (props: UIProps) => {

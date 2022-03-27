@@ -1,7 +1,7 @@
 import { useTheme } from '@mui/material/styles';
 import useMediaQuery from '@mui/material/useMediaQuery';
 
-export default function useResponsive(query: any, key: any, start: any, end: any) {
+const useResponsive = (query: any, key: any, start?: any, end?: any) => {
   const theme = useTheme();
 
   const mediaUp = useMediaQuery(theme.breakpoints.up(key));
@@ -28,4 +28,6 @@ export default function useResponsive(query: any, key: any, start: any, end: any
     return mediaOnly;
   }
   return null;
-}
+};
+
+export default useResponsive;

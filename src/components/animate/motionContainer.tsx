@@ -1,17 +1,19 @@
-import { motion } from 'framer-motion';
+import { motion, VariantLabels } from 'framer-motion';
 import { Box } from '@mui/material';
 import { varWrapEnter } from './variants';
+import { Target } from 'framer-motion/types/types';
 
 interface UIProps {
   open: boolean;
   children: React.ReactNode;
+  initial?: boolean | Target | VariantLabels;
 }
 
 const MotionContainer = (props: UIProps) => {
   return (
     <Box
       component={motion.div}
-      initial={false}
+      initial={props.initial}
       animate={props.open ? 'animate' : 'exit'}
       variants={varWrapEnter}
     >
