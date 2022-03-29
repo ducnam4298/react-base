@@ -1,5 +1,3 @@
-import PropTypes from 'prop-types';
-// material
 import { styled } from '@mui/material/styles';
 import {
   Toolbar,
@@ -7,59 +5,54 @@ import {
   IconButton,
   Typography,
   OutlinedInput,
-  InputAdornment
+  InputAdornment,
 } from '@mui/material';
-// component
 import Iconify from '../../../components/Iconify';
-
-// ----------------------------------------------------------------------
 
 const RootStyle = styled(Toolbar)(({ theme }) => ({
   height: 96,
   display: 'flex',
   justifyContent: 'space-between',
-  padding: theme.spacing(0, 1, 0, 3)
+  padding: theme.spacing(0, 1, 0, 3),
 }));
 
 const SearchStyle = styled(OutlinedInput)(({ theme }) => ({
   width: 240,
   transition: theme.transitions.create(['box-shadow', 'width'], {
     easing: theme.transitions.easing.easeInOut,
-    duration: theme.transitions.duration.shorter
+    duration: theme.transitions.duration.shorter,
   }),
-  '&.Mui-focused': { width: 320, boxShadow: theme.customShadows.z8 },
+  '&.Mui-focused': { width: 320, boxShadow: theme['customShadows'].z8 },
   '& fieldset': {
     borderWidth: `1px !important`,
-    borderColor: `${theme.palette.grey[500_32]} !important`
-  }
+    borderColor: `${theme.palette.grey[500_32]} !important`,
+  },
 }));
 
-// ----------------------------------------------------------------------
+interface UIProps {
+  numSelected: number;
+  filterName: string;
+  onFilterName: Function;
+}
 
-UserListToolbar.propTypes = {
-  numSelected: PropTypes.number,
-  filterName: PropTypes.string,
-  onFilterName: PropTypes.func
-};
-
-export default function UserListToolbar({ numSelected, filterName, onFilterName }) {
+const UserListToolbar = (props: UIProps) => {
   return (
     <RootStyle
       sx={{
-        ...(numSelected > 0 && {
+        ...(props.numSelected > 0 && {
           color: 'primary.main',
-          bgcolor: 'primary.lighter'
-        })
+          bgcolor: 'primary.lighter',
+        }),
       }}
     >
-      {numSelected > 0 ? (
+      {props.numSelected > 0 ? (
         <Typography component="div" variant="subtitle1">
-          {numSelected} selected
+          {props.numSelected} selected
         </Typography>
       ) : (
         <SearchStyle
-          value={filterName}
-          onChange={onFilterName}
+          value={props.filterName}
+          onChange={() => props.onFilterName()}
           placeholder="Search user..."
           startAdornment={
             <InputAdornment position="start">
@@ -69,7 +62,7 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
         />
       )}
 
-      {numSelected > 0 ? (
+      {props.numSelected > 0 ? (
         <Tooltip title="Delete">
           <IconButton>
             <Iconify icon="eva:trash-2-fill" />
@@ -84,4 +77,6 @@ export default function UserListToolbar({ numSelected, filterName, onFilterName 
       )}
     </RootStyle>
   );
-}
+};
+
+export default UserListToolbar;

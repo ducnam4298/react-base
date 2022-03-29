@@ -15,7 +15,7 @@ import {
   Container,
   Typography,
   TableContainer,
-  TablePagination
+  TablePagination,
 } from '@mui/material';
 import Page from '../components/Page';
 import Label from '../components/Label';
@@ -31,7 +31,7 @@ const TABLE_HEAD = [
   { id: 'role', label: 'Role', alignRight: false },
   { id: 'isVerified', label: 'Verified', alignRight: false },
   { id: 'status', label: 'Status', alignRight: false },
-  { id: '' }
+  { id: '' },
 ];
 
 function descendingComparator(a, b, orderBy) {
@@ -58,14 +58,14 @@ function applySortFilter(array, comparator, query) {
     return a[1] - b[1];
   });
   if (query) {
-    return filter(array, (_user) => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
+    return filter(array, _user => _user.name.toLowerCase().indexOf(query.toLowerCase()) !== -1);
   }
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis.map(el => el[0]);
 }
 
 export default function User() {
   const [page, setPage] = useState(0);
-  const [order, setOrder] = useState('asc');
+  const [order, setOrder] = useState<'asc' | 'desc'>('asc');
   const [selected, setSelected] = useState<any>([]);
   const [orderBy, setOrderBy] = useState('name');
   const [filterName, setFilterName] = useState('');
@@ -77,9 +77,9 @@ export default function User() {
     setOrderBy(property);
   };
 
-  const handleSelectAllClick = (event) => {
+  const handleSelectAllClick = event => {
     if (event.target.checked) {
-      const newSelections = USER_LIST.map((n) => n.name);
+      const newSelections = USER_LIST.map(n => n.name);
       setSelected(newSelections);
       return;
     }
@@ -108,12 +108,12 @@ export default function User() {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = event => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const handleFilterByName = (event) => {
+  const handleFilterByName = event => {
     setFilterName(event.target.value);
   };
 
@@ -162,7 +162,7 @@ export default function User() {
                 <TableBody>
                   {filteredUsers
                     .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                    .map((row) => {
+                    .map(row => {
                       const { id, name, role, status, company, avatarUrl, isVerified } = row;
                       const isItemSelected = selected.indexOf(name) !== -1;
 
@@ -178,7 +178,7 @@ export default function User() {
                           <TableCell padding="checkbox">
                             <Checkbox
                               checked={isItemSelected}
-                              onChange={(event) => handleClick(event, name)}
+                              onChange={event => handleClick(event, name)}
                             />
                           </TableCell>
                           <TableCell component="th" scope="row" padding="none">

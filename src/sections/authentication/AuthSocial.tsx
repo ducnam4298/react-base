@@ -1,24 +1,20 @@
-// material
 import { Stack, Button, Divider, Typography } from '@mui/material';
-// component
 import Iconify from '../../components/Iconify';
 
-// ----------------------------------------------------------------------
-
-export default function AuthSocial() {
+const AuthSocial = () => {
   return (
     <>
       <Stack direction="row" spacing={2}>
         <Button fullWidth size="large" color="inherit" variant="outlined">
-          <Iconify icon="eva:google-fill" color="#DF3E30" height={24} />
+          <Iconify icon="eva:google-fill" sx={{ color: '#DF3E30', height: 24 }} />
         </Button>
 
         <Button fullWidth size="large" color="inherit" variant="outlined">
-          <Iconify icon="eva:facebook-fill" color="#1877F2" height={24} />
+          <Iconify icon="eva:facebook-fill" sx={{ color: '#1877F2', height: 24 }} />
         </Button>
 
         <Button fullWidth size="large" color="inherit" variant="outlined">
-          <Iconify icon="eva:twitter-fill" color="#1C9CEA" height={24} />
+          <Iconify icon="eva:twitter-fill" sx={{ color: '#1C9CEA', height: 24 }} />
         </Button>
       </Stack>
 
@@ -29,4 +25,6 @@ export default function AuthSocial() {
       </Divider>
     </>
   );
-}
+};
+
+export default AuthSocial;

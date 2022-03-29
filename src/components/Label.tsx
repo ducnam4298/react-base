@@ -62,7 +62,7 @@ interface UIProps {
   color: 'default' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error';
   variant: 'filled' | 'outlined' | 'ghost';
   children: React.ReactNode;
-  sx: SxProps<Theme>
+  sx?: SxProps<Theme>
 }
 
 const Label = (props: UIProps) => {
@@ -71,6 +71,7 @@ const Label = (props: UIProps) => {
     <RootStyle
       theme={theme as any}
       ownerState={{ color: props.color ?? 'default', variant: props.variant ?? 'ghost' }}
+      sx={{...props.sx}}
     >
       {props.children}
     </RootStyle>
