@@ -1,4 +1,4 @@
-import { alpha, styled, Theme, useTheme } from '@mui/material/styles';
+import { alpha, styled, Theme, useTheme, SxProps } from '@mui/material/styles';
 
 const RootStyle = styled('span')(
   ({ theme, ownerState }: { theme: Theme; ownerState: { color: string; variant: string } }) => {
@@ -62,6 +62,7 @@ interface UIProps {
   color: 'default' | 'primary' | 'secondary' | 'info' | 'success' | 'warning' | 'error';
   variant: 'filled' | 'outlined' | 'ghost';
   children: React.ReactNode;
+  sx: SxProps<Theme>
 }
 
 const Label = (props: UIProps) => {

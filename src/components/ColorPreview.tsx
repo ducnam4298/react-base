@@ -18,12 +18,13 @@ const IconStyle = styled('div')(({ theme }) => ({
 
 interface UIProps {
   colors: any[];
-  limit: number | 3;
+  limit?: number | 3;
 }
 
 const ColorPreview = (props: UIProps) => {
-  const showColor = props.colors.slice(0, props.limit);
-  const moreColor = props.colors.length - props.limit;
+  const limit = props.limit ?? 3;
+  const showColor = props.colors.slice(0, limit);
+  const moreColor = props.colors.length - limit;
 
   return (
     <RootStyle component="span">
@@ -31,7 +32,7 @@ const ColorPreview = (props: UIProps) => {
         <IconStyle key={color + index} sx={{ bgcolor: color }} />
       ))}
 
-      {props.colors.length > props.limit && (
+      {props.colors.length > limit && (
         <Typography variant="subtitle2">{`+${moreColor}`}</Typography>
       )}
     </RootStyle>
