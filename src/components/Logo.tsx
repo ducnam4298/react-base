@@ -5,10 +5,12 @@ interface UIProps {
   sx?: SxProps<Theme>;
 }
 
-export default function Logo(props: UIProps) {
+const Logo = (props: UIProps) => {
   return (
     <RouterLink to="/">
       <Box component="img" src="/static/logo.svg" sx={{ width: 40, height: 40, ...props.sx }} />
     </RouterLink>
   );
-}
+};
+
+export default Logo;

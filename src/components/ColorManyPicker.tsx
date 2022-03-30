@@ -31,6 +31,7 @@ const IconColor = (props: IconColorProps) => {
 
 interface UIProps {
   colors: any[];
+  onChange: any;
   onChecked: (color: string) => boolean;
   sx?: SxProps<Theme>;
 }
@@ -47,6 +48,7 @@ const ColorManyPicker = (props: UIProps) => {
             value={color}
             color="default"
             checked={props.onChecked(color)}
+            onChange={() => props.onChange()}
             icon={
               <IconColor
                 sx={{

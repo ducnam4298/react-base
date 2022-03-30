@@ -28,7 +28,7 @@ const POST_TITLES = [
   'How to Animate a SVG with border-image',
 ];
 
-export interface Posts {
+export interface Post {
   id: string;
   cover: string;
   title: string;
@@ -45,7 +45,7 @@ export interface Author {
   avatarUrl: string;
 }
 
-const posts: Posts[] = [...Array(23)].map((_, index) => ({
+const posts: Post[] = [...Array(23)].map((_, index) => ({
   id: faker.datatype.uuid(),
   cover: mockImgCover(index + 1),
   title: POST_TITLES[index + 1],

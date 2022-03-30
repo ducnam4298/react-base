@@ -63,7 +63,7 @@ function applySortFilter(array, comparator, query) {
   return stabilizedThis.map(el => el[0]);
 }
 
-export default function User() {
+const User = () => {
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState<'asc' | 'desc'>('asc');
   const [selected, setSelected] = useState<any>([]);
@@ -239,4 +239,6 @@ export default function User() {
       </Container>
     </Page>
   );
-}
+};
+
+export default User;

@@ -33,7 +33,7 @@ const CHART_DATA = [
   { name: 'Series 3', data: [44, 76, 78, 13, 43, 10] },
 ];
 
-export default function AppCurrentSubject() {
+const AppCurrentSubject = () => {
   const theme = useTheme();
 
   const chartOptions = merge(BaseOptionChart(), {
@@ -70,4 +70,6 @@ export default function AppCurrentSubject() {
       </ChartWrapperStyle>
     </Card>
   );
-}
+};
+
+export default AppCurrentSubject;

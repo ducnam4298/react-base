@@ -1,27 +1,23 @@
-import { useState } from 'react';
-// material
+import { useRef, useState } from 'react';
 import { Menu, Button, MenuItem, Typography } from '@mui/material';
-// component
 import Iconify from '../../../components/Iconify';
-
-// ----------------------------------------------------------------------
 
 const SORT_BY_OPTIONS = [
   { value: 'featured', label: 'Featured' },
   { value: 'newest', label: 'Newest' },
   { value: 'priceDesc', label: 'Price: High-Low' },
-  { value: 'priceAsc', label: 'Price: Low-High' }
+  { value: 'priceAsc', label: 'Price: Low-High' },
 ];
 
-export default function ShopProductSort() {
-  const [open, setOpen] = useState(null);
-
-  const handleOpen = (event) => {
-    setOpen(event.currentTarget);
+const ProductSort = () => {
+  const [open, setOpen] = useState(false);
+  const anchorRef = useRef();
+  const handleOpen = () => {
+    setOpen(true);
   };
 
   const handleClose = () => {
-    setOpen(null);
+    setOpen(false);
   };
 
   return (
@@ -29,7 +25,7 @@ export default function ShopProductSort() {
       <Button
         color="inherit"
         disableRipple
-        onClick={handleOpen}
+        onClick={() => handleOpen()}
         endIcon={<Iconify icon={open ? 'eva:chevron-up-fill' : 'eva:chevron-down-fill'} />}
       >
         Sort By:&nbsp;
@@ -39,13 +35,13 @@ export default function ShopProductSort() {
       </Button>
       <Menu
         keepMounted
-        anchorEl={open}
+        anchorEl={anchorRef.current}
         open={Boolean(open)}
         onClose={handleClose}
         anchorOrigin={{ vertical: 'bottom', horizontal: 'right' }}
         transformOrigin={{ vertical: 'top', horizontal: 'right' }}
       >
-        {SORT_BY_OPTIONS.map((option) => (
+        {SORT_BY_OPTIONS.map(option => (
           <MenuItem
             key={option.value}
             selected={option.value === 'newest'}
@@ -58,4 +54,6 @@ export default function ShopProductSort() {
       </Menu>
     </>
   );
-}
+};
+
+export default ProductSort;

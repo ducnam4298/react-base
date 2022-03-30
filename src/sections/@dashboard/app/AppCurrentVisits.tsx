@@ -28,7 +28,7 @@ const ChartWrapperStyle = styled('div')(({ theme }) => ({
 
 const CHART_DATA = [4344, 5435, 1443, 4443];
 
-export default function AppCurrentVisits() {
+const AppCurrentVisits = () => {
   const theme = useTheme();
 
   const chartOptions = merge(BaseOptionChart(), {
@@ -64,4 +64,6 @@ export default function AppCurrentVisits() {
       </ChartWrapperStyle>
     </Card>
   );
-}
+};
+
+export default AppCurrentVisits;

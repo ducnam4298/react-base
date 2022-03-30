@@ -21,7 +21,7 @@ const CHART_DATA = [
   },
 ];
 
-export default function AppWebsiteVisits() {
+const AppWebsiteVisits = () => {
   const chartOptions = merge(BaseOptionChart(), {
     stroke: { width: [0, 2, 3] },
     plotOptions: { bar: { columnWidth: '11%', borderRadius: 4 } },
@@ -67,4 +67,6 @@ export default function AppWebsiteVisits() {
       </Box>
     </Card>
   );
-}
+};
+
+export default AppWebsiteVisits;

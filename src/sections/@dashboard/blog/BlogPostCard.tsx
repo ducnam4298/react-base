@@ -1,4 +1,3 @@
-import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Link, Card, Grid, Avatar, Typography, CardContent } from '@mui/material';
@@ -6,6 +5,7 @@ import { fDate } from '../../../utils/formatTime';
 import { fShortenNumber } from '../../../utils/formatNumber';
 import SvgIconStyle from '../../../components/SvgIconStyle';
 import Iconify from '../../../components/Iconify';
+import { Post } from '_mocks_/blog';
 
 const CardMediaStyle = styled('div')({
   position: 'relative',
@@ -45,17 +45,15 @@ const CoverImgStyle = styled('img')({
   position: 'absolute',
 });
 
-// ----------------------------------------------------------------------
+interface UIProps {
+  post: Post;
+  index: number;
+}
 
-BlogPostCard.propTypes = {
-  post: PropTypes.object.isRequired,
-  index: PropTypes.number,
-};
-
-export default function BlogPostCard({ post, index }) {
-  const { cover, title, view, comment, share, author, createdAt } = post;
-  const latestPostLarge = index === 0;
-  const latestPost = index === 1 || index === 2;
+const BlogPostCard = (props: UIProps) => {
+  const { cover, title, view, comment, share, author, createdAt } = props.post;
+  const latestPostLarge = props.index === 0;
+  const latestPost = props.index === 1 || props.index === 2;
 
   const POST_INFO = [
     { number: comment, icon: 'eva:message-circle-fill' },
@@ -172,4 +170,6 @@ export default function BlogPostCard({ post, index }) {
       </Card>
     </Grid>
   );
-}
+};
+
+export default BlogPostCard;

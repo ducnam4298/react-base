@@ -13,7 +13,7 @@ import Autocomplete from './Autocomplete';
 
 // ----------------------------------------------------------------------
 
-export default function ComponentsOverrides(theme: Theme) {
+const ComponentsOverrides = (theme: Theme) => {
   return merge(
     Card(theme),
     Lists(theme),
@@ -26,4 +26,6 @@ export default function ComponentsOverrides(theme: Theme) {
     IconButton(theme),
     Autocomplete(theme)
   );
-}
+};
+
+export default ComponentsOverrides;

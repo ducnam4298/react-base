@@ -1,11 +1,10 @@
 import { MenuItem, TextField } from '@mui/material';
-
 interface UIProps {
   options: any[];
   onSort?: () => void;
 }
 
-export default function BlogPostsSort(props: UIProps) {
+const BlogPostsSort = (props: UIProps) => {
   return (
     <TextField
       select
@@ -22,4 +21,6 @@ export default function BlogPostsSort(props: UIProps) {
       ))}
     </TextField>
   );
-}
+};
+
+export default BlogPostsSort;

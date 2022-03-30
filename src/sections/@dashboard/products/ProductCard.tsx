@@ -1,32 +1,25 @@
-import PropTypes from 'prop-types';
 import { Link as RouterLink } from 'react-router-dom';
-// material
 import { Box, Card, Link, Typography, Stack } from '@mui/material';
 import { styled } from '@mui/material/styles';
-// utils
 import { fCurrency } from '../../../utils/formatNumber';
-//
 import Label from '../../../components/Label';
 import ColorPreview from '../../../components/ColorPreview';
-
-// ----------------------------------------------------------------------
+import { Product } from '_mocks_/products';
 
 const ProductImgStyle = styled('img')({
   top: 0,
   width: '100%',
   height: '100%',
   objectFit: 'cover',
-  position: 'absolute'
+  position: 'absolute',
 });
 
-// ----------------------------------------------------------------------
+interface UIProps {
+  product: Product;
+}
 
-ShopProductCard.propTypes = {
-  product: PropTypes.object
-};
-
-export default function ShopProductCard({ product }) {
-  const { name, cover, price, colors, status, priceSale } = product;
+const ProductCard = (props: UIProps) => {
+  const { name, cover, price, colors, status, priceSale } = props.product;
 
   return (
     <Card>
@@ -40,7 +33,7 @@ export default function ShopProductCard({ product }) {
               top: 16,
               right: 16,
               position: 'absolute',
-              textTransform: 'uppercase'
+              textTransform: 'uppercase',
             }}
           >
             {status}
@@ -64,7 +57,7 @@ export default function ShopProductCard({ product }) {
               variant="body1"
               sx={{
                 color: 'text.disabled',
-                textDecoration: 'line-through'
+                textDecoration: 'line-through',
               }}
             >
               {priceSale && fCurrency(priceSale)}
@@ -76,4 +69,6 @@ export default function ShopProductCard({ product }) {
       </Stack>
     </Card>
   );
-}
+};
+
+export default ProductCard;

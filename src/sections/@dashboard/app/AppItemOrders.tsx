@@ -1,4 +1,3 @@
-// material
 import { alpha, styled } from '@mui/material/styles';
 import { Card, Typography } from '@mui/material';
 import { fShortenNumber } from '../../../utils/formatNumber';
@@ -30,7 +29,7 @@ const IconWrapperStyle = styled('div')(({ theme }) => ({
 
 const TOTAL = 1723315;
 
-export default function AppItemOrders() {
+const AppItemOrders = () => {
   return (
     <RootStyle>
       <IconWrapperStyle>
@@ -42,4 +41,6 @@ export default function AppItemOrders() {
       </Typography>
     </RootStyle>
   );
-}
+};
+
+export default AppItemOrders;
