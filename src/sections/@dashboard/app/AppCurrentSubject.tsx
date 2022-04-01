@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader } from '@mui/material';
-import { BaseOptionChart } from '../../../components/charts';
+import BaseOptionChart from '../../../components/charts/BaseOptionChart';
 
 const CHART_HEIGHT = 392;
 const LEGEND_HEIGHT = 72;
