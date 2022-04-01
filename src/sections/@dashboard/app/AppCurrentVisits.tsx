@@ -3,7 +3,7 @@ import ReactApexChart from 'react-apexcharts';
 import { useTheme, styled } from '@mui/material/styles';
 import { Card, CardHeader } from '@mui/material';
 import { fNumber } from '../../../utils/formatNumber';
-import BaseOptionChart from '../../../components/charts/BaseOptionChart';
+import BaseOptionChart from '../../../components/BaseOptionChart';
 
 const CHART_HEIGHT = 372;
 const LEGEND_HEIGHT = 72;

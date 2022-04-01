@@ -1,7 +1,7 @@
 import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 import { Card, CardHeader, Box } from '@mui/material';
-import BaseOptionChart from '../../../components/charts/BaseOptionChart';
+import BaseOptionChart from '../../../components/BaseOptionChart';
 
 const CHART_DATA = [
   {

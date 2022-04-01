@@ -2,7 +2,7 @@ import { merge } from 'lodash';
 import ReactApexChart from 'react-apexcharts';
 import { Box, Card, CardHeader } from '@mui/material';
 import { fNumber } from '../../../utils/formatNumber';
-import BaseOptionChart from '../../../components/charts/BaseOptionChart';
+import BaseOptionChart from '../../../components/BaseOptionChart';
 
 const CHART_DATA = [{ data: [400, 430, 448, 470, 540, 580, 690, 1100, 1200, 1380] }];
 
