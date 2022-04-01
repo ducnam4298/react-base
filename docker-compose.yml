@@ -2,8 +2,8 @@ version: '3.8'
 
 services:
   base-core-react:
-    container_name:  react-app-mobx
-    image: base-core-react
+    container_name:  react-mobx
+    image: react-mobx
     build:
       context: .
       dockerfile: ./docker/Dockerfile
