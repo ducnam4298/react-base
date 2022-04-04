@@ -50,7 +50,7 @@ const App = () => {
     <ThemeConfig>
       <ScrollToTop />
       <GlobalStyles />
-      {BaseOptionChartStyle()}
+      <BaseOptionChartStyle/>
       <Router />
     </ThemeConfig>
   );
