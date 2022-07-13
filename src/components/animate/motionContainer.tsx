@@ -1,7 +1,7 @@
 import { motion, VariantLabels } from 'framer-motion';
 import { Box } from '@mui/material';
 import { varWrapEnter } from './variants';
-import { Target } from 'framer-motion/types/types';
+import { Target } from 'framer-motion';
 
 interface UIProps {
   open: boolean;
