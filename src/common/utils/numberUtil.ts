@@ -55,7 +55,7 @@ class NumberUtil {
     } else
       return s + (j ? i.substr(0, j) + t : '') + i.substr(j).replace(/(\d{3})(?=\d)/g, '$1' + t);
   }
-  public FormatChangeValue(number: any, isZero?: boolean, decimals?: any, thousands_sep?: any) {
+  public FormatChangeValue(number: any, isZero?: boolean, decimals?: any, thousands?: any) {
     number = parseFloat(number).toFixed(2);
     if (number) {
       number = number.toString();
@@ -68,7 +68,7 @@ class NumberUtil {
       let prf = number.split('.')[0];
       let n = prf,
         c = isNaN((decimals = Math.abs(decimals))) ? 2 : decimals;
-      let t = thousands_sep === undefined ? ',' : thousands_sep,
+      let t = thousands === undefined ? ',' : thousands,
         s = number < 0 ? '-' : '';
       let i = parseInt((n = Math.abs(+n || 0).toFixed(c))) + '',
         j: number = i.length > 3 ? i.length % 3 : 0;
@@ -79,7 +79,7 @@ class NumberUtil {
       let prf = number.split('.')[0];
       let n = prf,
         c = isNaN((decimals = Math.abs(decimals))) ? 2 : decimals;
-      let t = thousands_sep === undefined ? ',' : thousands_sep,
+      let t = thousands === undefined ? ',' : thousands,
         s = n < 0 ? '-' : '';
       let i = parseInt((n = Math.abs(+n || 0).toFixed(c))) + '',
         j: number = i.length > 3 ? i.length % 3 : 0;
@@ -89,49 +89,26 @@ class NumberUtil {
     }
     return value;
   }
-  public secondsToHms(d: any) {
-    d = Number(d);
-    var h: any = Math.floor(d / 3600);
-    var m: any = Math.floor((d % 3600) / 60);
-    var s: any = Math.floor((d % 3600) % 60);
-    if (h < 10) {
-      h = '0' + h;
-    }
-    if (m < 10) {
-      m = '0' + m;
-    }
-    if (s < 10) {
-      s = '0' + s;
-    }
-    if (h >= 0 && m >= 0 && s >= 0) {
-      return h + ':' + m + ':' + s;
-    } else {
-      return '00:00:00';
-    }
-  }
-  public secondsToMs(d: any) {
-    d = Number(d);
-    var h: any = Math.floor(d / 3600);
-    var m: any = Math.floor((d % 3600) / 60);
-    var s: any = Math.floor((d % 3600) % 60);
-    if (h < 10) {
-      h = '0' + h;
-    }
-    if (m < 10) {
-      m = '0' + m;
-    }
-    if (s < 10) {
-      s = '0' + s;
-    }
-    if (m >= 0 && s >= 0) {
-      return m + ':' + s;
-    } else {
-      return '00:00';
-    }
-  }
-  public TimeToSeconds(time: string) {
-    const data = time.split(':');
-    return parseInt(data[2]) + parseInt(data[1]) * 60 + parseInt(data[0]) * 60 * 60;
+  public nFormatter(number: number, digits?: number) {
+    const lookup = [
+      { value: 1, symbol: "" },
+      { value: 1e3, symbol: "nghìn" },
+      { value: 1e6, symbol: "triệu" },
+      { value: 1e9, symbol: "tỷ" },
+      { value: 1e12, symbol: "nghìn tỷ" },
+      // { value: 1e15, symbol: "P" },
+      // { value: 1e18, symbol: "E" },
+    ];
+    const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
+    var item = lookup
+      .slice()
+      .reverse()
+      .find((item) => {
+        return number >= item.value;
+      });
+    return item
+      ? `${(number / item.value).toFixed(digits ?? 3).replace(rx, "$1")} ${item.symbol}`
+      : "0";
   }
 }
 

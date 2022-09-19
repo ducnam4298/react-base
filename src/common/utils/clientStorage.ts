@@ -13,7 +13,7 @@ const ClientStorage = class {
       if (dataValue) return dataValue;
       else return null;
     } catch (e) {
-      console.warn("localStorage", e);
+      console.warn('localStorage', e);
     }
   }
 
@@ -54,4 +54,29 @@ const SessionStorage = {
   },
 };
 
-export { clientStorage, SessionStorage as sessionStorage };
+const CookieStorage = class {
+  setCookie(cname: string, value: any, expDays: number) {
+    let d = new Date();
+    d.setTime(d.getTime() + expDays * 24 * 60 * 60 * 1000);
+    let expires = 'expires=' + d.toUTCString();
+    document.cookie = cname + '=' + value + '; ' + expires;
+  }
+  getCookie(cname: string) {
+    var name = cname + '=';
+    var ca = document.cookie.split(';');
+    for (var i = 0; i < ca.length; i++) {
+      var c = ca[i];
+      while (c.charAt(0) === ' ') {
+        c = c.substring(1);
+      }
+      if (c.indexOf(name) === 0) {
+        return c.substring(name.length, c.length);
+      }
+    }
+    return '';
+  }
+};
+
+const cookieStorage = new CookieStorage();
+
+export { clientStorage, SessionStorage as sessionStorage, cookieStorage };
