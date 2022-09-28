@@ -10,7 +10,7 @@ import Iconify from '../../../components/Iconify';
 
 // ----------------------------------------------------------------------
 
-export default function RegisterForm() {
+const RegisterForm = () => {
   const navigate = useNavigate();
   const [showPassword, setShowPassword] = useState(false);
 
@@ -104,3 +104,5 @@ export default function RegisterForm() {
     </FormikProvider>
   );
 }
+
+export default RegisterForm;
