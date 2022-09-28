@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { styled, alpha } from '@mui/material/styles';
 import { Input, Slide, Button, IconButton, InputAdornment, ClickAwayListener } from '@mui/material';
-import Iconify from '../../components/Iconify';
+import Iconify from 'components/Iconify';
 
 const APPBAR_MOBILE = 64;
 const APPBAR_DESKTOP = 92;

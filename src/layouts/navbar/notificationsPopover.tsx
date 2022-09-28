@@ -20,9 +20,9 @@ import {
   ListItemButton,
 } from '@mui/material';
 import { mockImgAvatar } from '../../utils/mockImages';
-import Iconify from '../../components/Iconify';
-import Scrollbar from '../../components/Scrollbar';
-import MenuPopover from '../../components/MenuPopover';
+import Iconify from 'components/Iconify';
+import Scrollbar from 'components/Scrollbar';
+import MenuPopover from 'components/MenuPopover';
 
 interface Notification {
   id: string;

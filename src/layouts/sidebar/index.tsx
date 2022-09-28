@@ -3,11 +3,11 @@ import { Link as RouterLink, useLocation } from 'react-router-dom';
 import { styled } from '@mui/material/styles';
 import { Box, Link, Drawer, Typography, Avatar } from '@mui/material';
 import account from '../../_mocks_/account';
-import useResponsive from '../../hooks/useResponsive';
-import Logo from '../../components/Logo';
-import Scrollbar from '../../components/Scrollbar';
-import NavSection from '../../components/NavSection';
-import sidebarConfig from './SidebarConfig';
+import useResponsive from 'hooks/useResponsive';
+import Logo from 'components/Logo';
+import Scrollbar from 'components/Scrollbar';
+import NavSection from 'components/NavSection';
+import sidebarConfig from './sidebarConfig';
 
 const DRAWER_WIDTH = 280;
 
@@ -31,7 +31,7 @@ interface UIProps {
   onCloseSidebar: () => void;
 }
 
-const DashboardSidebar = (props: UIProps) => {
+const Sidebar = (props: UIProps) => {
   const { pathname } = useLocation();
 
   const isDesktop = useResponsive('up', 'lg');
@@ -107,4 +107,4 @@ const DashboardSidebar = (props: UIProps) => {
   );
 };
 
-export default DashboardSidebar;
+export default Sidebar;

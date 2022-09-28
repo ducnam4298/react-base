@@ -1,10 +1,10 @@
 import { alpha, styled } from '@mui/material/styles';
 import { Box, Stack, AppBar, Toolbar, IconButton } from '@mui/material';
-import Iconify from '../../components/Iconify';
-import SearchBar from './SearchBar';
-import AccountPopover from './AccountPopover';
-import LanguagePopover from './LanguagePopover';
-import NotificationsPopover from './NotificationsPopover';
+import Iconify from 'components/Iconify';
+import SearchBar from './searchBar';
+import AccountPopover from './accountPopover';
+import LanguagePopover from './languagePopover';
+import NotificationsPopover from './notificationsPopover';
 
 const DRAWER_WIDTH = 280;
 const APPBAR_MOBILE = 64;
@@ -32,7 +32,7 @@ interface UIProps {
   onOpenSidebar: () => void;
 }
 
-const DashboardNavbar = (props: UIProps) => {
+const Navbar = (props: UIProps) => {
   return (
     <RootStyle>
       <ToolbarStyle>
@@ -54,4 +54,4 @@ const DashboardNavbar = (props: UIProps) => {
   );
 };
 
-export default DashboardNavbar;
+export default Navbar;

@@ -2,8 +2,8 @@ import { useRef, useState } from 'react';
 import { Link as RouterLink } from 'react-router-dom';
 import { alpha } from '@mui/material/styles';
 import { Button, Box, Divider, MenuItem, Typography, Avatar, IconButton } from '@mui/material';
-import Iconify from '../../components/Iconify';
-import MenuPopover from '../../components/MenuPopover';
+import Iconify from 'components/Iconify';
+import MenuPopover from 'components/MenuPopover';
 import account from '../../_mocks_/account';
 
 const MENU_OPTIONS = [

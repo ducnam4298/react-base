@@ -28,7 +28,9 @@
     "hook/*": "hook/*",
     "layouts/*": "layouts/*",
     "module/*": "module/*",
-    "translations/*": "translations/*"
+    "translations/*": "translations/*",
+    "theme": "theme/*",
+    "routes": "routes/*"
   },
   "include": ["src"]
 }
