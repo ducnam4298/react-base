@@ -29,8 +29,8 @@
     "layouts/*": "layouts/*",
     "module/*": "module/*",
     "translations/*": "translations/*",
-    "theme": "theme/*",
-    "routes": "routes/*"
+    "theme/*": "theme/*",
+    "routes/*": "routes/*"
   },
   "include": ["src"]
 }
