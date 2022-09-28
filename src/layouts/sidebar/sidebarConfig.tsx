@@ -6,6 +6,8 @@ export interface SidebarProps {
   title?: string;
   path?: string;
   icon?: any;
+  info?: any;
+  children?: SidebarProps[];
 }
 
 const sidebarConfig: SidebarProps[] = [

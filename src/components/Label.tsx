@@ -69,7 +69,7 @@ const Label = (props: UIProps) => {
   const theme = useTheme();
   return (
     <RootStyle
-      theme={theme as any}
+      theme={theme}
       ownerState={{ color: props.color ?? 'default', variant: props.variant ?? 'ghost' }}
       sx={{...props.sx}}
     >

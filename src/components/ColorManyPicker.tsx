@@ -24,7 +24,7 @@ const IconColor = (props: IconColorProps) => {
         ...props.sx,
       }}
     >
-      <Iconify icon="eva:checkmark-fill" sx={undefined} />
+      <Iconify icon="eva:checkmark-fill" sx={props.sx} />
     </Box>
   );
 };

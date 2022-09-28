@@ -3,6 +3,7 @@ import { NavLink as RouterLink, matchPath, useLocation } from 'react-router-dom'
 import { alpha, useTheme, styled } from '@mui/material/styles';
 import { Box, List, Collapse, ListItemText, ListItemIcon, ListItemButton } from '@mui/material';
 import Iconify from './Iconify';
+import { SidebarProps } from 'layouts/sidebar/sidebarConfig';
 
 const ListItemStyle = styled(ListItemButton)<any>(({ theme }) => ({
   ...theme.typography.body2,
@@ -35,14 +36,15 @@ const ListItemIconStyle = styled(ListItemIcon)({
 });
 
 interface NavItemProps {
-  item: any;
-  active: any;
+  item: SidebarProps;
+  active: (path?: string) => boolean;
 }
 
 const NavItem = (props: NavItemProps) => {
   const theme = useTheme();
   const isActiveRoot = props.active(props.item.path);
   const { title, path, icon, info, children } = props.item;
+
   const [open, setOpen] = useState(isActiveRoot);
 
   const handleOpen = () => {
@@ -139,7 +141,7 @@ const NavItem = (props: NavItemProps) => {
 };
 
 interface UIProps {
-  navConfig: any[];
+  navConfig: SidebarProps[];
 }
 
 const NavSection = (props: UIProps) => {

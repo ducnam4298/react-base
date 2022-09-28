@@ -7,7 +7,7 @@ interface UIProps {
 }
 
 const Iconify = (props: UIProps) => {
-  return <Box component={Icon} icon={props.icon} sx={{ ...props.sx }} />;
+  return <Box component={Icon} icon={props.icon} sx={props.sx} />;
 };
 
 export default Iconify;
