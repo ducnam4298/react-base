@@ -9,7 +9,7 @@ import Scrollbar from 'components/Scrollbar';
 import NavSection from 'components/NavSection';
 import sidebarConfig from './sidebarConfig';
 
-const DRAWER_WIDTH = 280;
+const DRAWER_WIDTH = 250;
 
 const RootStyle = styled('div')(({ theme }) => ({
   [theme.breakpoints.up('lg')]: {

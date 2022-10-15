@@ -8,6 +8,7 @@ import Products from 'modules/product';
 import Blog from 'modules/blog';
 import User from 'modules/user';
 import NotFound from 'modules/not-found';
+import Form from 'modules/form';
 
 const Router = () => {
   return useRoutes([
@@ -15,6 +16,7 @@ const Router = () => {
       path: '/dashboard',
       element: <Layout />,
       children: [
+        { path: 'form', element: <Form /> },
         { path: 'app', element: <Dashboard /> },
         { path: 'user', element: <User /> },
         { path: 'products', element: <Products /> },

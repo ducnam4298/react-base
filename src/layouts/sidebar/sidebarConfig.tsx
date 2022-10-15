@@ -12,6 +12,11 @@ export interface SidebarProps {
 
 const sidebarConfig: SidebarProps[] = [
   {
+    title: 'form',
+    path: '/dashboard/form',
+    icon: getIcon('fluent:form-24-filled'),
+  },
+  {
     title: 'dashboard',
     path: '/dashboard/app',
     icon: getIcon('eva:pie-chart-2-fill'),

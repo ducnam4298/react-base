@@ -6,7 +6,7 @@ import AccountPopover from './accountPopover';
 import LanguagePopover from './languagePopover';
 import NotificationsPopover from './notificationsPopover';
 
-const DRAWER_WIDTH = 280;
+const DRAWER_WIDTH = 249;
 const APPBAR_MOBILE = 64;
 const APPBAR_DESKTOP = 92;
 
