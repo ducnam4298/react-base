@@ -50,6 +50,9 @@ const Input = (theme: Theme) => {
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
+          '&:hover .MuiOutlinedInput-notchedOutline': {
+            borderColor: theme.palette.primary.main,
+          },
           '& .MuiOutlinedInput-notchedOutline': {
             borderColor: theme.palette.grey[500_32],
           },

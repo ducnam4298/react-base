@@ -1,0 +1,60 @@
+const PrimaryColor = {
+  redTheme: {
+    lighter: '#ffbaba',
+    light: '#ff7b7b',
+    main: '#ff5252',
+    dark: '#ff0000',
+    darker: '#a70000',
+    contrastText: '#fff',
+  },
+  orangeTheme: {
+    lighter: '#996300',
+    light: '#cc8400',
+    main: '#ffa500',
+    dark: '#ffc966',
+    darker: '#ffe4b2',
+    contrastText: '#fff',
+  },
+  yellowTheme: {
+    lighter: '#f9f65c',
+    light: '#f2ee55',
+    main: '#fffb00',
+    dark: '#f0eb00',
+    darker: '#e1dc0d',
+    contrastText: '#212B36',
+  },
+  greenTheme: {
+    lighter: '#C8FACD',
+    light: '#5BE584',
+    main: '#00AB55',
+    dark: '#007B55',
+    darker: '#005249',
+    contrastText: '#fff',
+  },
+  blueTheme: {
+    lighter: '#3c78df',
+    light: '#1d63db',
+    main: '#155ad0',
+    dark: '#0c4dbd',
+    darker: '#10459f',
+    contrastText: '#fff',
+  },
+  indigoTheme: {
+    lighter: '#dbcce6',
+    light: '#9366b4',
+    main: '#4b0082',
+    dark: '#2d004e',
+    darker: '#0f001a',
+    contrastText: '#fff',
+  },
+  violetTheme: {
+    lighter: '#fbe6fb',
+    light: '#f4b4f4',
+    main: '#ee82ee',
+    dark: '#8e4e8e',
+    darker: '#2f1a2f',
+    contrastText: '#fff',
+  },
+};
+
+export default PrimaryColor;
