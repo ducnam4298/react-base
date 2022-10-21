@@ -4,9 +4,9 @@ import { Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { CompareArrows as CompareArrowsIcon, SyncAlt as SyncAltIcon } from '@mui/icons-material';
 import { ChoiceType, ControlType, IForm, IFormControl, IFormRow } from 'common/models/form';
-import { LanguageCode, RightOption } from 'common/models/enum';
-import { Language } from 'common/models/language';
-import { FileType } from 'common/models/enum';
+// import { LanguageCode } from 'common/models/enum';
+// import { Language } from 'common/models/language';
+import { RightOption, FileType } from 'common/models/enum';
 import FormBoxLayout from './FormBoxLayout';
 import './index.css';
 import {
@@ -33,7 +33,7 @@ interface UIProps {
 }
 
 const FormLayout = (props: UIProps) => {
-  const [code, setCode] = useState(LanguageCode.EN.toString());
+  // const [code, setCode] = useState(LanguageCode.EN.toString());
 
   const formik = useFormik({
     enableReinitialize: true,
@@ -44,19 +44,19 @@ const FormLayout = (props: UIProps) => {
     },
   });
 
-  const getFieldValue = (fieldName: string) => {
-    let item = formik.values.languages?.find((e: Language) => e.code === code);
-    return item && item[fieldName];
-  };
-  const setFieldValue = (fieldName: string, v: string) => {
-    let values = formik.values;
-    let item = values.languages?.find((e: Language) => e.code === code);
-    if (item) {
-      item[fieldName] = v;
-      values[fieldName] = v;
-    }
-    formik.setValues(values);
-  };
+  // const getFieldValue = (fieldName: string) => {
+  //   let item = formik.values.languages?.find((e: Language) => e.code === code);
+  //   return item && item[fieldName];
+  // };
+  // const setFieldValue = (fieldName: string, v: string) => {
+  //   let values = formik.values;
+  //   let item = values.languages?.find((e: Language) => e.code === code);
+  //   if (item) {
+  //     item[fieldName] = v;
+  //     values[fieldName] = v;
+  //   }
+  //   formik.setValues(values);
+  // };
 
   const errorMessage = (fieldName: string) => {
     const touched: boolean = getIn(formik.touched, fieldName);
