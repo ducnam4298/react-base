@@ -38,9 +38,9 @@ class NumberUtil {
     } else return '--';
     let n = number.split('.')[0],
       c = isNaN((decimals = Math.abs(decimals))) ? 2 : decimals;
-    var t = thousands_sep === undefined ? ',' : thousands_sep,
+    let t = thousands_sep === undefined ? ',' : thousands_sep,
       s = number < 0 ? '-' : '';
-    var i = parseInt((n = Math.abs(+n || 0).toFixed(c))) + '',
+    let i = parseInt((n = Math.abs(+n || 0).toFixed(c))) + '',
       j: number = i.length > 3 ? i.length % 3 : 0;
     if (number === '0') {
       return '-';
@@ -100,7 +100,7 @@ class NumberUtil {
       // { value: 1e18, symbol: "E" },
     ];
     const rx = /\.0+$|(\.[0-9]*[1-9])0+$/;
-    var item = lookup
+    let item = lookup
       .slice()
       .reverse()
       .find((item) => {

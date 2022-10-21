@@ -1,6 +1,6 @@
 import { observable } from 'mobx';
 class AppStore {
-    @observable isLightMode: boolean = false;
+  @observable isLightMode = false;
 }
 
 export const appStore = new AppStore();

@@ -22,6 +22,7 @@ export interface FileContent {
 
 export type FilePickerReturnTypes = [
   () => void,
+  (file: File[]) => void,
   { filesContent: FileContent[]; errors: FileError[]; loading: boolean; plainFiles: File[] }
 ];
 

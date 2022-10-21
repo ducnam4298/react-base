@@ -8,6 +8,15 @@ const Input = (theme: Theme) => {
           '&.Mui-disabled': {
             '& svg': { color: theme.palette.text.disabled },
           },
+          '&.Mui-error > svg': {
+            color: theme.palette.error.main,
+          },
+          '&.MuiInputAdornment-root > button > svg': {
+            color: theme.palette.primary.main,
+          },
+          '&.Mui-error > .MuiInputAdornment-root > button > svg': {
+            color: theme.palette.error.main,
+          },
         },
         input: {
           '&::placeholder': {
@@ -33,9 +42,9 @@ const Input = (theme: Theme) => {
           '&:hover': {
             backgroundColor: theme.palette.grey[500_16],
           },
-          '&.Mui-focused': {
-            backgroundColor: theme.palette.action.focus,
-          },
+          // '&.Mui-focused': {
+          //   backgroundColor: theme.palette.action.focus,
+          // },
           '&.Mui-disabled': {
             backgroundColor: theme.palette.action.disabledBackground,
           },
@@ -50,11 +59,14 @@ const Input = (theme: Theme) => {
     MuiOutlinedInput: {
       styleOverrides: {
         root: {
+          '&:hover.Mui-error .MuiOutlinedInput-notchedOutline': {
+            borderColor: theme.palette.error.light,
+          },
           '&:hover .MuiOutlinedInput-notchedOutline': {
-            borderColor: theme.palette.primary.main,
+            borderColor: theme.palette.primary.light,
           },
           '& .MuiOutlinedInput-notchedOutline': {
-            borderColor: theme.palette.grey[500_32],
+            borderColor: theme.palette.primary.main,
           },
           '&.Mui-disabled': {
             '& .MuiOutlinedInput-notchedOutline': {

@@ -146,7 +146,7 @@ interface UIProps {
 
 const NavSection = (props: UIProps) => {
   const { pathname } = useLocation();
-  const match = (path?: string) => (path ? !!matchPath({ path, end: false }, pathname) : false);
+  const match = (path?: string) => (path ? !!matchPath({ path, end: true }, pathname) : false);
 
   return (
     <Box>

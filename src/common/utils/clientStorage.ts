@@ -9,7 +9,7 @@ const ClientStorage = class {
 
   get(key: string) {
     try {
-      let dataValue = JSON.parse(localStorage.getItem(key) ?? '');
+      const dataValue = JSON.parse(localStorage.getItem(key) ?? '');
       if (dataValue) return dataValue;
       else return null;
     } catch (e) {
@@ -38,7 +38,7 @@ const SessionStorage = {
   },
   get(key: string) {
     try {
-      let dataValue = sessionStorage.getItem(key)
+      const dataValue = sessionStorage.getItem(key)
         ? JSON.parse(sessionStorage.getItem(key) ?? '')
         : '';
       return dataValue;
@@ -56,16 +56,16 @@ const SessionStorage = {
 
 const CookieStorage = class {
   setCookie(cname: string, value: any, expDays: number) {
-    let d = new Date();
+    const d = new Date();
     d.setTime(d.getTime() + expDays * 24 * 60 * 60 * 1000);
-    let expires = 'expires=' + d.toUTCString();
+    const expires = 'expires=' + d.toUTCString();
     document.cookie = cname + '=' + value + '; ' + expires;
   }
   getCookie(cname: string) {
-    var name = cname + '=';
-    var ca = document.cookie.split(';');
-    for (var i = 0; i < ca.length; i++) {
-      var c = ca[i];
+    const name = cname + '=';
+    const ca = document.cookie.split(';');
+    for (let i = 0; i < ca.length; i++) {
+      let c = ca[i];
       while (c.charAt(0) === ' ') {
         c = c.substring(1);
       }

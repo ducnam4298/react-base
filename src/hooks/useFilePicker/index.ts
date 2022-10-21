@@ -47,6 +47,9 @@ const useFilePicker = ({
       });
     });
   };
+  const onChangeFile = (file: File[]) => {
+    setPlainFiles(file);
+  };
 
   useEffect(() => {
     if (files.length === 0) {
@@ -106,10 +109,13 @@ const useFilePicker = ({
         setFileErrors(f => [err, ...f]);
       })
       .finally(() => setLoading(false));
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [files]);
 
-  return [openFileSelector, { filesContent, errors: fileErrors, loading, plainFiles }];
+  return [
+    openFileSelector,
+    onChangeFile,
+    { filesContent, errors: fileErrors, loading, plainFiles },
+  ];
 };
 
 export default useFilePicker;
@@ -119,7 +125,7 @@ const openFileDialog = (accept: string, multiple: boolean, callback: (arg: Event
   // activation event (ie an onclick event)
 
   // Create an input element
-  var inputElement = document.createElement('input');
+  let inputElement = document.createElement('input');
   // Set its type to file
   inputElement.type = 'file';
   // Set accept to the file types you want the user to select.

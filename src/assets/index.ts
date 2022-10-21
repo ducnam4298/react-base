@@ -1,8 +1,3 @@
-// Logo
-// import SrcLogo from './image/Logo.png';
-// import SrcBrand from './image/Brand.png';
-// import SrcLogoBrand from './image/LogoBrand.png';
-
 // Icon
 import { ReactComponent as Facebook } from './svg/ic_facebook.svg';
 import { ReactComponent as Twitter } from './svg/ic_twitter.svg';
@@ -28,11 +23,6 @@ import { ReactComponent as Brand } from './svg/ic_brand.svg';
 import { ReactComponent as Setting } from './svg/ic_setting.svg';
 
 export {
-  // Src
-  // SrcLogo,
-  // SrcBrand,
-  // SrcLogoBrand,
-  // Icon
   Facebook,
   Twitter,
   Camera,
@@ -42,7 +32,6 @@ export {
   RemoveFile,
   Previous,
   Next,
-  // Menu
   Customer,
   Dashboard,
   Employee,

@@ -1,0 +1,258 @@
+[
+    {
+        "value": "Cần Thơ",
+        "label": "Cần Thơ"
+    },
+    {
+        "value": "Đà Nẵng",
+        "label": "Đà Nẵng"
+    },
+    {
+        "value": "Hải Phòng",
+        "label": "Hải Phòng"
+    },
+    {
+        "value": "Hà Nội",
+        "label": "Hà Nội"
+    },
+    {
+        "value": "Hồ Chí Minh",
+        "label": "Hồ Chí Minh"
+    },
+    {
+        "value": "Bà Rịa",
+        "label": "Bà Rịa-Vũng Tàu"
+    },
+    {
+        "value": "Bạc Liêu",
+        "label": "Bạc Liêu"
+    },
+    {
+        "value": "Bắc Giang",
+        "label": "Bắc Giang"
+    },
+    {
+        "value": "Bắc Ninh",
+        "label": "Bắc Ninh"
+    },
+    {
+        "value": "Bảo Lộc",
+        "label": "Lâm Đồng"
+    },
+    {
+        "value": "Biên Hòa",
+        "label": "Đồng Nai"
+    },
+    {
+        "value": "Bến Tre",
+        "label": "Bến Tre"
+    },
+    {
+        "value": "Buôn Ma Thuột",
+        "label": "Đắk Lắk"
+    },
+    {
+        "value": "Cà Mau",
+        "label": "Cà Mau"
+    },
+    {
+        "value": "Cẩm Phả",
+        "label": "Quảng Ninh"
+    },
+    {
+        "value": "Cao Lãnh",
+        "label": "Đồng Tháp"
+    },
+    {
+        "value": "Châu Đốc",
+        "label": "An Giang"
+    },
+    {
+        "value": "Đà Lạt",
+        "label": "Lâm Đồng"
+    },
+    {
+        "value": "Điện Biên Phủ",
+        "label": "Điện Biên"
+    },
+    {
+        "value": "Đông Hà",
+        "label": "Quảng Trị"
+    },
+    {
+        "value": "Đồng Hới",
+        "label": "Quảng Bình"
+    },
+    {
+        "value": "Hà Tĩnh",
+        "label": "Hà Tĩnh"
+    },
+    {
+        "value": "Hạ Long",
+        "label": "Quảng Ninh"
+    },
+    {
+        "value": "Hải Dương",
+        "label": "Hải Dương"
+    },
+    {
+        "value": "Hòa Bình",
+        "label": "Hòa Bình"
+    },
+    {
+        "value": "Hội An",
+        "label": "Quảng Nam"
+    },
+    {
+        "value": "Huế",
+        "label": "Thừa Thiên-Huế"
+    },
+    {
+        "value": "Hưng Yên",
+        "label": "Hưng Yên"
+    },
+    {
+        "value": "Kon Tum",
+        "label": "Kon Tum"
+    },
+    {
+        "value": "Lạng Sơn",
+        "label": "Lạng Sơn"
+    },
+    {
+        "value": "Lào Cai",
+        "label": "Lào Cai"
+    },
+    {
+        "value": "Long Xuyên",
+        "label": "An Giang"
+    },
+    {
+        "value": "Móng Cái",
+        "label": "Quảng Ninh"
+    },
+    {
+        "value": "Mỹ Tho",
+        "label": "Tiền Giang"
+    },
+    {
+        "value": "Nam Định",
+        "label": "Nam Định"
+    },
+    {
+        "value": "Ninh Bình",
+        "label": "Ninh Bình"
+    },
+    {
+        "value": "Nha Trang",
+        "label": "Khánh Hòa"
+    },
+    {
+        "value": "Cam Ranh",
+        "label": "Khánh Hòa"
+    },
+    {
+        "value": "Phan Rang-Tháp Chàm",
+        "label": "Ninh Thuận"
+    },
+    {
+        "value": "Phan Thiết",
+        "label": "Bình Thuận"
+    },
+    {
+        "value": "Phủ Lý",
+        "label": "Hà Nam"
+    },
+    {
+        "value": "Pleiku",
+        "label": "Gia Lai"
+    },
+    {
+        "value": "Quảng Ngãi",
+        "label": "Quảng Ngãi"
+    },
+    {
+        "value": "Quy Nhơn",
+        "label": "Bình Định"
+    },
+    {
+        "value": "Rạch Giá",
+        "label": "Kiên Giang"
+    },
+    {
+        "value": "Sa Đéc",
+        "label": "Đồng Tháp"
+    },
+    {
+        "value": "Sóc Trăng",
+        "label": "Sóc Trăng"
+    },
+    {
+        "value": "Sơn La",
+        "label": "Sơn La"
+    },
+    {
+        "value": "Tam Kỳ",
+        "label": "Quảng Nam"
+    },
+    {
+        "value": "Tân An",
+        "label": "Long An"
+    },
+    {
+        "value": "Thái Bình",
+        "label": "Thái Bình"
+    },
+    {
+        "value": "Thái Nguyên",
+        "label": "Thái Nguyên"
+    },
+    {
+        "value": "Thanh Hóa",
+        "label": "Thanh Hóa"
+    },
+    {
+        "value": "Trà Vinh",
+        "label": "Trà Vinh"
+    },
+    {
+        "value": "Tuy Hòa",
+        "label": "Phú Yên"
+    },
+    {
+        "value": "Tuyên Quang",
+        "label": "Tuyên Quang"
+    },
+    {
+        "value": "Uông Bí",
+        "label": "Quảng Ninh"
+    },
+    {
+        "value": "Việt Trì",
+        "label": "Phú Thọ"
+    },
+    {
+        "value": "Vinh",
+        "label": "Nghệ An"
+    },
+    {
+        "value": "Vĩnh Yên",
+        "label": "Vĩnh Phúc"
+    },
+    {
+        "value": "Vĩnh Long",
+        "label": "Vĩnh Long"
+    },
+    {
+        "value": "Vũng Tàu",
+        "label": "Bà Rịa-Vũng Tàu"
+    },
+    {
+        "value": "Yên Bái",
+        "label": "Yên Bái"
+    },
+    {
+        "value": "Cao Bằng",
+        "label": "Cao Bằng"
+    }
+]

@@ -19,14 +19,23 @@ const Card = (theme: Theme) => {
       },
       styleOverrides: {
         root: {
-          padding: theme.spacing(3, 3, 0),
+          padding: theme.spacing(1),
+          '& .MuiCardHeader-action': {
+            width: '100%',
+            marginTop: theme.spacing(-0.5),
+            marginRight: theme.spacing(0),
+            marginBottom: theme.spacing(-0.5),
+          },
         },
       },
     },
     MuiCardContent: {
       styleOverrides: {
         root: {
-          padding: theme.spacing(3),
+          padding: theme.spacing(1),
+          '&:last-child': {
+            paddingBottom: theme.spacing(1),
+          },
         },
       },
     },

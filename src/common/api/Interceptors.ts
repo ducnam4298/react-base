@@ -1,14 +1,11 @@
 import axios, { AxiosResponse } from 'axios';
 import { Endpoint } from './endpoint';
-// import { store } from 'index';
-// import { ActionType } from 'store/context';
-// import { SwitchAuthenticated } from 'models/context';
 import { clientStorage } from 'common/utils/clientStorage';
 
 axios.interceptors.response.use(
   res => res,
   async error => {
-    let originalRequest = error.config;
+    const originalRequest = error.config;
     if (error.response && error.response.status === 401) {
       let urlRefreshToken = originalRequest.url.split('/');
       urlRefreshToken = urlRefreshToken[urlRefreshToken.length - 1];
@@ -52,14 +49,6 @@ const handleError = () => {
   clientStorage.remove('rt-flash');
   sessionStorage.clear();
   clearToken();
-  // store.dispatch({
-  //   type: ActionType.SWITCH_AUTHENTICATED,
-  //   action: SwitchAuthenticated.LOGGEDOUT,
-  // });
-  // store.dispatch({
-  //   type: 'Signin',
-  //   payload: { params: { msg: 'SigninAgain' } },
-  // });
 };
 
 export default axios;

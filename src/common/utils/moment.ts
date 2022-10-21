@@ -1,3 +1,5 @@
+import moment from "moment";
+
 export class Moment {
   static CurrentTime() {
     const today = new Date();
@@ -20,7 +22,9 @@ export class Moment {
     const date = new Date(y, m, d);
     return date;
   };
-
+  static FormatDate(date: Date, format?: string) {
+    return moment(date).format(format ?? 'DD/MM/yyyy');
+  }
   static CountDate = (number: number, plus?: boolean) => {
     if (plus) {
       return new Date().setDate(new Date().getDate() + number ?? new Date().getDate());
@@ -28,24 +32,24 @@ export class Moment {
   };
 
   static InDays(d1: Date, d2: Date) {
-    var t2 = d2.getTime();
-    var t1 = d1.getTime();
+    const t2 = d2.getTime();
+    const t1 = d1.getTime();
 
     return parseInt(((t2 - t1) / (24 * 3600 * 1000)).toString());
   }
 
   static InWeeks(d1: Date, d2: Date) {
-    var t2 = d2.getTime();
-    var t1 = d1.getTime();
+    const t2 = d2.getTime();
+    const t1 = d1.getTime();
 
     return parseInt(((t2 - t1) / (24 * 3600 * 1000 * 7)).toString());
   }
 
   static InMonths(d1: Date, d2: Date) {
-    var d1Y = d1.getFullYear();
-    var d2Y = d2.getFullYear();
-    var d1M = d1.getMonth();
-    var d2M = d2.getMonth();
+    const d1Y = d1.getFullYear();
+    const d2Y = d2.getFullYear();
+    const d1M = d1.getMonth();
+    const d2M = d2.getMonth();
 
     return d2M + 12 * d2Y - (d1M + 12 * d1Y);
   }
@@ -66,12 +70,7 @@ export class Moment {
     return new Date(year, month, date);
   }
 
-  static PreviousDateTime(
-    date?: Date,
-    day?: number,
-    month?: number,
-    year?: number
-  ) {
+  static PreviousDateTime(date?: Date, day?: number, month?: number, year?: number) {
     const currentDate = date ?? new Date();
     const previousDate = new Date(
       new Date(currentDate).setDate(currentDate.getDate() - (day ?? 7))
@@ -85,16 +84,9 @@ export class Moment {
     return { date: previousDate, month: previousMonth, year: previousYear };
   }
 
-  static NextDateTime(
-    date?: Date,
-    day?: number,
-    month?: number,
-    year?: number
-  ) {
+  static NextDateTime(date?: Date, day?: number, month?: number, year?: number) {
     const currentDate = date ?? new Date();
-    const nextDate = new Date(
-      new Date(currentDate).setDate(currentDate.getDate() + (day ?? 7))
-    );
+    const nextDate = new Date(new Date(currentDate).setDate(currentDate.getDate() + (day ?? 7)));
     const nextMonth = new Date(
       new Date(currentDate).setMonth(currentDate.getMonth() + (month ?? 1))
     );

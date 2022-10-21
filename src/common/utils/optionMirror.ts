@@ -5,7 +5,7 @@ import {
   StatusGlobal,
   VisiblePost,
 } from 'common/models/enum';
-import { ControlType } from 'common/models';
+import { ControlType } from 'common/models/form';
 
 export const ConvertType = (typeEnum: ControlType) => {
   switch (typeEnum) {
@@ -33,78 +33,78 @@ export const RenderSymbol = {
   LAST_PREVIOUS: '&laquo;',
 };
 export interface IOption {
-  key?: number | string;
-  text?: string;
+  value?: string;
+  label?: string;
 }
 
 export const VisibleOptions: IOption[] = [
   {
-    key: VisiblePost.Public,
-    text: 'Public',
+    value: VisiblePost.Public,
+    label: 'Public',
   },
   {
-    key: VisiblePost.Private,
-    text: 'Private',
+    value: VisiblePost.Private,
+    label: 'Private',
   },
 ];
 
 export const ContentTypeOptions: IOption[] = [
   {
-    key: ContentType.Text,
-    text: 'Text',
+    value: ContentType.Text,
+    label: 'Text',
   },
   {
-    key: ContentType.Image,
-    text: 'Image',
+    value: ContentType.Image,
+    label: 'Image',
   },
   {
-    key: ContentType.Video,
-    text: 'Video',
+    value: ContentType.Video,
+    label: 'Video',
   },
   {
-    key: ContentType.Multi,
-    text: 'Multi',
+    value: ContentType.Multi,
+    label: 'Multi',
   },
 ];
 
 export const StatusGlobalOption: IOption[] = [
   {
-    key: StatusGlobal.Draft,
-    text: 'Draft',
+    value: StatusGlobal.Draft,
+    label: 'Draft',
   },
   {
-    key: StatusGlobal.Public,
-    text: 'Public',
+    value: StatusGlobal.Public,
+    label: 'Public',
   },
   {
-    key: StatusGlobal.Hide,
-    text: 'Hide',
+    value: StatusGlobal.Hide,
+    label: 'Hide',
   },
 ];
 
 export const GenderOptions: IOption[] = [
   {
-    key: GenderType.Male,
-    text: 'Male',
+    value: GenderType.Male,
+    label: 'Male',
   },
   {
-    key: GenderType.Female,
-    text: 'Female',
+    value: GenderType.Female,
+    label: 'Female',
   },
   {
-    key: GenderType.Other,
-    text: 'Other',
+    value: GenderType.Other,
+    label: 'Other',
   },
 ];
 
 export const LanguageOptions: IOption[] = [
   {
-    key: LanguageCode.EN,
-    text: 'English',
+    value: LanguageCode.EN,
+    label: 'English',
   },
   {
-    key: LanguageCode.FR,
-    text: 'French',
+    value: LanguageCode.FR,
+    label: 'French',
   },
 ];
 
@@ -119,24 +119,24 @@ const OptionMirror = class {
       : '';
   }
 
-  VisiblePost(key: string | number | 0) {
-    let option = VisibleOptions.find(e => e.key === key);
-    return option ? option.text : '';
+  VisiblePost(value: string) {
+    const option = VisibleOptions.find(e => e.value === value);
+    return option ? option.label : '';
   }
 
-  ContentType(key: string | number) {
-    let option = ContentTypeOptions.find(e => e.key === key);
-    return option ? option.text : '';
+  ContentType(value: string) {
+    const option = ContentTypeOptions.find(e => e.value === value);
+    return option ? option.label : '';
   }
 
-  Status(key: string | number) {
-    let option = StatusGlobalOption.find(e => e.key === key);
-    return option ? option.text : '';
+  Status(value: string) {
+    const option = StatusGlobalOption.find(e => e.value === value);
+    return option ? option.label : '';
   }
 
-  Gender(key: string | number | undefined) {
-    let option = GenderOptions.find(e => e.key === key);
-    return option ? option.text : '';
+  Gender(value?: string) {
+    const option = GenderOptions.find(e => e.value === value);
+    return option ? option.label : '';
   }
   // format số 1000000 => 1,000,000
   FormatComa(n: number) {
@@ -166,8 +166,8 @@ const OptionMirror = class {
   }
 
   I18nFieldError(input?: string, replace?: string) {
-    let inputText = input ?? '';
-    let replaceText = replace ?? '';
+    const inputText = input ?? '';
+    const replaceText = replace ?? '';
 
     return inputText.replace('{0}', replaceText);
   }

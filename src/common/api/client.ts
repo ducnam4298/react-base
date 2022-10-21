@@ -22,7 +22,7 @@ axios.defaults.timeout = 360000;
 
 const RequestClient = class {
   constructor() {
-    let access_token = clientStorage.get('sp-flash');
+    const access_token = clientStorage.get('sp-flash');
     if (access_token) {
       this.init(access_token);
     } else {
@@ -34,7 +34,7 @@ const RequestClient = class {
     axios.defaults.headers.common['Authorization'] = access_token;
   }
   async headers(params: any) {
-    let keys = Object.keys(params);
+    const keys = Object.keys(params);
 
     keys.forEach(key => {
       axios.defaults.headers.common[key] = params[key];
@@ -83,8 +83,8 @@ const RequestClient = class {
         return error.response;
       });
   }
-  async upload(endpoint: string, file: any) {
-    var formData = new FormData();
+  async upload(endpoint: string, file: string | Blob) {
+    const formData = new FormData();
     formData.append('file', file);
     return await axios
       .post(endpoint, formData, {
