@@ -3,6 +3,7 @@ import { Container, Typography } from '@mui/material';
 import { Forms, validationSchema } from './config';
 import { FormLayout } from 'components/material-ui';
 import { RightOption } from 'common/models/enum';
+import { useState } from 'react';
 
 const listRightOptions: RightOption[] = [
   {
@@ -21,10 +22,26 @@ const listRightOptions: RightOption[] = [
     show: true,
   },
 ];
-
+const init = {
+  fullName: undefined,
+  phoneNumber: undefined,
+  email: undefined,
+  dob: undefined,
+  address: undefined,
+  gender: undefined,
+  pob: undefined,
+  profileImage: undefined,
+  coverImage: undefined,
+  description: undefined,
+  contract: undefined,
+};
 const Form = () => {
+  const [initialValues, ChangeInit] = useState(init);
   const onSave = (values: any) => {
     console.log(values);
+  };
+  const onReset = () => {
+    ChangeInit(init);
   };
   return (
     <Page title="Form | Minimal-UI">
@@ -34,22 +51,12 @@ const Form = () => {
         </Typography>
         <FormLayout
           form={Forms[0]}
-          initialValues={{
-            fullName: undefined,
-            phoneNumber: undefined,
-            email: undefined,
-            dob: undefined,
-            gender: undefined,
-            coverImage: undefined,
-            profileImage: undefined,
-            contract: undefined,
-            address: undefined,
-            pob: undefined,
-          }}
+          initialValues={initialValues}
           numberBox={listRightOptions.length}
           listRightOptions={listRightOptions}
           validationSchema={validationSchema}
           onSave={onSave}
+          onReset={onReset}
         />
       </Container>
     </Page>

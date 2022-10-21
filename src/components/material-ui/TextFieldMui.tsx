@@ -35,7 +35,7 @@ const TextFieldMui = (props: UIProps) => {
         notched={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
         onFocus={() => setShrink(true)}
         onBlur={() => setShrink(false)}
-        value={props.formik.values[props.control.id]}
+        value={props.formik.values[props.control.id] ?? ''}
         onChange={e => props.onChange && props.onChange(e.target.value)}
         type={props.control.type}
         error={props.error}

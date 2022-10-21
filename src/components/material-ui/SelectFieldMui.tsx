@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select, useTheme } from '@mui/material';
-import { FormikValues } from 'formik';
+import { FormikState } from 'formik';
 import { IFormControl } from 'common/models/form';
 
 interface UIProps {
@@ -9,7 +9,7 @@ interface UIProps {
   notched?: boolean;
   variant?: 'outlined' | 'standard' | 'filled';
 
-  formik: FormikValues;
+  formik: FormikState<any>;
   control: IFormControl;
   options?: { value: string; label: string }[];
   onChange?: (value: any) => void;
@@ -20,15 +20,16 @@ const SelectFieldMui = (props: UIProps) => {
   const theme = useTheme();
   const [shrink, setShrink] = useState(false);
   const RenderValue = (selected: any, text: string) => {
-    if (
-      (!props.formik.values[props.control.id] || props.formik.values[props.control.id] === '') &&
-      (props.notched || shrink)
-    ) {
-      return (
-        <span style={{ color: theme.palette.text.disabled }}>
-          {props.placeholder ?? 'Chọn' + text}
-        </span>
-      );
+    if (!props.formik.values[props.control.id] || props.formik.values[props.control.id] === '') {
+      if (props.notched || shrink) {
+        return (
+          <span style={{ color: theme.palette.text.disabled }}>
+            {props.placeholder ?? 'Chọn' + text}
+          </span>
+        );
+      } else {
+        return '';
+      }
     } else {
       return props.options?.find(o => o.value === selected)?.label;
     }
@@ -47,17 +48,13 @@ const SelectFieldMui = (props: UIProps) => {
         id={props.control.id + '-select-outlined'}
         label="Giới tính"
         displayEmpty={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
-        defaultValue={props.control.default ?? ''}
-        value={props.formik.values[props.control.id]}
+        defaultValue={''}
+        value={props.formik.values[props.control.id] ?? ''}
         onChange={e => props.onChange && props.onChange(e.target.value)}
         renderValue={selected => RenderValue(selected, ' giới tính')}
         onFocus={() => setShrink(true)}
         onBlur={() => setShrink(false)}
         notched={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
-        inputProps={{
-          id: props.options?.find(o => o.value === props.formik.values[props.control.id])?.label,
-          value: props.options?.find(o => o.value === props.formik.values[props.control.id])?.label,
-        }}
         error={props.error}
       >
         {props.options?.map(o => (

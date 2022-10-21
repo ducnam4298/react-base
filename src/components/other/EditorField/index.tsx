@@ -65,9 +65,9 @@ const EditorField = (props: UIProps) => {
       {loading && <Spinner />}
       <EditorForm
         apiKey="z1mntph9svsj9hxj92tnwn79zsuoj0w8v3849cw1e1q27u14"
-        initialValue={props.formik.values[props.control.id]}
+        value={props.formik.values[props.control.id] ?? ''}
         init={{
-          skin_url: './index.scss',
+          skin_url: './default.css',
           placeholder: props.placeholder,
           height: 250,
           menubar: true,
@@ -83,7 +83,7 @@ const EditorField = (props: UIProps) => {
         onEditorChange={(c, e) => props.onChange && props.onChange(c, e)}
         toolbar="code"
       />
-      {props.helperText && (
+      {props.error && props.helperText && (
         <FormHelperText error={props.error} id={props.control.id + '-helper-text'}>
           {props.helperText}
         </FormHelperText>

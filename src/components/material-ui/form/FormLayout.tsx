@@ -28,6 +28,8 @@ interface UIProps {
   iconButton?: string;
   disabledButton?: boolean;
   onSave?: (value: any) => void;
+  onReset?: () => void;
+  onSubmit?: () => void;
 }
 
 const FormLayout = (props: UIProps) => {
@@ -42,12 +44,10 @@ const FormLayout = (props: UIProps) => {
     },
   });
 
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const getFieldValue = (fieldName: string) => {
     let item = formik.values.languages?.find((e: Language) => e.code === code);
     return item && item[fieldName];
   };
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const setFieldValue = (fieldName: string, v: string) => {
     let values = formik.values;
     let item = values.languages?.find((e: Language) => e.code === code);
@@ -228,7 +228,10 @@ const FormLayout = (props: UIProps) => {
           size="large"
           type="submit"
           variant="outlined"
-          onClick={() => formik.resetForm()}
+          onClick={() => {
+            props.onReset && props.onReset();
+            formik.resetForm();
+          }}
         >
           Hủy
         </LoadingButton>
@@ -236,7 +239,10 @@ const FormLayout = (props: UIProps) => {
           size="large"
           type="submit"
           variant="contained"
-          onClick={() => formik.handleSubmit()}
+          onClick={() => {
+            props.onSubmit && props.onSubmit();
+            formik.handleSubmit();
+          }}
         >
           Gửi
         </LoadingButton>

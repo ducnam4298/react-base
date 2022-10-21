@@ -4,22 +4,24 @@ import * as Yup from 'yup';
 import Cities from 'assets/data/cities.json';
 import { regex } from 'common/utils/regex';
 
-const FieldRequired = 'FieldRequired';
-const FieldSoShort = 'FieldSoShort';
-const FieldSoLong = 'FieldSoLong';
+const FieldRequired = 'Field Required';
+const FieldSoShort = 'Field so short';
+const FieldSoLong = 'Field so long';
+const PhoneNumberNotExist = 'Phone Number not exist';
+const EmailInvalid = 'Email invalid'
 
 export const validationSchema = Yup.object().shape({
   fullName: Yup.string().min(3, FieldSoShort).max(60, FieldSoLong).required(FieldRequired),
   phoneNumber: Yup.string()
-    .matches(regex.phoneRegex, 'Phone Number not exist')
+    .matches(regex.phoneRegex, PhoneNumberNotExist)
     .required(FieldRequired),
-  email: Yup.string().email('EmailInvalid').max(100, FieldSoLong).required(FieldRequired),
+  email: Yup.string().email(EmailInvalid).max(100, FieldSoLong).required(FieldRequired),
   dob: Yup.string().required(FieldRequired),
-  gender: Yup.number().required(FieldRequired),
+  gender: Yup.string().required(FieldRequired),
   coverImage: Yup.string().required(FieldRequired),
   profileImage: Yup.string().required(FieldRequired),
   contract: Yup.array().nullable(false).required(FieldRequired),
-  descriptions: Yup.string().required(FieldRequired),
+  description: Yup.string().required(FieldRequired),
   address: Yup.string().required(FieldRequired),
   pob: Yup.string().required(FieldRequired),
 });
