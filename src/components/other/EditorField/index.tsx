@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Editor as EditorForm } from '@tinymce/tinymce-react';
 // import { Editor as TinyMCEEditor } from 'tinymce';
 import {
@@ -12,6 +12,7 @@ import {
 import { FormikValues } from 'formik';
 import { IFormControl } from 'common/models/form';
 import './default.css';
+import './error.css';
 
 interface UIProps {
   fullWidth?: boolean;
@@ -27,6 +28,27 @@ interface UIProps {
 }
 
 const EditorField = (props: UIProps) => {
+  if (props.error) {
+    let defaultElementFirst = document.getElementsByClassName('default-editor')[0];
+    let defaultElementSecond = document.getElementsByClassName('default-editor')[1];
+    if (defaultElementFirst && defaultElementSecond) {
+      defaultElementFirst.className = 'error-editor tox-tinymce';
+      defaultElementSecond.className = 'error-editor tox-silver-sink tox-tinymce-aux"';
+    }
+  } else {
+    let toxElementFirst = document.getElementsByClassName('tox')[0];
+    let toxElementSecond = document.getElementsByClassName('tox')[1];
+    if (toxElementFirst && toxElementSecond) {
+      toxElementFirst.className = 'default-editor tox-tinymce';
+      toxElementSecond.className = 'default-editor tox-silver-sink tox-tinymce-aux"';
+    }
+    let errorElementFirst = document.getElementsByClassName('error-editor')[0];
+    let errorElementSecond = document.getElementsByClassName('error-editor')[1];
+    if (errorElementFirst && errorElementSecond) {
+      errorElementFirst.className = 'default-editor tox-tinymce';
+      errorElementSecond.className = 'default-editor tox-silver-sink tox-tinymce-aux"';
+    }
+  }
   const [loading, setLoading] = useState(true);
   const theme = useTheme();
   const Spinner = () => (
@@ -54,7 +76,12 @@ const EditorField = (props: UIProps) => {
           transform: 'translate(0, 0) scale(1)',
           padding: 10,
           paddingLeft: 14,
-          border: `1px solid ${theme.palette.primary.main}`,
+          borderTop: 1,
+          borderRight: 1,
+          borderBottom: 0,
+          borderLeft: 1,
+          borderStyle: 'solid',
+          borderColor: props.error ? theme.palette.error.main : theme.palette.primary.main,
           borderRadius: '8px 8px 0 0',
           width: '100%',
           maxWidth: '100%',
@@ -67,7 +94,7 @@ const EditorField = (props: UIProps) => {
         apiKey="z1mntph9svsj9hxj92tnwn79zsuoj0w8v3849cw1e1q27u14"
         value={props.formik.values[props.control.id] ?? ''}
         init={{
-          skin_url: './default.css',
+          skin_url: props.error ? './errors.css' : './default.css',
           placeholder: props.placeholder,
           height: 250,
           menubar: true,

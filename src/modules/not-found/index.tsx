@@ -1,9 +1,9 @@
-import { motion } from 'framer-motion';
-import { Link as RouterLink } from 'react-router-dom';
-import { styled } from '@mui/material/styles';
+import { Link as RouterLink, useNavigate } from 'react-router-dom';
 import { Box, Button, Typography, Container } from '@mui/material';
-import { MotionContainer, varBounceIn } from 'components/animate';
+import { motion } from 'framer-motion';
+import { styled } from '@mui/material/styles';
 import Page from 'components/Page';
+import { MotionContainer, varBounceIn } from 'components/animate';
 
 const RootStyle = styled(Page)(({ theme }) => ({
   display: 'flex',
@@ -14,6 +14,7 @@ const RootStyle = styled(Page)(({ theme }) => ({
 }));
 
 const Page404 = () => {
+  const navigate = useNavigate();
   return (
     <RootStyle title="404 Page Not Found | Minimal-UI">
       <Container>
@@ -37,8 +38,8 @@ const Page404 = () => {
               />
             </motion.div>
 
-            <Button to="/" size="large" variant="contained" component={RouterLink}>
-              Go to Home
+            <Button size="large" variant="contained" onClick={() => navigate(-2)}>
+              Go to back
             </Button>
           </Box>
         </MotionContainer>
