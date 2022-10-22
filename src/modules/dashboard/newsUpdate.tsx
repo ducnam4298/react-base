@@ -16,7 +16,7 @@ interface News {
 const NEWS: News[] = [...Array(5)].map((_, index) => {
   const setIndex = index + 1;
   return {
-    title: faker.name.title(),
+    title: faker.name.jobTitle(),
     description: faker.lorem.paragraphs(),
     image: mockImgCover(setIndex),
     postedAt: faker.date.soon(),
