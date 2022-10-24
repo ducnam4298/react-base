@@ -6,7 +6,6 @@ import './index.css';
 
 interface UIProps {
   title?: string;
-  required?: boolean;
   children?: React.ReactNode;
   show?: boolean;
 }

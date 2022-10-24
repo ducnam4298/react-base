@@ -39,6 +39,5 @@ export enum FileType {
 
 export type RightOption = {
   title?: string;
-  required?: boolean;
   show?: boolean;
 };

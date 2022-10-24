@@ -8,17 +8,14 @@ import { useState } from 'react';
 const listRightOptions: RightOption[] = [
   {
     title: 'Ảnh đại diện',
-    required: true,
     show: true,
   },
   {
     title: 'Ảnh bìa',
-    required: true,
     show: true,
   },
   {
     title: 'Tài liệu',
-    required: true,
     show: true,
   },
 ];
@@ -30,9 +27,10 @@ const init = {
   address: undefined,
   gender: undefined,
   pob: undefined,
+  description: undefined,
+  active: undefined,
   profileImage: undefined,
   coverImage: undefined,
-  description: undefined,
   contract: undefined,
 };
 const Form = () => {

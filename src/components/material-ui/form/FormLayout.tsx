@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { getIn, useFormik } from 'formik';
-import { Stack } from '@mui/material';
+import { Stack, Switch } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { CompareArrows as CompareArrowsIcon, SyncAlt as SyncAltIcon } from '@mui/icons-material';
 import { ChoiceType, ControlType, IForm, IFormControl, IFormRow } from 'common/models/form';
@@ -14,6 +14,7 @@ import {
   EditorField,
   SelectFieldMui,
   TextFieldMui,
+  SwitchFieldMui,
 } from 'components/material-ui';
 import UploadFileField from 'components/other/UploadFileField';
 
@@ -91,7 +92,7 @@ const FormLayout = (props: UIProps) => {
                     </Stack>
                   );
                 } else if (c.type === ControlType.Choice) {
-                  if (c.choiceDisplay === ChoiceType.Dropdown) {
+                  if (c.choiceDisplay === ChoiceType.Select) {
                     return (
                       <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
                         <SelectFieldMui
@@ -109,14 +110,23 @@ const FormLayout = (props: UIProps) => {
                         />
                       </Stack>
                     );
-                  } else if (c.choiceDisplay === ChoiceType.ComboBox) {
+                  } else if (c.choiceDisplay === ChoiceType.Autocomplete) {
                     return (
                       <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}></Stack>
                     );
                   } else return <></>;
                 } else if (c.type === ControlType.Toggle) {
                   return (
-                    <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}></Stack>
+                    <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
+                      <SwitchFieldMui
+                        fullWidth
+                        formik={formik}
+                        control={c}
+                        onChange={value => formik.setFieldValue(c.id, value)}
+                        error={errorMessage(c.id)?.touched}
+                        helperText={errorMessage(c.id)?.error}
+                      />
+                    </Stack>
                   );
                 } else if (c.type === ControlType.Editor) {
                   return (
@@ -195,7 +205,6 @@ const FormLayout = (props: UIProps) => {
     for (let i = 0; i < numberBox; i++) {
       indents.push(
         <FormBoxLayout
-          required={listRightOptions[i].required ?? false}
           show={listRightOptions[i]?.show ?? true}
           title={listRightOptions[i]?.title ?? `Right box ${i + 1}`}
           key={'box' + i}

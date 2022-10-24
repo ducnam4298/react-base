@@ -65,8 +65,8 @@ export enum ControlType {
   Language = 'language',
 }
 export enum ChoiceType {
-  ComboBox,
-  Dropdown,
+  Autocomplete,
+  Select,
   Checkbox,
   Radio,
   Suggest,

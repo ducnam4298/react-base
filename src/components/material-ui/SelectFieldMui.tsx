@@ -41,17 +41,17 @@ const SelectFieldMui = (props: UIProps) => {
         shrink={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
         error={props.error}
       >
-        Giới tính
+        {props.control.title}
       </InputLabel>
       <Select
         labelId={props.control.id + '-select-outlined-label'}
         id={props.control.id + '-select-outlined'}
-        label="Giới tính"
+        label={props.control.title}
         displayEmpty={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
         defaultValue={''}
         value={props.formik.values[props.control.id] ?? ''}
         onChange={e => props.onChange && props.onChange(e.target.value)}
-        renderValue={selected => RenderValue(selected, ' giới tính')}
+        renderValue={selected => RenderValue(selected, ` ${props.control.title ?? ''}`)}
         onFocus={() => setShrink(true)}
         onBlur={() => setShrink(false)}
         notched={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
