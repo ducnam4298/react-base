@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { getIn, useFormik } from 'formik';
-import { Stack, Switch } from '@mui/material';
+import { Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { CompareArrows as CompareArrowsIcon, SyncAlt as SyncAltIcon } from '@mui/icons-material';
 import { ChoiceType, ControlType, IForm, IFormControl, IFormRow } from 'common/models/form';
@@ -17,6 +17,9 @@ import {
   SwitchFieldMui,
 } from 'components/material-ui';
 import UploadFileField from 'components/other/UploadFileField';
+import AutocompleteFieldMui from '../AutocompleteFieldMui';
+import { IOption } from 'common/utils/optionMirror';
+import { isArray } from 'lodash';
 
 interface UIProps {
   form: IForm;
@@ -44,7 +47,9 @@ const FormLayout = (props: UIProps) => {
       props.onSave && props.onSave(values);
     },
   });
-
+  // useEffect(() => {
+  //   console.log(formik.values);
+  // }, [formik.values]);
   // const getFieldValue = (fieldName: string) => {
   //   let item = formik.values.languages?.find((e: Language) => e.code === code);
   //   return item && item[fieldName];
@@ -99,11 +104,6 @@ const FormLayout = (props: UIProps) => {
                           fullWidth
                           formik={formik}
                           control={c}
-                          options={[
-                            { value: 'male', label: 'Male' },
-                            { value: 'female', label: 'Female' },
-                            { value: 'other', label: 'Other' },
-                          ]}
                           onChange={value => formik.setFieldValue('gender', value)}
                           error={errorMessage('gender')?.touched}
                           helperText={errorMessage('gender')?.error}
@@ -111,8 +111,25 @@ const FormLayout = (props: UIProps) => {
                       </Stack>
                     );
                   } else if (c.choiceDisplay === ChoiceType.Autocomplete) {
+                    const onChange = (option: IOption | IOption[]) => {
+                      if (isArray(option)) {
+                        const nOpts = option.map(o => o.value);
+                        formik.setFieldValue(c.id, nOpts);
+                      } else {
+                        formik.setFieldValue(c.id, option.value);
+                      }
+                    };
                     return (
-                      <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}></Stack>
+                      <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
+                        <AutocompleteFieldMui
+                          fullWidth
+                          formik={formik}
+                          control={c}
+                          onChange={option => option && onChange(option)}
+                          error={errorMessage(c.id)?.touched}
+                          helperText={errorMessage(c.id)?.error}
+                        />
+                      </Stack>
                     );
                   } else return <></>;
                 } else if (c.type === ControlType.Toggle) {

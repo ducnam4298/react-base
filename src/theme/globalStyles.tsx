@@ -13,8 +13,8 @@ const GlobalStyles = () => {
           boxSizing: 'border-box',
         },
         '*::-webkit-scrollbar': {
-          width: 10,
-          height: 10,
+          width: 5,
+          height: 5,
         },
         '*::-webkit-scrollbar-track': {
           boxShadow: 'inset 0 0 5px #C8FACD',

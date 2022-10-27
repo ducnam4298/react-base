@@ -31,6 +31,7 @@ const SwitchFieldMui = (props: UIProps) => {
         control={
           <Switch
             edge="end"
+            size={props.control.size}
             value={props.formik.values[props.control.id]}
             onChange={e => props.onChange && props.onChange(e.target.checked)}
           />

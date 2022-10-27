@@ -31,7 +31,11 @@ const SelectFieldMui = (props: UIProps) => {
         return '';
       }
     } else {
-      return props.options?.find(o => o.value === selected)?.label;
+      return props.options
+        ? props.options?.find(o => o.value === selected)?.label
+        : props.control.options
+        ? props.control.options?.find(o => o.value === selected)?.label
+        : '';
     }
   };
   return (
@@ -54,14 +58,25 @@ const SelectFieldMui = (props: UIProps) => {
         renderValue={selected => RenderValue(selected, ` ${props.control.title ?? ''}`)}
         onFocus={() => setShrink(true)}
         onBlur={() => setShrink(false)}
+        size={props.control.size}
         notched={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
         error={props.error}
       >
-        {props.options?.map(o => (
-          <MenuItem key={o.value} value={o.value}>
-            {o.label}
-          </MenuItem>
-        ))}
+        {props.options ? (
+          props.options?.map(o => (
+            <MenuItem key={o.value} value={o.value}>
+              {o.label}
+            </MenuItem>
+          ))
+        ) : props.control.options ? (
+          props.control.options?.map(o => (
+            <MenuItem key={o.value} value={o.value}>
+              {o.label}
+            </MenuItem>
+          ))
+        ) : (
+          <MenuItem disabled>Không có dữ liệu</MenuItem>
+        )}
       </Select>
       {props.helperText && (
         <FormHelperText error={props.error} id={props.control.id + '-helper-text'}>

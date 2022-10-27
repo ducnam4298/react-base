@@ -13,6 +13,8 @@ import Autocomplete from './Autocomplete';
 import InputLabel from './InputLabel';
 import CalendarPicker from './CalendarPicker';
 import SvgIcon from './SvgIcon';
+import Chip from './Chip';
+import Menu from './Menu';
 
 // ----------------------------------------------------------------------
 
@@ -30,7 +32,9 @@ const ComponentsOverrides = (theme: Theme) => {
     IconButton(theme),
     Autocomplete(theme),
     CalendarPicker(theme),
-    SvgIcon(theme)
+    SvgIcon(theme),
+    Chip(theme),
+    Menu(theme)
   );
 };
 

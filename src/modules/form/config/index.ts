@@ -59,24 +59,12 @@ export const Forms: IForm[] = [
             placeholder: 'Nhập email',
             boxNumber: 0,
           },
-        ],
-      },
-      {
-        controls: [
           {
             id: 'dob',
             type: ControlType.Date,
             title: 'Ngày sinh',
             fullWidth: true,
             placeholder: 'Chọn ngày sinh',
-            boxNumber: 0,
-          },
-          {
-            id: 'address',
-            type: ControlType.Text,
-            title: 'Địa chỉ',
-            fullWidth: true,
-            placeholder: 'Nhập địa chỉ',
             boxNumber: 0,
           },
         ],
@@ -93,6 +81,18 @@ export const Forms: IForm[] = [
             options: GenderOptions,
             boxNumber: 0,
           },
+          {
+            id: 'address',
+            type: ControlType.Text,
+            title: 'Địa chỉ',
+            fullWidth: true,
+            placeholder: 'Nhập địa chỉ',
+            boxNumber: 0,
+          },
+        ],
+      },
+      {
+        controls: [
           {
             id: 'pob',
             type: ControlType.Choice,
@@ -132,13 +132,27 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
+            id: 'tag',
+            type: ControlType.Choice,
+            choiceDisplay: ChoiceType.Autocomplete,
+            title: 'Hashtag',
+            fullWidth: true,
+            placeholder: 'Nhập hoặc chọn hashtag',
+            options: [],
+            boxNumber: 1,
+          },
+        ],
+      },
+      {
+        controls: [
+          {
             id: 'profileImage',
             title: 'Ảnh đại diện',
             type: ControlType.Attachment,
             choiceDisplay: ChoiceType.Image,
             multiple: false,
             accept: ['.png', '.jpg', '.jpeg'],
-            boxNumber: 1,
+            boxNumber: 2,
           },
         ],
       },
@@ -151,7 +165,7 @@ export const Forms: IForm[] = [
             choiceDisplay: ChoiceType.Image,
             multiple: false,
             accept: ['.png', '.jpg', '.jpeg'],
-            boxNumber: 2,
+            boxNumber: 3,
           },
         ],
       },
@@ -164,7 +178,7 @@ export const Forms: IForm[] = [
             choiceDisplay: ChoiceType.File,
             multiple: false,
             accept: ['.doc', '.docx', '.xls', '.xlsx'],
-            boxNumber: 3,
+            boxNumber: 4,
           },
         ],
       },

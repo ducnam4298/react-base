@@ -23,6 +23,7 @@ export interface IFormControl {
   fullWidth?: boolean;
   notched?: boolean;
   variant?: 'outlined' | 'standard' | 'filled';
+  size?: 'small' | 'medium';
 
   choiceDisplay?: ChoiceType;
   required?: boolean;

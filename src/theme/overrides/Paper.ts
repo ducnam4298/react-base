@@ -6,7 +6,6 @@ const Paper = (theme: Theme) => {
       defaultProps: {
         elevation: 0,
       },
-
       styleOverrides: {
         root: {
           backgroundImage: 'none',

@@ -38,6 +38,7 @@ const DatePickerFieldMui = (props: UIProps) => {
             }}
             InputProps={{
               ...ps.InputProps,
+              size: props.control.size,
               id: props.control?.id + 'date-outlined',
               onFocus: () => setShrink(true),
               onBlur: () => setShrink(false),

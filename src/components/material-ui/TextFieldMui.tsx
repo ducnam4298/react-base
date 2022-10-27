@@ -40,6 +40,7 @@ const TextFieldMui = (props: UIProps) => {
         type={props.control.type}
         error={props.error}
         aria-describedby={props.control.id + '-helper-text'}
+        size={props.control.size}
       />
       {props.helperText && (
         <FormHelperText error={props.error} id={props.control?.id + '-helper-text'}>

@@ -1,7 +1,27 @@
-import { Theme } from '@mui/material';
+import { alpha, Theme } from '@mui/material';
 
 const Lists = (theme: Theme) => {
   return {
+    MuiList: {
+      styleOverrides: {
+        root: {
+          paddingTop: 0,
+          paddingBottom: 0,
+        },
+      },
+    },
+    MuiListItemButton: {
+      styleOverrides: {
+        root: {
+          '&:hover': {
+            backgroundColor: alpha(
+              theme.palette.primary.main,
+              theme.palette.action.selectedOpacity
+            ),
+          },
+        },
+      },
+    },
     MuiListItemIcon: {
       styleOverrides: {
         root: {
