@@ -6,10 +6,10 @@ export interface Account {
 }
 
 const account: Account = {
-  displayName: 'Jaydon Frankie',
-  email: 'demo@minimals.cc',
-  photoURL: '/static/mock-images/avatars/avatar_default.jpg',
-  role: '',
+  displayName: 'Nate',
+  email: 'ducnam4298@gmail.com',
+  photoURL: '/static/mock-images/avatars/avatar_default.jpeg',
+  role: 'Develop',
 };
 
 export default account;

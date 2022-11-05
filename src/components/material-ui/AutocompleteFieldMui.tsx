@@ -24,7 +24,10 @@ const AutocompleteFieldMui = (props: UIProps) => {
       multiple={props.control.multiple}
       fullWidth={props.fullWidth}
       id={props.control.id + '-autocomplete-outlined'}
+      limitTags={props.control.limitTags ?? 1}
+      value={props.formik.values[props.control.id]}
       options={props.control.options ?? []}
+      onChange={(e, value, reason, details) => props.onChange && props.onChange(value, details)}
       noOptionsText="Không có dữ liệu"
       renderInput={ps => (
         <TextField
@@ -49,7 +52,6 @@ const AutocompleteFieldMui = (props: UIProps) => {
           variant={props.variant ?? 'outlined'}
         />
       )}
-      onChange={(e, value, reason, details) => props.onChange && props.onChange(value, details)}
     />
   );
 };

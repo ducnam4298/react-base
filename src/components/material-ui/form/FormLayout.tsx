@@ -1,7 +1,8 @@
-import { useState, useEffect } from 'react';
-import { getIn, useFormik } from 'formik';
+import { useState } from 'react';
+import { isArray } from 'lodash';
 import { Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
+import { getIn, useFormik } from 'formik';
 import { CompareArrows as CompareArrowsIcon, SyncAlt as SyncAltIcon } from '@mui/icons-material';
 import { ChoiceType, ControlType, IForm, IFormControl, IFormRow } from 'common/models/form';
 // import { LanguageCode } from 'common/models/enum';
@@ -10,16 +11,16 @@ import { RightOption, FileType } from 'common/models/enum';
 import FormBoxLayout from './FormBoxLayout';
 import './index.css';
 import {
-  DatePickerFieldMui,
-  EditorField,
-  SelectFieldMui,
   TextFieldMui,
+  SelectFieldMui,
+  DatePickerFieldMui,
+  RangePickerFieldMui,
   SwitchFieldMui,
+  AutocompleteFieldMui,
+  EditorField,
+  UploadFileField,
 } from 'components/material-ui';
-import UploadFileField from 'components/other/UploadFileField';
-import AutocompleteFieldMui from '../AutocompleteFieldMui';
 import { IOption } from 'common/utils/optionMirror';
-import { isArray } from 'lodash';
 
 interface UIProps {
   form: IForm;
@@ -37,8 +38,6 @@ interface UIProps {
 }
 
 const FormLayout = (props: UIProps) => {
-  // const [code, setCode] = useState(LanguageCode.EN.toString());
-
   const formik = useFormik({
     enableReinitialize: true,
     initialValues: props.initialValues,
@@ -47,9 +46,8 @@ const FormLayout = (props: UIProps) => {
       props.onSave && props.onSave(values);
     },
   });
-  // useEffect(() => {
-  //   console.log(formik.values);
-  // }, [formik.values]);
+
+  // const [code, setCode] = useState(LanguageCode.EN.toString());
   // const getFieldValue = (fieldName: string) => {
   //   let item = formik.values.languages?.find((e: Language) => e.code === code);
   //   return item && item[fieldName];
@@ -159,18 +157,33 @@ const FormLayout = (props: UIProps) => {
                     </Stack>
                   );
                 } else if (c.type === ControlType.Date) {
-                  return (
-                    <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
-                      <DatePickerFieldMui
-                        fullWidth
-                        formik={formik}
-                        control={c}
-                        onChange={value => formik.setFieldValue(c.id, value)}
-                        error={errorMessage(c.id)?.touched}
-                        helperText={errorMessage(c.id)?.error}
-                      />
-                    </Stack>
-                  );
+                  if (c.choiceDisplay === ChoiceType.Date) {
+                    return (
+                      <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
+                        <DatePickerFieldMui
+                          fullWidth
+                          formik={formik}
+                          control={c}
+                          onChange={value => formik.setFieldValue(c.id, value)}
+                          error={errorMessage(c.id)?.touched}
+                          helperText={errorMessage(c.id)?.error}
+                        />
+                      </Stack>
+                    );
+                  } else {
+                    return (
+                      <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
+                        {/* <RangePickerFieldMui
+                          fullWidth
+                          formik={formik}
+                          control={c}
+                          onChange={value => formik.setFieldValue(c.id, value)}
+                          error={errorMessage(c.id)?.touched}
+                          helperText={errorMessage(c.id)?.error}
+                        /> */}
+                      </Stack>
+                    );
+                  }
                 } else if (c.type === ControlType.Tag) {
                   return (
                     <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}></Stack>

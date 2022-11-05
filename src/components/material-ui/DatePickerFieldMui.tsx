@@ -32,18 +32,22 @@ const DatePickerFieldMui = (props: UIProps) => {
             fullWidth={props.fullWidth}
             InputLabelProps={{
               ...ps.InputLabelProps,
-              id: props.control?.id + 'date-outlined-label',
+              id: props.control?.id + '-date-outlined-label',
               shrink: props.formik.values[props.control.id] ? true : props.notched ?? shrink,
-              htmlFor: props.control?.id + 'date-outlined',
+              htmlFor: props.control?.id + '-date-outlined',
             }}
             InputProps={{
               ...ps.InputProps,
               size: props.control.size,
-              id: props.control?.id + 'date-outlined',
+              id: props.control?.id + '-date-outlined',
               onFocus: () => setShrink(true),
               onBlur: () => setShrink(false),
             }}
-            inputProps={{ ...ps.inputProps, readOnly: true }}
+            inputProps={{
+              ...ps.inputProps,
+              placeholder: props.control?.title ? `Chọn ${props.control?.title.toLowerCase()}` : '',
+              readOnly: true,
+            }}
             error={props.error}
             helperText={props.helperText}
             variant={props.variant ?? 'outlined'}

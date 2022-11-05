@@ -2,10 +2,14 @@ import Page from 'components/Page';
 import { Container, Typography } from '@mui/material';
 import { Forms, validationSchema } from './config';
 import { FormLayout } from 'components/material-ui';
-import { RightOption } from 'common/models/enum';
+import { GenderType, RightOption } from 'common/models/enum';
 import { useState } from 'react';
 
 const listRightOptions: RightOption[] = [
+  {
+    title: '',
+    show: true,
+  },
   {
     title: 'Ảnh đại diện',
     show: true,
@@ -20,15 +24,16 @@ const listRightOptions: RightOption[] = [
   },
 ];
 const init = {
-  fullName: undefined,
-  phoneNumber: undefined,
-  email: undefined,
-  dob: undefined,
-  address: undefined,
-  gender: undefined,
+  fullName: 'NamDZ',
+  phoneNumber: '0356969828',
+  email: 'ducnam4298@gmail.com',
+  dob: new Date(1998,1,4),
+  address: 'Lạng Sơn',
+  gender: GenderType.Male,
   pob: undefined,
-  description: undefined,
-  active: undefined,
+  rangeDateContract: undefined,
+  description: '<p>Nam DZ</p>',
+  active: true,
   profileImage: undefined,
   coverImage: undefined,
   contract: undefined,

@@ -1,28 +1,85 @@
 import { ChoiceType, ControlType, IForm } from 'common/models/form';
 import { GenderOptions } from 'common/utils/optionMirror';
-import * as Yup from 'yup';
-import Cities from 'assets/data/cities.json';
 import { regex } from 'common/utils/regex';
+import cities from '_mocks_/cities';
+import * as Yup from 'yup';
 
-const FieldRequired = 'Field Required';
+const FieldRequired = 'Field required';
 const FieldSoShort = 'Field so short';
 const FieldSoLong = 'Field so long';
 const PhoneNumberNotExist = 'Phone Number not exist';
 const EmailInvalid = 'Email invalid';
+const WhiteSpace = 'Field not white space';
+// const FileSize = 'File too large';
+// const FileType = 'File wrong type';
+
+const acceptFile = ['.doc', '.docx', '.xls', '.xlsx'];
+const acceptImage = ['.png', '.jpg', '.jpeg'];
+
+// const FilesSizeTooLarge = (files?: [File]) => {
+//   let valid = true;
+//   if (files) {
+//     files.map(file => {
+//       const size = file.size / 1024 / 1024;
+//       if (size > 10) {
+//         valid = false;
+//       }
+//     });
+//   }
+//   return valid;
+// };
+// const FilesCorrectType = (files?: [File]) => {
+//   let valid = true;
+//   if (files) {
+//     files.map(file => {
+//       if (!acceptFile.includes(file.type)) {
+//         valid = false;
+//       }
+//     });
+//   }
+//   return valid;
+// };
 
 export const validationSchema = Yup.object().shape({
-  fullName: Yup.string().min(3, FieldSoShort).max(60, FieldSoLong).required(FieldRequired),
-  phoneNumber: Yup.string().matches(regex.phoneRegex, PhoneNumberNotExist).required(FieldRequired),
-  email: Yup.string().email(EmailInvalid).max(100, FieldSoLong).required(FieldRequired),
-  dob: Yup.string().required(FieldRequired),
-  gender: Yup.string().required(FieldRequired),
-  coverImage: Yup.string().required(FieldRequired),
-  profileImage: Yup.string().required(FieldRequired),
-  contract: Yup.array().nullable(false).required(FieldRequired),
-  description: Yup.string().required(FieldRequired),
-  address: Yup.string().required(FieldRequired),
-  pob: Yup.string().required(FieldRequired),
+  fullName: Yup.string()
+    .required(FieldRequired)
+    .trim(WhiteSpace)
+    .min(3, FieldSoShort)
+    .max(60, FieldSoLong),
+  phoneNumber: Yup.string()
+    .required(FieldRequired)
+    .trim(WhiteSpace)
+    .matches(regex.phoneRegex, PhoneNumberNotExist),
+  email: Yup.string()
+    .required(FieldRequired)
+    .trim(WhiteSpace)
+    .matches(regex.email, EmailInvalid)
+    .max(100, FieldSoLong),
+  dob: Yup.date()
+    .required(FieldRequired)
+    .test(schema => {
+      if (schema instanceof Date) return true;
+      else return false;
+    })
+    .typeError(FieldRequired),
+  gender: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  address: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  pob: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  rangeDateContract: Yup.array()
+    .required(FieldRequired)
+    .of(
+      Yup.date()
+        .test(schema => {
+          if (schema instanceof Date) return true;
+          else return false;
+        })
+        .typeError(FieldRequired)
+    ),
+  description: Yup.string().trim(WhiteSpace).required(FieldRequired),
   active: Yup.boolean().required(FieldRequired),
+  coverImage: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  profileImage: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  contract: Yup.array().nullable(false).required(FieldRequired),
 });
 
 export const Forms: IForm[] = [
@@ -62,6 +119,7 @@ export const Forms: IForm[] = [
           {
             id: 'dob',
             type: ControlType.Date,
+            choiceDisplay: ChoiceType.Date,
             title: 'Ngày sinh',
             fullWidth: true,
             placeholder: 'Chọn ngày sinh',
@@ -100,8 +158,29 @@ export const Forms: IForm[] = [
             title: 'Nơi sinh',
             fullWidth: true,
             placeholder: 'Nhập hoặc chọn nơi sinh',
-            default: Cities[0].value,
-            options: Cities,
+            default: cities[0].value,
+            options: cities,
+            boxNumber: 0,
+          },
+          {
+            id: 'password',
+            type: ControlType.Password,
+            title: 'Mật khẩu',
+            fullWidth: true,
+            placeholder: 'Nhập mật khẩu',
+            boxNumber: 0,
+          },
+        ],
+      },
+      {
+        controls: [
+          {
+            id: 'rangeDateContract',
+            type: ControlType.Date,
+            choiceDisplay: ChoiceType.RangeDate,
+            title: 'Thời hạn hợp đồng',
+            fullWidth: true,
+            placeholder: 'Chọn thời gian',
             boxNumber: 0,
           },
         ],
@@ -138,7 +217,13 @@ export const Forms: IForm[] = [
             title: 'Hashtag',
             fullWidth: true,
             placeholder: 'Nhập hoặc chọn hashtag',
-            options: [],
+            options: [
+              { value: 'develop', label: 'Develop' },
+              { value: 'leader', label: 'Leader' },
+              { value: 'ba', label: 'BA' },
+              { value: 'pm', label: 'PM' },
+            ],
+            multiple: true,
             boxNumber: 1,
           },
         ],
@@ -151,7 +236,7 @@ export const Forms: IForm[] = [
             type: ControlType.Attachment,
             choiceDisplay: ChoiceType.Image,
             multiple: false,
-            accept: ['.png', '.jpg', '.jpeg'],
+            accept: acceptImage,
             boxNumber: 2,
           },
         ],
@@ -164,7 +249,7 @@ export const Forms: IForm[] = [
             type: ControlType.Attachment,
             choiceDisplay: ChoiceType.Image,
             multiple: false,
-            accept: ['.png', '.jpg', '.jpeg'],
+            accept: acceptImage,
             boxNumber: 3,
           },
         ],
@@ -177,7 +262,7 @@ export const Forms: IForm[] = [
             type: ControlType.Attachment,
             choiceDisplay: ChoiceType.File,
             multiple: false,
-            accept: ['.doc', '.docx', '.xls', '.xlsx'],
+            accept: acceptFile,
             boxNumber: 4,
           },
         ],

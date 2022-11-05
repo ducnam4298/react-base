@@ -55,30 +55,37 @@ const UploadFileField = (props: UIProps) => {
           maxWidth="6.5rem"
           justifyContent="space-evenly"
           border={`1px solid ${
-            props.error ? theme.palette.error.main : theme.palette.primary.light
+            props.error ? theme.palette.error.main : theme.palette.primary.main
           }`}
           borderRadius="8px"
-          style={{ cursor: 'pointer' }}
-          sx={{ '&:hover': { opacity: 0.8 } }}
+          sx={{
+            cursor: 'pointer',
+            '&:hover': {
+              cursor: 'pointer',
+              border: `1px solid ${
+                props.error ? theme.palette.error.light : theme.palette.primary.light
+              }`,
+            },
+          }}
           onClick={openFileSelector}
         >
           {props.value && props.value.length > 0 ? (
             <>
               <Assets.UpdateFile
-                fill={props.error ? theme.palette.error.main : theme.palette.primary.light}
+                fill={props.error ? theme.palette.error.main : theme.palette.primary.main}
                 style={{ height: 'auto', width: '1rem' }}
               />
-              <Label theme={theme} error={props.error} style={{ fontSize: 12, cursor: 'pointer' }}>
+              <Label theme={theme} error={props.error} style={{ fontSize: 12 }}>
                 UpdateFile
               </Label>
             </>
           ) : (
             <>
               <Assets.UploadFile
-                fill={props.error ? theme.palette.error.main : theme.palette.primary.light}
+                fill={props.error ? theme.palette.error.main : theme.palette.primary.main}
                 style={{ height: 'auto', width: '1rem' }}
               />
-              <Label theme={theme} error={props.error} style={{ fontSize: 12, cursor: 'pointer' }}>
+              <Label theme={theme} error={props.error} style={{ fontSize: 12 }}>
                 UploadFile
               </Label>
             </>
@@ -108,15 +115,17 @@ const UploadFileField = (props: UIProps) => {
         width={props.width ?? '4rem'}
         height={props.height ?? '4rem'}
         borderRadius="8px"
-        border={`1px solid ${props.error ? theme.palette.error.main : theme.palette.primary.light}`}
+        border={`1px solid ${props.error ? theme.palette.error.main : theme.palette.primary.main}`}
         position="relative"
         sx={{
           '& > svg': {
             display: 'none',
           },
           '&:hover': {
-            opacity: 0.8,
             cursor: 'pointer',
+            border: `1px solid ${
+              props.error ? theme.palette.error.light : theme.palette.primary.light
+            }`,
           },
           '&:hover > svg': {
             display: 'block',
@@ -129,7 +138,7 @@ const UploadFileField = (props: UIProps) => {
             style={{
               display: 'block',
               margin: 'auto',
-              color: props.error ? theme.palette.error.main : theme.palette.primary.light,
+              color: props.error ? theme.palette.error.main : theme.palette.primary.main,
               fontSize: '2rem',
             }}
           />

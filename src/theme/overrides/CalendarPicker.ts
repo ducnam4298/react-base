@@ -46,10 +46,36 @@ const CalendarPicker = (theme: Theme) => {
       styleOverrides: {
         root: {
           color: theme.palette.primary.main,
+          '& .MuiDayPicker-header': {
+            color: theme.palette.primary.main,
+            '& .MuiDayPicker-weekDayLabel': {
+              color: theme.palette.primary.main,
+            },
+          },
         },
       },
     },
     PrivatePickersYear: {
+      styleOverrides: {
+        root: {
+          color: theme.palette.primary.main,
+        },
+      },
+    },
+    MuiDateRangePickerViewDesktop: {
+      styleOverrides: {
+        root: {
+          color: theme.palette.primary.main,
+          '& .MuiDayPicker-header': {
+            color: theme.palette.primary.main,
+            '& .MuiDayPicker-weekDayLabel': {
+              color: theme.palette.primary.main,
+            },
+          },
+        },
+      },
+    },
+    MuiPickersArrowSwitcher: {
       styleOverrides: {
         root: {
           color: theme.palette.primary.main,

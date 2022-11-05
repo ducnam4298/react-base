@@ -1,7 +1,15 @@
 import { useState } from 'react';
-import { FormControl, FormHelperText, InputLabel, OutlinedInput } from '@mui/material';
+import {
+  FormControl,
+  FormHelperText,
+  IconButton,
+  InputAdornment,
+  InputLabel,
+  OutlinedInput,
+} from '@mui/material';
 import { FormikValues } from 'formik';
-import { IFormControl } from 'common/models/form';
+import { ControlType, IFormControl } from 'common/models/form';
+import { Visibility, VisibilityOff } from '@mui/icons-material';
 
 interface UIProps {
   fullWidth?: boolean;
@@ -18,6 +26,7 @@ interface UIProps {
 
 const TextFieldMui = (props: UIProps) => {
   const [shrink, setShrink] = useState(false);
+  const [showPassword, handleShowPassword] = useState(false);
   return (
     <FormControl fullWidth={props.fullWidth} variant={props.variant ?? 'outlined'}>
       <InputLabel
@@ -37,7 +46,22 @@ const TextFieldMui = (props: UIProps) => {
         onBlur={() => setShrink(false)}
         value={props.formik.values[props.control.id] ?? ''}
         onChange={e => props.onChange && props.onChange(e.target.value)}
-        type={props.control.type}
+        type={showPassword ? 'text' : props.control.type}
+        endAdornment={
+          props.control.type === ControlType.Password ? (
+            <InputAdornment position="end">
+              <IconButton
+                aria-label="toggle password visibility"
+                onClick={() => handleShowPassword(!showPassword)}
+                edge="end"
+              >
+                {props.formik.values[props.control.id] ? <VisibilityOff /> : <Visibility />}
+              </IconButton>
+            </InputAdornment>
+          ) : (
+            <></>
+          )
+        }
         error={props.error}
         aria-describedby={props.control.id + '-helper-text'}
         size={props.control.size}

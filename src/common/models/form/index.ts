@@ -24,6 +24,7 @@ export interface IFormControl {
   notched?: boolean;
   variant?: 'outlined' | 'standard' | 'filled';
   size?: 'small' | 'medium';
+  limitTags?: number;
 
   choiceDisplay?: ChoiceType;
   required?: boolean;
@@ -69,6 +70,8 @@ export enum ChoiceType {
   Autocomplete,
   Select,
   Checkbox,
+  Date,
+  RangeDate,
   Radio,
   Suggest,
   Image,

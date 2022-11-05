@@ -17,6 +17,9 @@ const Input = (theme: Theme) => {
           '&.Mui-error > .MuiInputAdornment-root > button > svg': {
             color: theme.palette.error.main,
           },
+          '&.Mui-error > .MuiAutocomplete-endAdornment > button > svg': {
+            color: theme.palette.error.main,
+          },
         },
         input: {
           '&::placeholder': {

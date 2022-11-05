@@ -33,7 +33,7 @@ export const RenderSymbol = {
   LAST_PREVIOUS: '&laquo;',
 };
 export interface IOption {
-  value?: string;
+  value?: string | number;
   label?: string;
 }
 

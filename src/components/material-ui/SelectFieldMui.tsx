@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select, useTheme } from '@mui/material';
 import { FormikState } from 'formik';
 import { IFormControl } from 'common/models/form';
+import { IOption } from 'common/utils/optionMirror';
 
 interface UIProps {
   fullWidth?: boolean;
@@ -11,7 +12,7 @@ interface UIProps {
 
   formik: FormikState<any>;
   control: IFormControl;
-  options?: { value: string; label: string }[];
+  options?: IOption[];
   onChange?: (value: any) => void;
   error?: boolean;
   helperText?: string;
