@@ -1,7 +1,7 @@
 import { ChoiceType, ControlType, IForm } from 'common/models/form';
 import { GenderOptions } from 'common/utils/optionMirror';
 import { regex } from 'common/utils/regex';
-import cities from '_mocks_/cities';
+import city from '_mocks_/cities';
 import * as Yup from 'yup';
 
 const FieldRequired = 'Field required';
@@ -65,16 +65,16 @@ export const validationSchema = Yup.object().shape({
   gender: Yup.string().trim(WhiteSpace).required(FieldRequired),
   address: Yup.string().trim(WhiteSpace).required(FieldRequired),
   pob: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  rangeDateContract: Yup.array()
-    .required(FieldRequired)
-    .of(
-      Yup.date()
-        .test(schema => {
-          if (schema instanceof Date) return true;
-          else return false;
-        })
-        .typeError(FieldRequired)
-    ),
+  // rangeDateContract: Yup.array()
+  //   .required(FieldRequired)
+  //   .of(
+  //     Yup.date()
+  //       .test(schema => {
+  //         if (schema instanceof Date) return true;
+  //         else return false;
+  //       })
+  //       .typeError(FieldRequired)
+  //   ),
   description: Yup.string().trim(WhiteSpace).required(FieldRequired),
   active: Yup.boolean().required(FieldRequired),
   coverImage: Yup.string().trim(WhiteSpace).required(FieldRequired),
@@ -151,17 +151,17 @@ export const Forms: IForm[] = [
       },
       {
         controls: [
-          {
-            id: 'pob',
-            type: ControlType.Choice,
-            choiceDisplay: ChoiceType.Autocomplete,
-            title: 'Nơi sinh',
-            fullWidth: true,
-            placeholder: 'Nhập hoặc chọn nơi sinh',
-            default: cities[0].value,
-            options: cities,
-            boxNumber: 0,
-          },
+          // {
+          //   id: 'pob',
+          //   type: ControlType.Choice,
+          //   choiceDisplay: ChoiceType.Autocomplete,
+          //   title: 'Nơi sinh',
+          //   fullWidth: true,
+          //   placeholder: 'Nhập hoặc chọn nơi sinh',
+          //   options: city.cities,
+          //   multiple: false,
+          //   boxNumber: 0,
+          // },
           {
             id: 'password',
             type: ControlType.Password,
@@ -172,19 +172,19 @@ export const Forms: IForm[] = [
           },
         ],
       },
-      {
-        controls: [
-          {
-            id: 'rangeDateContract',
-            type: ControlType.Date,
-            choiceDisplay: ChoiceType.RangeDate,
-            title: 'Thời hạn hợp đồng',
-            fullWidth: true,
-            placeholder: 'Chọn thời gian',
-            boxNumber: 0,
-          },
-        ],
-      },
+      // {
+      //   controls: [
+      //     {
+      //       id: 'rangeDateContract',
+      //       type: ControlType.Date,
+      //       choiceDisplay: ChoiceType.RangeDate,
+      //       title: 'Thời hạn hợp đồng',
+      //       fullWidth: true,
+      //       placeholder: 'Chọn thời gian',
+      //       boxNumber: 0,
+      //     },
+      //   ],
+      // },
       {
         controls: [
           {
@@ -211,7 +211,7 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'tag',
+            id: 'tags',
             type: ControlType.Choice,
             choiceDisplay: ChoiceType.Autocomplete,
             title: 'Hashtag',

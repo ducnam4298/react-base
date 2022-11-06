@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { isArray } from 'lodash';
 import { Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { getIn, useFormik } from 'formik';
@@ -20,8 +19,6 @@ import {
   EditorField,
   UploadFileField,
 } from 'components/material-ui';
-import { IOption } from 'common/utils/optionMirror';
-
 interface UIProps {
   form: IForm;
   numberBox?: number;
@@ -46,7 +43,6 @@ const FormLayout = (props: UIProps) => {
       props.onSave && props.onSave(values);
     },
   });
-
   // const [code, setCode] = useState(LanguageCode.EN.toString());
   // const getFieldValue = (fieldName: string) => {
   //   let item = formik.values.languages?.find((e: Language) => e.code === code);
@@ -102,28 +98,20 @@ const FormLayout = (props: UIProps) => {
                           fullWidth
                           formik={formik}
                           control={c}
-                          onChange={value => formik.setFieldValue('gender', value)}
-                          error={errorMessage('gender')?.touched}
-                          helperText={errorMessage('gender')?.error}
+                          onChange={value => formik.setFieldValue(c.id, value)}
+                          error={errorMessage(c.id)?.touched}
+                          helperText={errorMessage(c.id)?.error}
                         />
                       </Stack>
                     );
                   } else if (c.choiceDisplay === ChoiceType.Autocomplete) {
-                    const onChange = (option: IOption | IOption[]) => {
-                      if (isArray(option)) {
-                        const nOpts = option.map(o => o.value);
-                        formik.setFieldValue(c.id, nOpts);
-                      } else {
-                        formik.setFieldValue(c.id, option.value);
-                      }
-                    };
                     return (
                       <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
                         <AutocompleteFieldMui
                           fullWidth
                           formik={formik}
                           control={c}
-                          onChange={option => option && onChange(option)}
+                          onChange={value => formik.setFieldValue(c.id, value)}
                           error={errorMessage(c.id)?.touched}
                           helperText={errorMessage(c.id)?.error}
                         />
@@ -150,9 +138,9 @@ const FormLayout = (props: UIProps) => {
                         fullWidth
                         formik={formik}
                         control={c}
-                        onChange={value => formik.setFieldValue('description', value)}
-                        error={errorMessage('description')?.touched}
-                        helperText={errorMessage('description')?.error}
+                        onChange={value => formik.setFieldValue(c.id, value)}
+                        error={errorMessage(c.id)?.touched}
+                        helperText={errorMessage(c.id)?.error}
                       />
                     </Stack>
                   );
@@ -173,21 +161,17 @@ const FormLayout = (props: UIProps) => {
                   } else {
                     return (
                       <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
-                        {/* <RangePickerFieldMui
+                        <RangePickerFieldMui
                           fullWidth
                           formik={formik}
                           control={c}
                           onChange={value => formik.setFieldValue(c.id, value)}
                           error={errorMessage(c.id)?.touched}
                           helperText={errorMessage(c.id)?.error}
-                        /> */}
+                        />
                       </Stack>
                     );
                   }
-                } else if (c.type === ControlType.Tag) {
-                  return (
-                    <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}></Stack>
-                  );
                 } else if (c.type === ControlType.Attachment) {
                   return (
                     <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>

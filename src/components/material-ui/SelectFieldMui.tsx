@@ -53,7 +53,6 @@ const SelectFieldMui = (props: UIProps) => {
         id={props.control.id + '-select-outlined'}
         label={props.control.title}
         displayEmpty={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
-        defaultValue={''}
         value={props.formik.values[props.control.id] ?? ''}
         onChange={e => props.onChange && props.onChange(e.target.value)}
         renderValue={selected => RenderValue(selected, ` ${props.control.title ?? ''}`)}

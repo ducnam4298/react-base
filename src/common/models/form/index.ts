@@ -62,7 +62,6 @@ export enum ControlType {
   Link = 'link',
   InputMask = 'inputMask',
   Editor = 'editor',
-  Tag = 'tag',
   Picker = 'picker',
   Language = 'language',
 }
