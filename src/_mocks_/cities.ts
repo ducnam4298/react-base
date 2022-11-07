@@ -245,7 +245,7 @@ const cities = [
   },
   {
     value: '13,98',
-    label: 'Bắc Giang (13)',
+    label: 'Bắc Giang',
   },
   {
     value: '99',

@@ -24,7 +24,7 @@ const AutocompleteFieldMui = (props: UIProps) => {
   const [shrink, setShrink] = useState(false);
   return props.control.multiple ? (
     <Autocomplete
-      multiple={props.control.multiple}
+      multiple={true}
       fullWidth={props.fullWidth}
       id={props.control.id + '-autocomplete-outlined'}
       limitTags={props.control.limitTags ?? 1}
@@ -35,8 +35,10 @@ const AutocompleteFieldMui = (props: UIProps) => {
         props.onChange && props.onChange(nOpts, details);
       }}
       noOptionsText="Không có dữ liệu"
-      isOptionEqualToValue={(option, value) => option === value}
-      getOptionLabel={value => value.label ?? ''}
+      isOptionEqualToValue={(option, value) => option.value === value}
+      getOptionLabel={option =>
+        option.label ?? props.control.options?.find(o => o.value === option)?.label
+      }
       renderInput={ps => (
         <TextField
           {...ps}
@@ -57,7 +59,6 @@ const AutocompleteFieldMui = (props: UIProps) => {
           }}
           inputProps={{
             ...ps.inputProps,
-            value: props.control.options?.find(o => o.value === ps.inputProps.value)?.label,
           }}
           error={props.error}
           helperText={props.helperText}
@@ -67,30 +68,22 @@ const AutocompleteFieldMui = (props: UIProps) => {
     />
   ) : (
     <Autocomplete
-      multiple={props.control.multiple}
       fullWidth={props.fullWidth}
       id={props.control.id + '-autocomplete-outlined'}
       limitTags={props.control.limitTags ?? 1}
       filterSelectedOptions
-      open
       defaultValue={props.formik.values[props.control.id]}
       value={props.formik.values[props.control.id]}
       options={props.control.options ?? []}
       onChange={(e, options, reason, details) => {
-        if (isArray(options)) {
-          const nOpts = options.map(o => o.value);
-          props.onChange && props.onChange(nOpts, details);
-        } else {
-          const opt = options.value;
-          props.onChange && props.onChange(opt, details);
-        }
+        const opt = options.value;
+        props.onChange && props.onChange(opt, details);
       }}
       noOptionsText="Không có dữ liệu"
-      isOptionEqualToValue={(option, value) => {
-        if (props.control.multiple) return option === value;
-        else return option.value === value;
-      }}
-      getOptionLabel={value => props.control.options?.find(o => o.value === value)?.label ?? ''}
+      isOptionEqualToValue={(option, value) => option.value === value}
+      getOptionLabel={option =>
+        option.label ?? props.control.options?.find(o => o.value === option)?.label
+      }
       renderInput={ps => (
         <TextField
           {...ps}

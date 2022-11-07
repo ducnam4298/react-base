@@ -151,17 +151,17 @@ export const Forms: IForm[] = [
       },
       {
         controls: [
-          // {
-          //   id: 'pob',
-          //   type: ControlType.Choice,
-          //   choiceDisplay: ChoiceType.Autocomplete,
-          //   title: 'Nơi sinh',
-          //   fullWidth: true,
-          //   placeholder: 'Nhập hoặc chọn nơi sinh',
-          //   options: city.cities,
-          //   multiple: false,
-          //   boxNumber: 0,
-          // },
+          {
+            id: 'pob',
+            type: ControlType.Choice,
+            choiceDisplay: ChoiceType.Autocomplete,
+            title: 'Nơi sinh',
+            fullWidth: true,
+            placeholder: 'Nhập hoặc chọn nơi sinh',
+            options: city.cities,
+            multiple: false,
+            boxNumber: 0,
+          },
           {
             id: 'password',
             type: ControlType.Password,
