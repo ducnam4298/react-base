@@ -4,7 +4,6 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { IFormControl } from 'common/models/form';
 import { FormikValues } from 'formik';
 import moment from 'moment';
-import { useState } from 'react';
 
 interface UIProps {
   fullWidth?: boolean;
@@ -20,7 +19,6 @@ interface UIProps {
 }
 
 const DatePickerFieldMui = (props: UIProps) => {
-  const [shrink, setShrink] = useState(false);
   const theme = useTheme();
   return (
     <LocalizationProvider dateAdapter={AdapterMoment}>
@@ -33,15 +31,13 @@ const DatePickerFieldMui = (props: UIProps) => {
             InputLabelProps={{
               ...ps.InputLabelProps,
               id: props.control?.id + '-date-outlined-label',
-              shrink: props.formik.values[props.control.id] ? true : props.notched ?? shrink,
+              shrink: !!props.formik.values[props.control.id],
               htmlFor: props.control?.id + '-date-outlined',
             }}
             InputProps={{
               ...ps.InputProps,
               size: props.control.size,
               id: props.control?.id + '-date-outlined',
-              onFocus: () => setShrink(true),
-              onBlur: () => setShrink(false),
             }}
             inputProps={{
               ...ps.inputProps,

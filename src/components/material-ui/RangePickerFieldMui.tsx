@@ -6,7 +6,7 @@ import { IFormControl } from 'common/models/form';
 import EventIcon from '@mui/icons-material/Event';
 import { FormikValues } from 'formik';
 import moment from 'moment';
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 interface UIProps {
   fullWidth?: boolean;
   notched?: boolean;
@@ -31,7 +31,6 @@ interface InputProps {
 }
 
 const RangePickerFieldMui = (props: UIProps) => {
-  const [shrink, setShrink] = useState(false);
   const theme = useTheme();
   const CheckTarget = (target: Target) => {
     return target === Target.Start ? true : false;
@@ -51,14 +50,12 @@ const RangePickerFieldMui = (props: UIProps) => {
       fullWidth={props.fullWidth}
       InputLabelProps={{
         id: props.control?.id + `${CompareTarget(target)}-date-outlined-label`,
-        shrink: props.formik.values[props.control.id] ? true : props.notched ?? shrink,
+        shrink: !!props.formik.values[props.control.id],
         htmlFor: props.control?.id + `${CompareTarget(target)}-date-outlined`,
       }}
       InputProps={{
         size: props.control.size,
         id: props.control?.id + `${CompareTarget(target)}-date-outlined`,
-        onFocus: () => setShrink(true),
-        onBlur: () => setShrink(false),
         endAdornment: (
           <InputAdornment position="end">
             <IconButton sx={{ width: 40, height: 40, minWidth: 40 }}>

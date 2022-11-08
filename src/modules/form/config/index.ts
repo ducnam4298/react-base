@@ -172,19 +172,19 @@ export const Forms: IForm[] = [
           },
         ],
       },
-      // {
-      //   controls: [
-      //     {
-      //       id: 'rangeDateContract',
-      //       type: ControlType.Date,
-      //       choiceDisplay: ChoiceType.RangeDate,
-      //       title: 'Thời hạn hợp đồng',
-      //       fullWidth: true,
-      //       placeholder: 'Chọn thời gian',
-      //       boxNumber: 0,
-      //     },
-      //   ],
-      // },
+      {
+        controls: [
+          {
+            id: 'rangeDateContract',
+            type: ControlType.Date,
+            choiceDisplay: ChoiceType.RangeDate,
+            title: 'Thời hạn hợp đồng',
+            fullWidth: true,
+            placeholder: 'Chọn thời gian',
+            boxNumber: 0,
+          },
+        ],
+      },
       {
         controls: [
           {
