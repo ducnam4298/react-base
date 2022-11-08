@@ -34,7 +34,7 @@ const init = {
   rangeDateContract: undefined,
   description: '<p>Nam DZ</p>',
   active: true,
-  tags: ['develop'],
+  tags: [{ value: 'develop', label: 'Develop' }],
   profileImage: undefined,
   coverImage: undefined,
   contract: undefined,

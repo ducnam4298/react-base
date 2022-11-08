@@ -6,13 +6,13 @@ export interface IForm {
   title?: string;
   description?: string;
   dataType?: string;
-  rows?: IFormRow[];
+  rows: IFormRow[];
   parentKey?: any;
 }
 
 export interface IFormRow {
   title?: string;
-  controls?: IFormControl[];
+  controls: IFormControl[];
 }
 
 export interface IFormControl {
