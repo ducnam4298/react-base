@@ -55,13 +55,14 @@ const TextFieldMui = (props: UIProps) => {
                 onClick={() => handleShowPassword(!showPassword)}
                 edge="end"
               >
-                {props.formik.values[props.control.id] ? <VisibilityOff /> : <Visibility />}
+                {showPassword ? <VisibilityOff /> : <Visibility />}
               </IconButton>
             </InputAdornment>
           ) : (
             <></>
           )
         }
+        inputProps={{ autoComplete: 'off' }}
         error={props.error}
         aria-describedby={props.control.id + '-helper-text'}
         size={props.control.size}

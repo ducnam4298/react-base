@@ -43,6 +43,7 @@ const DatePickerFieldMui = (props: UIProps) => {
               ...ps.inputProps,
               placeholder: props.control?.title ? `Chọn ${props.control?.title.toLowerCase()}` : '',
               readOnly: true,
+              autoComplete: 'off',
             }}
             error={props.error}
             helperText={props.helperText}

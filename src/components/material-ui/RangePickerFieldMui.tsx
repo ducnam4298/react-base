@@ -70,6 +70,7 @@ const RangePickerFieldMui = (props: UIProps) => {
           ? `Chọn ${props.control?.title.toLowerCase()} ${CompareTargetText(target)}`
           : '',
         readOnly: true,
+        autoComplete: 'off',
       }}
       error={props.error}
       helperText={props.helperText}

@@ -58,9 +58,10 @@
     "a": "yarn add",
     "d": "yarn add --dev",
     "r": "yarn remove",
+    "update": "yarn upgrade",
+    "ga": "yarn global add",
     "dev": "docker-compose down -v && docker-compose build",
     "start": "react-scripts start",
-    "update": "yarn upgrade",
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject"

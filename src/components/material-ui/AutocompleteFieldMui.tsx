@@ -70,6 +70,11 @@ const AutocompleteFieldMui = (props: UIProps) => {
             onFocus: () => setShrink(true),
             onBlur: () => setShrink(false),
           }}
+          inputProps={{
+            ...ps.inputProps,
+            placeholder: props.control?.title ? `Chọn ${props.control?.title.toLowerCase()}` : '',
+            autoComplete: 'off',
+          }}
           error={props.error}
           helperText={props.helperText}
           variant={props.variant ?? 'outlined'}
