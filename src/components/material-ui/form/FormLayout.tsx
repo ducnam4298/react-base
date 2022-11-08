@@ -64,6 +64,12 @@ const FormLayout = (props: UIProps) => {
     if (error && touched) return { touched, error };
   };
 
+  const errorMessageFile = (fieldName: string) => {
+    const touched: { path: boolean } = getIn(formik.touched, fieldName);
+    const error: string = getIn(formik.errors, fieldName);
+    if (error && touched) return { touched: touched.path, error };
+  };
+
   const FormControls = (boxNumber: number) => {
     return (
       <Stack width="100%" gap={boxNumber !== 0 ? 0 : '10px'}>
@@ -192,8 +198,16 @@ const FormLayout = (props: UIProps) => {
                             files && files[0] && formik.setFieldValue(c.id, files[0]);
                           }
                         }}
-                        error={errorMessage(c.id)?.touched}
-                        helperText={errorMessage(c.id)?.error}
+                        error={
+                          formik.values[c.id]
+                            ? errorMessageFile(c.id)?.touched
+                            : errorMessage(c.id)?.touched
+                        }
+                        helperText={
+                          formik.values[c.id]
+                            ? errorMessageFile(c.id)?.error
+                            : errorMessage(c.id)?.error
+                        }
                       />
                     </Stack>
                   );

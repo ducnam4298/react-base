@@ -3,42 +3,63 @@ import { GenderOptions } from 'common/utils/optionMirror';
 import { regex } from 'common/utils/regex';
 import city from '_mocks_/cities';
 import * as Yup from 'yup';
+import { isArray } from 'lodash';
 
 const FieldRequired = 'Field required';
 const FieldSoShort = 'Field so short';
 const FieldSoLong = 'Field so long';
 const PhoneNumberNotExist = 'Phone Number not exist';
 const EmailInvalid = 'Email invalid';
+const PassWordLength = 'At least 8 characters';
+const PasswordWrong = 'Password must contain uppercase, lowercase and @$!%*?&';
 const WhiteSpace = 'Field not white space';
-// const FileSize = 'File too large';
-// const FileType = 'File wrong type';
+const FileSize = 'File too large ';
+const FileType = 'File wrong type ';
 
-const acceptFile = ['.doc', '.docx', '.xls', '.xlsx'];
-const acceptImage = ['.png', '.jpg', '.jpeg'];
+const doc = 'application/vnd.openxmlformats-officedocument.wordprocessingml.document';
+const pp = 'application/vnd.openxmlformats-officedocument.presentationml.presentation';
+const xls = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet';
+const acceptFile = [doc, xls, pp];
+const acceptImage = ['image/png', 'image/jpg', 'image/jpeg'];
 
-// const FilesSizeTooLarge = (files?: [File]) => {
-//   let valid = true;
-//   if (files) {
-//     files.map(file => {
-//       const size = file.size / 1024 / 1024;
-//       if (size > 10) {
-//         valid = false;
-//       }
-//     });
-//   }
-//   return valid;
-// };
-// const FilesCorrectType = (files?: [File]) => {
-//   let valid = true;
-//   if (files) {
-//     files.map(file => {
-//       if (!acceptFile.includes(file.type)) {
-//         valid = false;
-//       }
-//     });
-//   }
-//   return valid;
-// };
+const FilesSizeTooLarge = (files?: File | File[]) => {
+  let valid = true;
+  if (files) {
+    if (isArray(files)) {
+      files.map(file => {
+        const size = file.size / 1024 / 1024;
+        if (size > 10) {
+          valid = false;
+        }
+      });
+    } else {
+      const file = files as unknown as File;
+      const size = file.size / 1024 / 1024;
+      if (size > 10) {
+        valid = false;
+      }
+    }
+  }
+  return valid;
+};
+const FilesCorrectType = (accepts: string[], files?: File | File[]) => {
+  let valid = true;
+  if (files) {
+    if (isArray(files)) {
+      files.map(file => {
+        if (!accepts.includes(file.type)) {
+          valid = false;
+        }
+      });
+    } else {
+      const file = files as unknown as File;
+      if (file && !accepts.includes(file.type)) {
+        valid = false;
+      }
+    }
+  }
+  return valid;
+};
 
 export const validationSchema = Yup.object().shape({
   fullName: Yup.string()
@@ -65,21 +86,42 @@ export const validationSchema = Yup.object().shape({
   gender: Yup.string().trim(WhiteSpace).required(FieldRequired),
   address: Yup.string().trim(WhiteSpace).required(FieldRequired),
   pob: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  // rangeDateContract: Yup.array()
-  //   .required(FieldRequired)
-  //   .of(
-  //     Yup.date()
-  //       .test(schema => {
-  //         if (schema instanceof Date) return true;
-  //         else return false;
-  //       })
-  //       .typeError(FieldRequired)
-  //   ),
+  password: Yup.string()
+    .trim(WhiteSpace)
+    .required()
+    .min(8, PassWordLength)
+    .matches(regex.passwordRegExp, PasswordWrong),
+  rangeDateContract: Yup.array()
+    .required(FieldRequired)
+    .of(
+      Yup.date()
+        .test(schema => {
+          if (schema instanceof Date) return true;
+          else return false;
+        })
+        .typeError(FieldRequired)
+    ),
   description: Yup.string().trim(WhiteSpace).required(FieldRequired),
   active: Yup.boolean().required(FieldRequired),
-  coverImage: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  profileImage: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  contract: Yup.array().nullable(false).required(FieldRequired),
+  profileImage: Yup.mixed()
+    .required(FieldRequired)
+    .test('files', FileSize + 'less 10MB', value => FilesSizeTooLarge(value as File))
+    .test('files', FileType + acceptImage.join(','), value =>
+      FilesCorrectType(acceptImage, value as File)
+    ),
+  coverImage: Yup.mixed()
+    .required(FieldRequired)
+    .test('files', FileSize + 'less 10MB', value => FilesSizeTooLarge(value as File))
+    .test('files', FileType + acceptImage.join(','), value =>
+      FilesCorrectType(acceptImage, value as File)
+    ),
+  contract: Yup.array()
+    .nullable(false)
+    .required(FieldRequired)
+    .test('files', FileSize + 'less 10MB', value => FilesSizeTooLarge(value as File[]))
+    .test('files', FileType + acceptFile.join(','), value =>
+      FilesCorrectType(acceptFile, value as File[])
+    ),
 });
 
 export const Forms: IForm[] = [

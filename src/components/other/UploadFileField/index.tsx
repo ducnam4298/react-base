@@ -175,7 +175,7 @@ const UploadFileField = (props: UIProps) => {
         </Stack>
       )}
       {UploadFile}
-      {props.helperText && (
+      {props.error && props.helperText && (
         <FormHelperText error={props.error} id={props.control?.id + '-helper-text'}>
           {props.helperText}
         </FormHelperText>

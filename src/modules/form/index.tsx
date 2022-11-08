@@ -4,11 +4,12 @@ import { Forms, validationSchema } from './config';
 import { FormLayout } from 'components/material-ui';
 import { GenderType, RightOption } from 'common/models/enum';
 import { useState } from 'react';
+import { Moment } from 'common/utils/moment';
 
 const listRightOptions: RightOption[] = [
   {
     title: '',
-    show: true,
+    show: false,
   },
   {
     title: 'Ảnh đại diện',
@@ -31,7 +32,8 @@ const init = {
   address: 'Lạng Sơn',
   gender: GenderType.Male,
   pob: '12',
-  rangeDateContract: undefined,
+  password: 'Khongconguoiyeu@123',
+  rangeDateContract: [new Date(1998, 1, 4), Moment.DateCurrent()],
   description: '<p>Nam DZ</p>',
   active: true,
   tags: [{ value: 'develop', label: 'Develop' }],

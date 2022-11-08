@@ -1,7 +1,7 @@
 //Chỉ được nhập số  (hoặc và .) VD: 1, 1.3, 5.7
 export const regex = {
   numberDotRegex: /^[0-9]{1,2}([,.][0-9]{1,2})?$/,
-  passRegExp: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
+  passwordRegExp: /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/,
   cmndRegex: /^[0-9]{9,12}$/,
   phonePatternRegex: /^[+]*[(]{0,1}[0-9]{1,4}[)]{0,1}[-\s./0-9]*$/,
   numberRegex: /^[0-9]\d*$/,
