@@ -4,11 +4,11 @@ import { LoadingButton } from '@mui/lab';
 import { getIn, useFormik } from 'formik';
 import { CompareArrows as CompareArrowsIcon, SyncAlt as SyncAltIcon } from '@mui/icons-material';
 import { ChoiceType, ControlType, IForm, IFormControl, IFormRow } from 'common/models/form';
+import { RightOption, FileType } from 'common/models/enum';
 // import { LanguageCode } from 'common/models/enum';
 // import { Language } from 'common/models/language';
-import { RightOption, FileType } from 'common/models/enum';
 import FormBoxLayout from './FormBoxLayout';
-import './index.css';
+import { isArray } from 'lodash';
 import {
   TextFieldMui,
   SelectFieldMui,
@@ -19,6 +19,7 @@ import {
   EditorField,
   UploadFileField,
 } from 'components/material-ui';
+import './index.css';
 interface UIProps {
   form: IForm;
   numberBox?: number;
@@ -65,9 +66,17 @@ const FormLayout = (props: UIProps) => {
   };
 
   const errorMessageFile = (fieldName: string) => {
-    const touched: { path: boolean } = getIn(formik.touched, fieldName);
+    const touched: { path: boolean } | { path: boolean }[] = getIn(formik.touched, fieldName);
     const error: string = getIn(formik.errors, fieldName);
-    if (error && touched) return { touched: touched.path, error };
+    if (error && touched) {
+      let touchedValid;
+      if (isArray(touched)) {
+        touchedValid = touched.find(t => t.path === true);
+      } else {
+        touchedValid = touched;
+      }
+      return { touched: touchedValid?.path ?? touchedValid, error };
+    }
   };
 
   const FormControls = (boxNumber: number) => {

@@ -24,41 +24,37 @@ const acceptImage = ['image/png', 'image/jpg', 'image/jpeg'];
 
 const FilesSizeTooLarge = (files?: File | File[]) => {
   let valid = true;
-  if (files) {
-    if (isArray(files)) {
-      files.map(file => {
-        const size = file.size / 1024 / 1024;
-        if (size > 10) {
-          valid = false;
-        }
-      });
-    } else {
-      const file = files as unknown as File;
+  if (!files) return valid;
+  if (isArray(files)) {
+    files.map(file => {
       const size = file.size / 1024 / 1024;
-      if (size > 10) {
-        valid = false;
-      }
-    }
+      if (size > 10) valid = false;
+    });
+    return valid;
+  } else {
+    const file = files as unknown as File;
+    const size = file.size / 1024 / 1024;
+    if (size > 10) valid = false;
+    return valid;
   }
-  return valid;
 };
 const FilesCorrectType = (accepts: string[], files?: File | File[]) => {
   let valid = true;
-  if (files) {
-    if (isArray(files)) {
-      files.map(file => {
-        if (!accepts.includes(file.type)) {
-          valid = false;
-        }
-      });
-    } else {
-      const file = files as unknown as File;
-      if (file && !accepts.includes(file.type)) {
+  if (!files) return valid;
+  if (isArray(files)) {
+    files.map(file => {
+      if (!accepts.includes(file.type)) {
         valid = false;
       }
+    });
+    return valid;
+  } else {
+    const file = files as unknown as File;
+    if (file && !accepts.includes(file.type)) {
+      valid = false;
     }
+    return valid;
   }
-  return valid;
 };
 
 export const validationSchema = Yup.object().shape({
