@@ -9,7 +9,7 @@ import { Moment } from 'common/utils/moment';
 const listRightOptions: RightOption[] = [
   {
     title: '',
-    show: false,
+    show: true,
   },
   {
     title: 'Ảnh đại diện',

@@ -2,7 +2,6 @@ import { Autocomplete, AutocompleteChangeDetails, TextField } from '@mui/materia
 import { IFormControl } from 'common/models/form';
 import { IOption } from 'common/utils/optionMirror';
 import { FormikValues } from 'formik';
-import { isArray } from 'lodash';
 import { useState } from 'react';
 
 interface UIProps {
@@ -14,7 +13,7 @@ interface UIProps {
   formik: FormikValues;
   control: IFormControl;
   onChange?: (
-    option: (string | number) | IOption[],
+    option?: (string | number) | IOption[],
     details?: AutocompleteChangeDetails<any>
   ) => void;
   error?: boolean;
@@ -41,6 +40,7 @@ const AutocompleteFieldMui = (props: UIProps) => {
           props.onChange && props.onChange(opt, details);
         }
       }}
+      disableClearable
       noOptionsText="Không có dữ liệu"
       isOptionEqualToValue={(option, value) => {
         if (props.control.multiple) {
@@ -60,7 +60,11 @@ const AutocompleteFieldMui = (props: UIProps) => {
           InputLabelProps={{
             ...ps.InputLabelProps,
             id: props.control?.id + '-autocomplete-outlined-label',
-            shrink: props.formik.values[props.control.id] ? true : props.notched ?? shrink,
+            shrink:
+              (!props.control.multiple && props.formik.values[props.control.id]) ||
+              (props.control.multiple && props.formik.values[props.control.id].length > 0)
+                ? true
+                : props.notched ?? shrink,
             htmlFor: props.control?.id + '-autocomplete-outlined',
           }}
           InputProps={{
