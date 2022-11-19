@@ -5,7 +5,7 @@ interface UIProps {
   fullWidth?: boolean;
   label?: string;
   variant?: 'outlined' | 'contained';
-  onClick: () => void;
+  onClick?: () => void;
 
   link?: boolean;
   to?: string;
@@ -26,6 +26,7 @@ const ButtonMui = (props: UIProps) => {
       startIcon={props.startIcon}
       endIcon={props.endIcon}
       variant={props.variant ?? 'contained'}
+      onClick={() => props.onClick && props.onClick()}
     >
       {props.label}
       {props.children}
