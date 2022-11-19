@@ -9,7 +9,7 @@ import {
   Stack,
   useTheme,
 } from '@mui/material';
-import { FormikValues } from 'formik';
+import { FormikState } from 'formik';
 import { IFormControl } from 'common/models/form';
 import './default.css';
 import './error.css';
@@ -20,7 +20,7 @@ interface UIProps {
   notched?: boolean;
   variant?: 'outlined' | 'standard' | 'filled';
 
-  formik: FormikValues;
+  formik: FormikState<any>;
   control: IFormControl;
   onChange?: (content: string, editor: any) => void;
   error?: boolean;
@@ -95,7 +95,7 @@ const EditorField = (props: UIProps) => {
         value={props.formik.values[props.control.id] ?? ''}
         init={{
           skin_url: props.error ? './errors.css' : './default.css',
-          placeholder: props.placeholder,
+          placeholder: props.placeholder ?? `Nhập ${props.control.title?.toLowerCase()}`,
           height: 250,
           menubar: true,
           plugins: [],

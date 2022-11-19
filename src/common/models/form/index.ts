@@ -1,5 +1,3 @@
-import { IOption } from 'common/utils/optionMirror';
-
 export interface IForm {
   mode?: IFormMode;
   code?: string;
@@ -36,7 +34,9 @@ export interface IFormControl {
   max?: number;
   min?: number;
   maxLength?: number;
-  options?: IOption[];
+  options?: any[];
+  optionLabel?: string;
+  optionValue?: string;
   inputMask?: string;
   boxNumber?: number;
   accept?: string | string[];

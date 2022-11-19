@@ -7,7 +7,7 @@ import {
   InputLabel,
   OutlinedInput,
 } from '@mui/material';
-import { FormikValues } from 'formik';
+import { FormikState } from 'formik';
 import { ControlType, IFormControl } from 'common/models/form';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
 
@@ -17,7 +17,7 @@ interface UIProps {
   notched?: boolean;
   variant?: 'outlined' | 'standard' | 'filled';
 
-  formik: FormikValues;
+  formik: FormikState<any>;
   control: IFormControl;
   onChange?: (value: string) => void;
   error?: boolean;
@@ -40,7 +40,13 @@ const TextFieldMui = (props: UIProps) => {
       <OutlinedInput
         id={props.control.id + '-input-outlined'}
         label={props.control.title}
-        placeholder={props.placeholder ?? 'Nhập ' + props.control.title?.toLowerCase()}
+        placeholder={
+          props.control.placeholder
+            ? props.control.placeholder
+            : props.control?.title
+            ? `Nhập ${props.control?.title.toLowerCase()}`
+            : ''
+        }
         notched={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
         onFocus={() => setShrink(true)}
         onBlur={() => setShrink(false)}

@@ -2,8 +2,6 @@ import { useState } from 'react';
 import { FormControl, FormHelperText, InputLabel, MenuItem, Select, useTheme } from '@mui/material';
 import { FormikState } from 'formik';
 import { IFormControl } from 'common/models/form';
-import { IOption } from 'common/utils/optionMirror';
-
 interface UIProps {
   fullWidth?: boolean;
   placeholder?: string;
@@ -12,7 +10,9 @@ interface UIProps {
 
   formik: FormikState<any>;
   control: IFormControl;
-  options?: IOption[];
+  options?: any[];
+  optionLabel?: string;
+  optionValue?: string;
   onChange?: (value: any) => void;
   error?: boolean;
   helperText?: string;
@@ -25,17 +25,25 @@ const SelectFieldMui = (props: UIProps) => {
       if (props.notched || shrink) {
         return (
           <span style={{ color: theme.palette.text.disabled }}>
-            {props.placeholder ?? 'Chọn' + text}
+            {props.control.placeholder
+              ? props.control.placeholder
+              : props.control?.title
+              ? `Chọn ${props.control?.title.toLowerCase()}`
+              : ''}
           </span>
         );
       } else {
         return '';
       }
     } else {
-      return props.options
-        ? props.options?.find(o => o.value === selected)?.label
-        : props.control.options
-        ? props.control.options?.find(o => o.value === selected)?.label
+      return props.options && props.options.length > 0
+        ? props.options?.find(o => o[props.control?.optionValue ?? ''] === selected)[
+            props.control?.optionLabel ?? ''
+          ]
+        : props.control.options && props.control.options.length > 0
+        ? props.control.options?.find(o => o[props.control?.optionValue ?? ''] === selected)[
+            props.control?.optionLabel ?? ''
+          ]
         : '';
     }
   };
@@ -62,16 +70,22 @@ const SelectFieldMui = (props: UIProps) => {
         notched={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
         error={props.error}
       >
-        {props.options ? (
+        {props.options && props.options.length > 0 ? (
           props.options?.map(o => (
-            <MenuItem key={o.value} value={o.value}>
-              {o.label}
+            <MenuItem
+              key={o[props.control?.optionValue ?? '']}
+              value={o[props.control?.optionValue ?? '']}
+            >
+              {o[props.control?.optionLabel ?? '']}
             </MenuItem>
           ))
-        ) : props.control.options ? (
+        ) : props.control.options && props.control.options.length > 0 ? (
           props.control.options?.map(o => (
-            <MenuItem key={o.value} value={o.value}>
-              {o.label}
+            <MenuItem
+              key={o[props.control?.optionValue ?? '']}
+              value={o[props.control?.optionValue ?? '']}
+            >
+              {o[props.control?.optionLabel ?? '']}
             </MenuItem>
           ))
         ) : (

@@ -3,6 +3,7 @@ import { Card, CardContent, CardHeader, Stack } from '@mui/material';
 import { LoadingButton } from '@mui/lab';
 import { Expand as ExpandIcon, Compress as CompressIcon } from '@mui/icons-material';
 import './index.css';
+import ButtonMui from '../ButtonMui';
 
 interface UIProps {
   title?: string;
@@ -24,9 +25,9 @@ const FormBoxLayout = (props: UIProps) => {
             >
               {isShow && props.children}
             </CardContent>
-            <LoadingButton size="small" variant="outlined" onClick={() => onToggle()}>
+            <ButtonMui size="small" variant="outlined" onClick={() => onToggle()}>
               {!isShow ? <ExpandIcon /> : <CompressIcon />}
-            </LoadingButton>
+            </ButtonMui>
           </Stack>
         }
       />

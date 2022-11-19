@@ -1,6 +1,6 @@
 import { FormControl, FormControlLabel, FormHelperText, Switch, useTheme } from '@mui/material';
 import { IFormControl } from 'common/models/form';
-import { FormikValues } from 'formik';
+import { FormikState } from 'formik';
 
 interface UIProps {
   fullWidth?: boolean;
@@ -8,7 +8,7 @@ interface UIProps {
   notched?: boolean;
   variant?: 'outlined' | 'standard' | 'filled';
 
-  formik: FormikValues;
+  formik: FormikState<any>;
   control: IFormControl;
   onChange?: (value: boolean) => void;
   error?: boolean;

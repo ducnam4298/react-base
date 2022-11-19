@@ -1,7 +1,7 @@
 import { Autocomplete, AutocompleteChangeDetails, TextField } from '@mui/material';
 import { IFormControl } from 'common/models/form';
 import { IOption } from 'common/utils/optionMirror';
-import { FormikValues } from 'formik';
+import { FormikState } from 'formik';
 import { useState } from 'react';
 
 interface UIProps {
@@ -10,8 +10,11 @@ interface UIProps {
   notched?: boolean;
   variant?: 'outlined' | 'standard' | 'filled';
 
-  formik: FormikValues;
+  formik: FormikState<any>;
   control: IFormControl;
+  options?: any[];
+  optionLabel?: string;
+  optionValue?: string;
   onChange?: (
     option?: (string | number) | IOption[],
     details?: AutocompleteChangeDetails<any>
@@ -28,7 +31,7 @@ const AutocompleteFieldMui = (props: UIProps) => {
       fullWidth={props.fullWidth}
       id={props.control.id + '-autocomplete-outlined'}
       limitTags={props.control.limitTags ?? 1}
-      filterSelectedOptions
+      filterSelectedOptions={props.control.options ? true : false}
       defaultValue={props.formik.values[props.control.id]}
       value={props.formik.values[props.control.id]}
       options={props.control.options ?? []}
@@ -62,7 +65,7 @@ const AutocompleteFieldMui = (props: UIProps) => {
             id: props.control?.id + '-autocomplete-outlined-label',
             shrink:
               (!props.control.multiple && props.formik.values[props.control.id]) ||
-              (props.control.multiple && props.formik.values[props.control.id].length > 0)
+              (props.control.multiple && props.formik.values[props.control.id]?.length > 0)
                 ? true
                 : props.notched ?? shrink,
             htmlFor: props.control?.id + '-autocomplete-outlined',
@@ -76,7 +79,11 @@ const AutocompleteFieldMui = (props: UIProps) => {
           }}
           inputProps={{
             ...ps.inputProps,
-            placeholder: props.control?.title ? `Chọn ${props.control?.title.toLowerCase()}` : '',
+            placeholder: props.control.placeholder
+              ? props.control.placeholder
+              : props.control?.title
+              ? `Nhập hoặc chọn ${props.control?.title.toLowerCase()}`
+              : '',
             autoComplete: 'off',
           }}
           error={props.error}

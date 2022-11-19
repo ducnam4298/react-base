@@ -1,10 +1,15 @@
 import { IconButton, InputAdornment, Stack, TextField, useTheme } from '@mui/material';
-import { DateRangePicker, LocalizationProvider, DateRangePickerDay } from '@mui/x-date-pickers-pro';
+import {
+  DateRangePicker,
+  LocalizationProvider,
+  DateRangePickerDay,
+  DateRange,
+} from '@mui/x-date-pickers-pro';
 import { AdapterMoment } from '@mui/x-date-pickers-pro/AdapterMoment';
 import { MuiTextFieldProps } from '@mui/x-date-pickers/internals/components/PureDateInput';
 import { IFormControl } from 'common/models/form';
 import EventIcon from '@mui/icons-material/Event';
-import { FormikValues } from 'formik';
+import { FormikState } from 'formik';
 import moment from 'moment';
 import { useRef } from 'react';
 interface UIProps {
@@ -12,7 +17,7 @@ interface UIProps {
   notched?: boolean;
   variant?: 'outlined' | 'standard' | 'filled';
 
-  formik: FormikValues;
+  formik: FormikState<any>;
   control: IFormControl;
   onChange?: (value: [Date, Date]) => void;
   format?: string;
@@ -29,6 +34,7 @@ interface InputProps {
   ps: MuiTextFieldProps;
   target: Target;
 }
+
 
 const RangePickerFieldMui = (props: UIProps) => {
   const theme = useTheme();
@@ -66,7 +72,9 @@ const RangePickerFieldMui = (props: UIProps) => {
       }}
       inputProps={{
         ...ps.inputProps,
-        placeholder: props.control?.title
+        placeholder: props.control.placeholder
+          ? props.control.placeholder
+          : props.control?.title
           ? `Chọn ${props.control?.title.toLowerCase()} ${CompareTargetText(target)}`
           : '',
         readOnly: true,
@@ -88,15 +96,8 @@ const RangePickerFieldMui = (props: UIProps) => {
       <DateRangePicker
         label={props.control?.title}
         calendars={1}
-        value={
-          props.formik.values[props.control.id]
-            ? [
-                moment(props.formik.values[props.control.id][0]),
-                moment(props.formik.values[props.control.id][1]),
-              ]
-            : [null, null]
-        }
-        onChange={values =>
+        value={props.formik.values[props.control.id] ?? [null, null]}
+        onChange={(values: DateRange<moment.Moment>) =>
           props.onChange && props.onChange([moment(values[0]).toDate(), moment(values[1]).toDate()])
         }
         renderInput={(startProps, endProps) => (
@@ -105,6 +106,7 @@ const RangePickerFieldMui = (props: UIProps) => {
             <Input ps={endProps} target={Target.End} />
           </Stack>
         )}
+        dayOfWeekFormatter={day => day}
         renderDay={(_, dateRangePickerDayProps) => (
           <DateRangePickerDay
             style={{

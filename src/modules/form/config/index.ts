@@ -5,6 +5,24 @@ import city from '_mocks_/cities';
 import * as Yup from 'yup';
 import { isArray } from 'lodash';
 
+export const FieldName = {
+  FullName: 'fullName',
+  PhoneNumber: 'phoneNumber',
+  Email: 'email',
+  Dob: 'dob',
+  Gender: 'gender',
+  Address: 'address',
+  Pob: 'pob',
+  Password: 'password',
+  RangeDateContract: 'rangeDateContract',
+  Description: 'description',
+  Active: 'active',
+  Tags: 'tags',
+  ProfileImage: 'profileImage',
+  CoverImage: 'coverImage',
+  Contract: 'contract',
+};
+
 const FieldRequired = 'Field required';
 const FieldSoShort = 'Field so short';
 const FieldSoLong = 'Field so long';
@@ -58,60 +76,61 @@ const FilesCorrectType = (accepts: string[], files?: File | File[]) => {
 };
 
 export const validationSchema = Yup.object().shape({
-  fullName: Yup.string()
+  [FieldName.FullName]: Yup.string()
     .required(FieldRequired)
     .trim(WhiteSpace)
     .min(3, FieldSoShort)
     .max(60, FieldSoLong),
-  phoneNumber: Yup.string()
+  [FieldName.PhoneNumber]: Yup.string()
     .required(FieldRequired)
     .trim(WhiteSpace)
     .matches(regex.phoneRegex, PhoneNumberNotExist),
-  email: Yup.string()
+  [FieldName.Email]: Yup.string()
     .required(FieldRequired)
     .trim(WhiteSpace)
     .matches(regex.email, EmailInvalid)
     .max(100, FieldSoLong),
-  dob: Yup.date()
+  [FieldName.Dob]: Yup.date()
     .required(FieldRequired)
     .test(schema => {
       if (schema instanceof Date) return true;
       else return false;
     })
     .typeError(FieldRequired),
-  gender: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  address: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  pob: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  password: Yup.string()
+  [FieldName.Gender]: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  [FieldName.Address]: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  [FieldName.Pob]: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  [FieldName.Password]: Yup.string()
     .trim(WhiteSpace)
-    .required()
+    .required(FieldRequired)
     .min(8, PassWordLength)
     .matches(regex.passwordRegExp, PasswordWrong),
-  rangeDateContract: Yup.array()
+  [FieldName.RangeDateContract]: Yup.array()
     .required(FieldRequired)
     .of(
       Yup.date()
+        .required(FieldRequired)
         .test(schema => {
           if (schema instanceof Date) return true;
           else return false;
         })
         .typeError(FieldRequired)
     ),
-  description: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  active: Yup.boolean().required(FieldRequired),
-  profileImage: Yup.mixed()
+  [FieldName.Description]: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  [FieldName.Active]: Yup.boolean().required(FieldRequired),
+  [FieldName.ProfileImage]: Yup.mixed()
     .required(FieldRequired)
     .test('files', FileSize + 'less 10MB', value => FilesSizeTooLarge(value as File))
     .test('files', FileType + acceptImage.join(','), value =>
       FilesCorrectType(acceptImage, value as File)
     ),
-  coverImage: Yup.mixed()
+  [FieldName.CoverImage]: Yup.mixed()
     .required(FieldRequired)
     .test('files', FileSize + 'less 10MB', value => FilesSizeTooLarge(value as File))
     .test('files', FileType + acceptImage.join(','), value =>
       FilesCorrectType(acceptImage, value as File)
     ),
-  contract: Yup.array()
+  [FieldName.Contract]: Yup.array()
     .nullable(false)
     .required(FieldRequired)
     .test('files', FileSize + 'less 10MB', value => FilesSizeTooLarge(value as File[]))
@@ -127,19 +146,17 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'fullName',
+            id: FieldName.FullName,
             type: ControlType.Text,
             title: 'Họ và tên',
             fullWidth: true,
-            placeholder: 'Nhập họ và tên',
             boxNumber: 0,
           },
           {
-            id: 'phoneNumber',
+            id: FieldName.PhoneNumber,
             type: ControlType.Text,
             title: 'Số điện thoại',
             fullWidth: true,
-            placeholder: 'Nhập số điện thoại',
             boxNumber: 0,
           },
         ],
@@ -147,20 +164,18 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'email',
+            id: FieldName.Email,
             type: ControlType.Text,
             title: 'Email',
             fullWidth: true,
-            placeholder: 'Nhập email',
             boxNumber: 0,
           },
           {
-            id: 'dob',
+            id: FieldName.Dob,
             type: ControlType.Date,
             choiceDisplay: ChoiceType.Date,
             title: 'Ngày sinh',
             fullWidth: true,
-            placeholder: 'Chọn ngày sinh',
             boxNumber: 0,
           },
         ],
@@ -168,21 +183,21 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'gender',
+            id: FieldName.Gender,
             type: ControlType.Choice,
             choiceDisplay: ChoiceType.Select,
             title: 'Giới tính',
             fullWidth: true,
-            placeholder: 'Chọn giới tính',
             options: GenderOptions,
+            optionLabel: 'label',
+            optionValue: 'value',
             boxNumber: 0,
           },
           {
-            id: 'address',
+            id: FieldName.Address,
             type: ControlType.Text,
             title: 'Địa chỉ',
             fullWidth: true,
-            placeholder: 'Nhập địa chỉ',
             boxNumber: 0,
           },
         ],
@@ -190,22 +205,22 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'pob',
+            id: FieldName.Pob,
             type: ControlType.Choice,
             choiceDisplay: ChoiceType.Autocomplete,
             title: 'Nơi sinh',
             fullWidth: true,
-            placeholder: 'Nhập hoặc chọn nơi sinh',
             options: city.cities,
+            optionLabel: 'label',
+            optionValue: 'value',
             multiple: false,
             boxNumber: 0,
           },
           {
-            id: 'password',
+            id: FieldName.Password,
             type: ControlType.Password,
             title: 'Mật khẩu',
             fullWidth: true,
-            placeholder: 'Nhập mật khẩu',
             boxNumber: 0,
           },
         ],
@@ -213,12 +228,11 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'rangeDateContract',
+            id: FieldName.RangeDateContract,
             type: ControlType.Date,
             choiceDisplay: ChoiceType.RangeDate,
             title: 'Thời hạn hợp đồng',
             fullWidth: true,
-            placeholder: 'Chọn thời gian',
             boxNumber: 0,
           },
         ],
@@ -226,11 +240,10 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'description',
+            id: FieldName.Description,
             type: ControlType.Editor,
             title: 'Mô tả',
             fullWidth: true,
-            placeholder: 'Nhập mô tả',
             boxNumber: 0,
           },
         ],
@@ -238,7 +251,7 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'active',
+            id: FieldName.Active,
             type: ControlType.Toggle,
             title: 'Kích hoạt',
             fullWidth: true,
@@ -249,18 +262,19 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'tags',
+            id: FieldName.Tags,
             type: ControlType.Choice,
             choiceDisplay: ChoiceType.Autocomplete,
             title: 'Hashtag',
             fullWidth: true,
-            placeholder: 'Nhập hoặc chọn hashtag',
             options: [
               { value: 'develop', label: 'Develop' },
               { value: 'leader', label: 'Leader' },
               { value: 'ba', label: 'BA' },
               { value: 'pm', label: 'PM' },
             ],
+            optionLabel: 'label',
+            optionValue: 'value',
             multiple: true,
             boxNumber: 1,
           },
@@ -269,7 +283,7 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'profileImage',
+            id: FieldName.ProfileImage,
             title: 'Ảnh đại diện',
             type: ControlType.Attachment,
             choiceDisplay: ChoiceType.Image,
@@ -282,7 +296,7 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'coverImage',
+            id: FieldName.CoverImage,
             title: 'Ảnh bìa',
             type: ControlType.Attachment,
             choiceDisplay: ChoiceType.Image,
@@ -295,7 +309,7 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: 'contract',
+            id: FieldName.Contract,
             title: 'Tài liệu',
             type: ControlType.Attachment,
             choiceDisplay: ChoiceType.File,

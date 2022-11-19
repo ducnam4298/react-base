@@ -1,6 +1,5 @@
 import { useState } from 'react';
 import { Stack } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
 import { getIn, useFormik } from 'formik';
 import { CompareArrows as CompareArrowsIcon, SyncAlt as SyncAltIcon } from '@mui/icons-material';
 import { ChoiceType, ControlType, IForm, IFormControl, IFormRow } from 'common/models/form';
@@ -10,6 +9,7 @@ import { RightOption, FileType } from 'common/models/enum';
 import FormBoxLayout from './FormBoxLayout';
 import { isArray } from 'lodash';
 import {
+  ButtonMui,
   TextFieldMui,
   SelectFieldMui,
   DatePickerFieldMui,
@@ -113,6 +113,8 @@ const FormLayout = (props: UIProps) => {
                           fullWidth
                           formik={formik}
                           control={c}
+                          optionLabel="label"
+                          optionValue="value"
                           onChange={value => formik.setFieldValue(c.id, value)}
                           error={errorMessage(c.id)?.touched}
                           helperText={errorMessage(c.id)?.error}
@@ -126,6 +128,8 @@ const FormLayout = (props: UIProps) => {
                           fullWidth
                           formik={formik}
                           control={c}
+                          optionLabel="label"
+                          optionValue="value"
                           onChange={value => formik.setFieldValue(c.id, value)}
                           error={errorMessage(c.id)?.touched}
                           helperText={errorMessage(c.id)?.error}
@@ -259,10 +263,10 @@ const FormLayout = (props: UIProps) => {
             {FormControls(0)}
           </div>
           <div className={`nate-team-right-form ${!isShow ? 'nate-team-w-right-hidden' : ''}`}>
-            <LoadingButton size="small" variant="outlined" onClick={() => onToggle()}>
+            <ButtonMui size="small" variant="outlined" onClick={() => onToggle()}>
               {isShow ? <CompareArrowsIcon /> : <SyncAltIcon />}
               {isShow ? 'Hide' : undefined}
-            </LoadingButton>
+            </ButtonMui>
             {isShow && <div className="nate-team-box-list">{RightBox()}</div>}
           </div>
         </div>
@@ -270,9 +274,8 @@ const FormLayout = (props: UIProps) => {
         FormControls(0)
       )}
       <Stack direction="row" justifyContent="flex-end" width="100%" gap={3}>
-        <LoadingButton
+        <ButtonMui
           size="large"
-          type="submit"
           variant="outlined"
           onClick={() => {
             props.onReset && props.onReset();
@@ -280,10 +283,9 @@ const FormLayout = (props: UIProps) => {
           }}
         >
           Hủy
-        </LoadingButton>
-        <LoadingButton
+        </ButtonMui>
+        <ButtonMui
           size="large"
-          type="submit"
           variant="contained"
           onClick={() => {
             props.onSubmit && props.onSubmit();
@@ -291,7 +293,7 @@ const FormLayout = (props: UIProps) => {
           }}
         >
           Gửi
-        </LoadingButton>
+        </ButtonMui>
       </Stack>
     </>
   );

@@ -2,7 +2,7 @@ import { TextField, useTheme } from '@mui/material';
 import { DatePicker, LocalizationProvider, PickersDay } from '@mui/x-date-pickers';
 import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { IFormControl } from 'common/models/form';
-import { FormikValues } from 'formik';
+import { FormikState } from 'formik';
 import moment from 'moment';
 
 interface UIProps {
@@ -10,7 +10,7 @@ interface UIProps {
   notched?: boolean;
   variant?: 'outlined' | 'standard' | 'filled';
 
-  formik: FormikValues;
+  formik: FormikState<any>;
   control: IFormControl;
   onChange?: (value: Date) => void;
   format?: string;
@@ -41,7 +41,11 @@ const DatePickerFieldMui = (props: UIProps) => {
             }}
             inputProps={{
               ...ps.inputProps,
-              placeholder: props.control?.title ? `Chọn ${props.control?.title.toLowerCase()}` : '',
+              placeholder: props.control.placeholder
+                ? props.control.placeholder
+                : props.control?.title
+                ? `Chọn ${props.control?.title.toLowerCase()}`
+                : '',
               readOnly: true,
               autoComplete: 'off',
             }}
@@ -50,6 +54,7 @@ const DatePickerFieldMui = (props: UIProps) => {
             variant={props.variant ?? 'outlined'}
           />
         )}
+        dayOfWeekFormatter={day => day}
         renderDay={(_, __, pickersDayProps) => (
           <PickersDay
             style={{
