@@ -68,7 +68,11 @@ const TextFieldMui = (props: UIProps) => {
             <></>
           )
         }
-        inputProps={{ autoComplete: 'off' }}
+        inputProps={{
+          inputMode: props.control.type === ControlType.Number ? 'numeric' : 'text',
+          pattern: props.control.type === ControlType.Number ? '[0-9]*' : undefined,
+          autoComplete: 'off',
+        }}
         error={props.error}
         aria-describedby={props.control.id + '-helper-text'}
         size={props.control.size}

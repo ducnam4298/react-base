@@ -9,6 +9,7 @@ export const FieldName = {
   FullName: 'fullName',
   PhoneNumber: 'phoneNumber',
   Email: 'email',
+  Age: 'age',
   Dob: 'dob',
   Gender: 'gender',
   Address: 'address',
@@ -99,6 +100,7 @@ export const validationSchema = Yup.object().shape({
       else return false;
     })
     .typeError(FieldRequired),
+  [FieldName.Age]: Yup.number().required(FieldRequired),
   [FieldName.Gender]: Yup.string().required(FieldRequired).trim(WhiteSpace),
   [FieldName.Address]: Yup.string().required(FieldRequired).trim(WhiteSpace),
   [FieldName.Pob]: Yup.string().required(FieldRequired).trim(WhiteSpace),
@@ -177,6 +179,13 @@ export const Forms: IForm[] = [
             type: ControlType.Date,
             choiceDisplay: ChoiceType.Date,
             title: 'Ngày sinh',
+            fullWidth: true,
+            boxNumber: 0,
+          },
+          {
+            id: FieldName.Age,
+            type: ControlType.Number,
+            title: 'Tuổi',
             fullWidth: true,
             boxNumber: 0,
           },

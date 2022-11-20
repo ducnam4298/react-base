@@ -27,6 +27,7 @@ interface Init {
   phoneNumber?: string;
   email?: string;
   dob?: Date;
+  age?: number;
   address?: string;
   gender?: GenderType;
   pob?: string;
@@ -45,6 +46,7 @@ const initValues = {
   phoneNumber: '0356969828',
   email: 'ducnam4298@gmail.com',
   dob: new Date(1998, 1, 4),
+  age: Moment.DateCurrent().getFullYear() - new Date(1998, 1, 4).getFullYear(),
   address: 'Lạng Sơn',
   gender: GenderType.Male,
   pob: '12',
@@ -64,6 +66,7 @@ const initNotValues = {
   phoneNumber: undefined,
   email: undefined,
   dob: undefined,
+  age: undefined,
   address: undefined,
   gender: undefined,
   pob: undefined,
