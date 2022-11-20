@@ -25,6 +25,34 @@ interface UIProps {
 
 const AutocompleteFieldMui = (props: UIProps) => {
   const [shrink, setShrink] = useState(false);
+  const params = () => {
+    if (
+      props.optionValue &&
+      props.optionValue !== '' &&
+      props.optionLabel &&
+      props.optionLabel !== ''
+    ) {
+      return [props.optionValue, props.optionLabel];
+    } else if (
+      props.control.optionValue &&
+      props.control.optionValue !== '' &&
+      props.control.optionLabel &&
+      props.control.optionLabel !== ''
+    ) {
+      return [props.control.optionValue, props.control.optionLabel];
+    } else {
+      return ['', ''];
+    }
+  };
+  const options = () => {
+    if (props.options && props.options.length > 0) {
+      return props.options;
+    } else if (props.control.options && props.control.options.length > 0) {
+      return props.control.options;
+    } else {
+      return [];
+    }
+  };
   return (
     <Autocomplete
       multiple={props.control.multiple}
@@ -32,28 +60,35 @@ const AutocompleteFieldMui = (props: UIProps) => {
       id={props.control.id + '-autocomplete-outlined'}
       limitTags={props.control.limitTags ?? 1}
       filterSelectedOptions={props.control.options ? true : false}
-      defaultValue={props.formik.values[props.control.id]}
-      value={props.formik.values[props.control.id]}
-      options={props.control.options ?? []}
+      value={
+        props.control.multiple
+          ? props.formik.values[props.control.id] ?? []
+          : props.formik.values[props.control.id] ?? null
+      }
+      options={options()}
       onChange={(e, options, reason, details) => {
         if (props.control.multiple) {
           props.onChange && props.onChange(options, details);
         } else {
-          const opt = options.value;
+          const opt = options[params()[0]];
           props.onChange && props.onChange(opt, details);
         }
       }}
       disableClearable
       noOptionsText="Không có dữ liệu"
       isOptionEqualToValue={(option, value) => {
-        if (props.control.multiple) {
-          return option.value === value.value;
+        if (value) {
+          if (props.control.multiple) {
+            return option[params()[0]] === value[params()[0]];
+          } else {
+            return option[params()[0]] === value;
+          }
         } else {
-          return option.value === value;
+          return false;
         }
       }}
       getOptionLabel={option =>
-        option.label ?? props.control.options?.find(o => o.value === option)?.label
+        option[params()[1]] ?? options()?.find(o => o[params()[0]] === option)[params()[1]]
       }
       renderInput={ps => (
         <TextField

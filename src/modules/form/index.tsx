@@ -10,10 +10,6 @@ import { ButtonMui } from 'components/material-ui';
 
 const listRightOptions: RightOption[] = [
   {
-    title: '',
-    show: true,
-  },
-  {
     title: 'Ảnh đại diện',
     show: true,
   },
@@ -35,10 +31,11 @@ interface Init {
   gender?: GenderType;
   pob?: string;
   password?: string;
+  job?: string[];
+  tags?: IOption[];
   rangeDateContract?: Date[];
   description?: string;
   active?: boolean;
-  tags?: IOption[];
   profileImage?: any;
   coverImage?: any;
   contract?: any;
@@ -52,10 +49,11 @@ const initValues = {
   gender: GenderType.Male,
   pob: '12',
   password: 'Khongconguoiyeu@123',
+  job: ['leader', 'ba'],
+  tags: [{ value: 'develop', label: 'Develop' }],
   rangeDateContract: [new Date(1998, 1, 4), Moment.DateCurrent()],
   description: '<p>Nam DZ</p>',
   active: true,
-  tags: [{ value: 'develop', label: 'Develop' }],
   profileImage: undefined,
   coverImage: undefined,
   contract: undefined,
@@ -70,10 +68,11 @@ const initNotValues = {
   gender: undefined,
   pob: undefined,
   password: undefined,
+  job: undefined,
+  tags: undefined,
   rangeDateContract: undefined,
   description: undefined,
   active: true,
-  tags: undefined,
   profileImage: undefined,
   coverImage: undefined,
   contract: undefined,
@@ -82,9 +81,6 @@ const Form = () => {
   const [initialValues, ChangeInit] = useState<Init>(initValues);
   const onSave = (values: any) => {
     console.log(values);
-  };
-  const onReset = () => {
-    ChangeInit(initNotValues);
   };
   return (
     <Page title="Form | Minimal-UI">
@@ -105,7 +101,6 @@ const Form = () => {
           listRightOptions={listRightOptions}
           validationSchema={validationSchema}
           onSave={onSave}
-          onReset={onReset}
         />
       </Container>
     </Page>

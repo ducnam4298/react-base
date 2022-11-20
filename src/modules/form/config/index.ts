@@ -14,10 +14,11 @@ export const FieldName = {
   Address: 'address',
   Pob: 'pob',
   Password: 'password',
+  Job: 'job',
+  Tags: 'tags',
   RangeDateContract: 'rangeDateContract',
   Description: 'description',
   Active: 'active',
-  Tags: 'tags',
   ProfileImage: 'profileImage',
   CoverImage: 'coverImage',
   Contract: 'contract',
@@ -30,6 +31,7 @@ const PhoneNumberNotExist = 'Phone Number not exist';
 const EmailInvalid = 'Email invalid';
 const PassWordLength = 'At least 8 characters';
 const PasswordWrong = 'Password must contain uppercase, lowercase and @$!%*?&';
+const MinArray = 'Must choose at least one option';
 const WhiteSpace = 'Field not white space';
 const FileSize = 'File too large ';
 const FileType = 'File wrong type ';
@@ -97,14 +99,15 @@ export const validationSchema = Yup.object().shape({
       else return false;
     })
     .typeError(FieldRequired),
-  [FieldName.Gender]: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  [FieldName.Address]: Yup.string().trim(WhiteSpace).required(FieldRequired),
-  [FieldName.Pob]: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  [FieldName.Gender]: Yup.string().required(FieldRequired).trim(WhiteSpace),
+  [FieldName.Address]: Yup.string().required(FieldRequired).trim(WhiteSpace),
+  [FieldName.Pob]: Yup.string().required(FieldRequired).trim(WhiteSpace),
   [FieldName.Password]: Yup.string()
-    .trim(WhiteSpace)
     .required(FieldRequired)
+    .trim(WhiteSpace)
     .min(8, PassWordLength)
     .matches(regex.passwordRegExp, PasswordWrong),
+  [FieldName.Job]: Yup.array().required(FieldRequired).min(1, MinArray),
   [FieldName.RangeDateContract]: Yup.array()
     .required(FieldRequired)
     .of(
@@ -116,7 +119,7 @@ export const validationSchema = Yup.object().shape({
         })
         .typeError(FieldRequired)
     ),
-  [FieldName.Description]: Yup.string().trim(WhiteSpace).required(FieldRequired),
+  [FieldName.Description]: Yup.string().required(FieldRequired).trim(WhiteSpace),
   [FieldName.Active]: Yup.boolean().required(FieldRequired),
   [FieldName.ProfileImage]: Yup.mixed()
     .required(FieldRequired)
@@ -131,7 +134,6 @@ export const validationSchema = Yup.object().shape({
       FilesCorrectType(acceptImage, value as File)
     ),
   [FieldName.Contract]: Yup.array()
-    .nullable(false)
     .required(FieldRequired)
     .test('files', FileSize + 'less 10MB', value => FilesSizeTooLarge(value as File[]))
     .test('files', FileType + acceptFile.join(','), value =>
@@ -191,6 +193,7 @@ export const Forms: IForm[] = [
             options: GenderOptions,
             optionLabel: 'label',
             optionValue: 'value',
+            multiple: false,
             boxNumber: 0,
           },
           {
@@ -221,6 +224,44 @@ export const Forms: IForm[] = [
             type: ControlType.Password,
             title: 'Mật khẩu',
             fullWidth: true,
+            boxNumber: 0,
+          },
+        ],
+      },
+      {
+        controls: [
+          {
+            id: FieldName.Job,
+            type: ControlType.Choice,
+            choiceDisplay: ChoiceType.Select,
+            title: 'Công việc',
+            fullWidth: true,
+            options: [
+              { value: 'develop', label: 'Develop' },
+              { value: 'leader', label: 'Leader' },
+              { value: 'ba', label: 'BA' },
+              { value: 'pm', label: 'PM' },
+            ],
+            optionLabel: 'label',
+            optionValue: 'value',
+            multiple: true,
+            boxNumber: 0,
+          },
+          {
+            id: FieldName.Tags,
+            type: ControlType.Choice,
+            choiceDisplay: ChoiceType.Autocomplete,
+            title: 'Hashtag',
+            fullWidth: true,
+            options: [
+              { value: 'develop', label: 'Develop' },
+              { value: 'leader', label: 'Leader' },
+              { value: 'ba', label: 'BA' },
+              { value: 'pm', label: 'PM' },
+            ],
+            optionLabel: 'label',
+            optionValue: 'value',
+            multiple: true,
             boxNumber: 0,
           },
         ],
@@ -262,34 +303,13 @@ export const Forms: IForm[] = [
       {
         controls: [
           {
-            id: FieldName.Tags,
-            type: ControlType.Choice,
-            choiceDisplay: ChoiceType.Autocomplete,
-            title: 'Hashtag',
-            fullWidth: true,
-            options: [
-              { value: 'develop', label: 'Develop' },
-              { value: 'leader', label: 'Leader' },
-              { value: 'ba', label: 'BA' },
-              { value: 'pm', label: 'PM' },
-            ],
-            optionLabel: 'label',
-            optionValue: 'value',
-            multiple: true,
-            boxNumber: 1,
-          },
-        ],
-      },
-      {
-        controls: [
-          {
             id: FieldName.ProfileImage,
             title: 'Ảnh đại diện',
             type: ControlType.Attachment,
             choiceDisplay: ChoiceType.Image,
             multiple: false,
             accept: acceptImage,
-            boxNumber: 2,
+            boxNumber: 1,
           },
         ],
       },
@@ -302,7 +322,7 @@ export const Forms: IForm[] = [
             choiceDisplay: ChoiceType.Image,
             multiple: false,
             accept: acceptImage,
-            boxNumber: 3,
+            boxNumber: 2,
           },
         ],
       },
@@ -315,7 +335,7 @@ export const Forms: IForm[] = [
             choiceDisplay: ChoiceType.File,
             multiple: false,
             accept: acceptFile,
-            boxNumber: 4,
+            boxNumber: 3,
           },
         ],
       },
