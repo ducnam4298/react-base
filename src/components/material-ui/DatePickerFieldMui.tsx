@@ -4,6 +4,7 @@ import { AdapterMoment } from '@mui/x-date-pickers/AdapterMoment';
 import { IFormControl } from 'common/models/form';
 import { FormikState } from 'formik';
 import moment from 'moment';
+import "moment/min/locales.min";
 
 interface UIProps {
   fullWidth?: boolean;
@@ -17,6 +18,7 @@ interface UIProps {
   error?: boolean;
   helperText?: string;
 }
+moment.updateLocale("vi", {});
 
 const DatePickerFieldMui = (props: UIProps) => {
   const theme = useTheme();

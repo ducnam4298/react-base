@@ -1,3 +1,4 @@
+import { useRef } from 'react';
 import { IconButton, InputAdornment, Stack, TextField, useTheme } from '@mui/material';
 import {
   DateRangePicker,
@@ -11,7 +12,7 @@ import { IFormControl } from 'common/models/form';
 import EventIcon from '@mui/icons-material/Event';
 import { FormikState } from 'formik';
 import moment from 'moment';
-import { useRef } from 'react';
+import "moment/min/locales.min";
 interface UIProps {
   fullWidth?: boolean;
   notched?: boolean;
@@ -35,6 +36,7 @@ interface InputProps {
   target: Target;
 }
 
+moment.updateLocale("vi", {});
 
 const RangePickerFieldMui = (props: UIProps) => {
   const theme = useTheme();
