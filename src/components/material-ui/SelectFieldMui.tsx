@@ -29,9 +29,6 @@ interface UIProps {
 const SelectFieldMui = (props: UIProps) => {
   const theme = useTheme();
   const [shrink, setShrink] = useState(false);
-  const [multipleValue, onChangeMultipleValue] = useState<string | string[] | undefined>(
-    props.formik.values[props.control.id] ?? ''
-  );
   const params = () => {
     if (
       props.optionValue &&
@@ -60,20 +57,17 @@ const SelectFieldMui = (props: UIProps) => {
       return [];
     }
   };
-  const onChangeMultiple = (value?: string | string[]) => {
-    onChangeMultipleValue(typeof value === 'string' ? value.split(',') : value);
-  };
   const Value = (selected: any | any[]) => {
     if (isArray(selected)) {
       return selected
         .map(s => {
-          const v = options()?.find(o => o[params()[0]] === s)[params()[1]] ?? '';
+          const v = options()?.find(o => o[params()[0]] === s)?.[params()[1]] ?? '';
           if (v) return v;
           else return s;
         })
         .join(', ');
     } else {
-      return options().find(o => o[params()[0]] === selected)[params()[1]] ?? '';
+      return options().find(o => o[params()[0]] === selected)?.[params()[1]] ?? '';
     }
   };
   const RenderValue = (selected: any | any[], text: string) => {
@@ -114,15 +108,17 @@ const SelectFieldMui = (props: UIProps) => {
         id={props.control.id + '-select-outlined'}
         label={props.control.title}
         displayEmpty={props.formik.values[props.control.id] ? true : props.notched ?? shrink}
-        value={props.control.multiple ? multipleValue : props.formik.values[props.control.id] ?? ''}
+        value={
+          props.control.multiple
+            ? props.formik.values[props.control.id] ?? []
+            : props.formik.values[props.control.id] ?? ''
+        }
         onChange={e => {
           if (isArray(e.target.value)) {
             if (e.target.value.length > 0) {
               props.onChange && props.onChange(e.target.value);
-              props.control.multiple && onChangeMultiple(e.target.value);
             } else {
               props.onChange && props.onChange(undefined);
-              props.control.multiple && onChangeMultiple('');
             }
           } else {
             props.onChange && props.onChange(e.target.value);
