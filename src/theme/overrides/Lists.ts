@@ -10,6 +10,14 @@ const Lists = (theme: Theme) => {
         },
       },
     },
+    MuiListSubheader: {
+      styleOverrides: {
+        root: {
+          backgroundColor: alpha(theme.palette.action.active, theme.palette.action.activatedOpacity),
+          color: theme.palette.primary.main,
+        },
+      },
+    },
     MuiListItemButton: {
       styleOverrides: {
         root: {

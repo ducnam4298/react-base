@@ -101,12 +101,12 @@ const palette = {
   action: {
     active: GREY[600],
     hover: GREY[500_8],
+    hoverOpacity: 0.08,
     selected: GREY[500_16],
     disabled: GREY[500_80],
+    disabledOpacity: 0.48,
     disabledBackground: GREY[500_24],
     focus: GREY[500_24],
-    hoverOpacity: 0.08,
-    disabledOpacity: 0.48,
   },
 };
 

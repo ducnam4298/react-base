@@ -157,7 +157,7 @@ const cities = [
   },
   {
     value: '72',
-    label: 'Bà Rịa-Vũng Tàu',
+    label: 'Bà Rịa - Vũng Tàu',
   },
   {
     value: '73',
@@ -169,7 +169,7 @@ const cities = [
   },
   {
     value: '75',
-    label: 'Thừa Thiên-Huế',
+    label: 'Thừa Thiên - Huế',
   },
   {
     value: '76',
@@ -411,8 +411,8 @@ const cities2 = [
     label: 'Bến Tre',
   },
   {
-    value: 'bà rịa-vũng tàu',
-    label: 'Bà Rịa-Vũng Tàu',
+    value: 'bà rịa - vũng tàu',
+    label: 'Bà Rịa - Vũng Tàu',
   },
   {
     value: 'quảng bình',
@@ -423,8 +423,8 @@ const cities2 = [
     label: 'Quảng Trị',
   },
   {
-    value: 'thừa thiên-huế',
-    label: 'Thừa Thiên-Huế',
+    value: 'thừa thiên - huế',
+    label: 'Thừa Thiên - Huế',
   },
   {
     value: 'quảng ngãi',
@@ -508,4 +508,403 @@ const cities2 = [
   },
 ];
 
-export default {cities,cities2};
+const cities3 = [
+  {
+    group: 'cao bằng',
+    cities: [
+      { value: '11', label: 'Cao Bằng' },
+    ],
+  },
+  {
+    group: 'lạng sơn',
+    cities: [
+      { value: '12', label: 'Lạng sơn' },
+    ],
+  },
+  {
+    group: 'quảng ninh',
+    cities: [
+      { value: '14', label: 'Quảng Ninh' },
+    ],
+  },
+  {
+    group: 'hải phòng',
+    cities: [
+      { value: '15', label: 'Hải Phòng' },
+      { value: '16', label: 'Hải Phòng' },
+    ],
+  },
+  {
+    group: 'thái bình',
+    cities: [
+      { value: '17', label: 'Thái bình' },
+    ],
+  },
+  {
+    group: 'nam định',
+    cities: [
+      { value: '18', label: 'Nam định' },
+    ],
+  },
+  {
+    group: 'phú thọ',
+    cities: [
+      { value: '19', label: 'Phú Thọ' },
+    ],
+  },
+  {
+    group: 'thái nguyên',
+    cities: [
+      { value: '20', label: 'Thái Nguyên' },
+    ],
+  },
+  {
+    group: 'yên bái',
+    cities: [
+      { value: '21', label: 'Yên Bái' },
+    ],
+  },
+  {
+    group: 'tuyên quang',
+    cities: [
+      { value: '22', label: 'Tuyên Quang' },
+    ],
+  },
+  {
+    group: 'hà giang',
+    cities: [
+      { value: '23', label: 'Hà Giang' },
+    ],
+  },
+  {
+    group: 'lào cai',
+    cities: [
+      { value: '24', label: 'Lào Cai' },
+    ],
+  },
+  {
+    group: 'lai châu',
+    cities: [
+      { value: '25', label: 'Lai Châu' },
+    ],
+  },
+  {
+    group: 'sơn la',
+    cities: [
+      { value: '26', label: 'Sơn La' },
+    ],
+  },
+  {
+    group: 'điện biên',
+    cities: [
+      { value: '27', label: 'Điện Biên' },
+    ],
+  },
+  {
+    group: 'hòa bình',
+    cities: [
+      { value: '28', label: 'Hòa bình' },
+    ],
+  },
+  {
+    group: 'hà nội',
+    cities: [
+      { value: '29', label: 'Hà Nội' },
+      { value: '30', label: 'Hà Nội' },
+      { value: '31', label: 'Hà Nội' },
+      { value: '32', label: 'Hà Nội' },
+      { value: '33', label: 'Hà Nội' },
+      { value: '40', label: 'Hà Nội' },
+    ],
+  },
+  {
+    group: 'hải dương',
+    cities: [
+      { value: '34', label: 'Hải Dương' },
+    ],
+  },
+  {
+    group: 'ninh bình',
+    cities: [
+      { value: '35', label: 'Hòa Bình' },
+    ],
+  },
+  {
+    group: 'thanh hóa',
+    cities: [
+      { value: '36', label: 'Thanh Hóa' },
+    ],
+  },
+  {
+    group: 'nghệ an',
+    cities: [
+      { value: '37', label: 'Nghệ An' },
+    ],
+  },
+  {
+    group: 'hà tĩnh',
+    cities: [
+      { value: '38', label: 'Hà Tĩnh' },
+    ],
+  },
+  {
+    group: 'đồng nai',
+    cities: [
+      { value: '39', label: 'Đồng Nai' },
+      { value: '60', label: 'Đồng Nai' },
+    ],
+  },
+  {
+    group: 'đà nẵng',
+    cities: [
+      { value: '43', label: 'Đà Nẵng' },
+    ],
+  },
+  {
+    group: 'đắk lắk',
+    cities: [
+      { value: '47', label: 'Đắk Lắk' },
+    ],
+  },
+  {
+    group: 'đắk nông',
+    cities: [
+      { value: '48', label: 'Đắk Nông' },
+    ],
+  },
+  {
+    group: 'lâm đồng',
+    cities: [
+      { value: '49', label: 'Lâm Đồng' },
+    ],
+  },
+  {
+    group: 'hồ chí minh',
+    cities: [
+      { value: '41', label: 'Hồ Chí Minh' },
+      { value: '50', label: 'Hồ Chí Minh' },
+      { value: '51', label: 'Hồ Chí Minh' },
+      { value: '52', label: 'Hồ Chí Minh' },
+      { value: '53', label: 'Hồ Chí Minh' },
+      { value: '54', label: 'Hồ Chí Minh' },
+      { value: '55', label: 'Hồ Chí Minh' },
+      { value: '56', label: 'Hồ Chí Minh' },
+      { value: '57', label: 'Hồ Chí Minh' },
+      { value: '58', label: 'Hồ Chí Minh' },
+      { value: '59', label: 'Hồ Chí Minh' },
+    ],
+  },
+  {
+    group: 'bình dương',
+    cities: [
+      { value: '61', label: 'Bình Dương' },
+    ],
+  },
+  {
+    group: 'long an',
+    cities: [
+      { value: '62', label: 'Long An' },
+    ],
+  },
+  {
+    group: 'tiền giang',
+    cities: [
+      { value: '63', label: 'Tiền Giang' },
+    ],
+  },
+  {
+    group: 'vĩnh long',
+    cities: [
+      { value: '64', label: 'Vĩnh Long' },
+    ],
+  },
+  {
+    group: 'cần thơ',
+    cities: [
+      { value: '65', label: 'Cần Thơ' },
+    ],
+  },
+  {
+    group: 'đồng tháp',
+    cities: [
+      { value: '66', label: 'Đồng Tháp' },
+    ],
+  },
+  {
+    group: 'an giang',
+    cities: [
+      { value: '67', label: 'An Giang' },
+    ],
+  },
+  {
+    group: 'kiên giang',
+    cities: [
+      { value: '68', label: 'Kiên Giang' },
+    ],
+  },
+  {
+    group: 'cà mau',
+    cities: [
+      { value: '69', label: 'Cà Mau' },
+    ],
+  },
+  {
+    group: 'tây ninh',
+    cities: [
+      { value: '70', label: 'Tây Ninh' },
+    ],
+  },
+  {
+    group: 'bến tre',
+    cities: [
+      { value: '71', label: 'Bến Tre' },
+    ],
+  },
+  {
+    group: 'bà rịa - vũng tàu',
+    cities: [
+      { value: '72', label: 'Bà Rịa - Vũng Tàu' },
+    ],
+  },
+  {
+    group: 'quảng bình',
+    cities: [
+      { value: '73', label: 'Quảng Bình' },
+    ],
+  },
+  {
+    group: 'quảng trị',
+    cities: [
+      { value: '74', label: 'Quảng Trị' },
+    ],
+  },
+  {
+    group: 'thừa thiên - huế',
+    cities: [
+      { value: '75', label: 'Thừa Thiên - Huế' },
+    ],
+  },
+  {
+    group: 'quảng ngãi',
+    cities: [
+      { value: '76', label: 'Quảng Ngãi' },
+    ],
+  },
+  {
+    group: 'bình định',
+    cities: [
+      { value: '77', label: 'Bình Định' },
+    ],
+  },
+  {
+    group: 'phú yên',
+    cities: [
+      { value: '78', label: 'Phú Yên' },
+    ],
+  },
+  {
+    group: 'khánh hòa',
+    cities: [
+      { value: '79', label: 'Khánh Hòa' },
+    ],
+  },
+  {
+    group: 'gia lai',
+    cities: [
+      { value: '81', label: 'Gia Lai' },
+    ],
+  },
+  {
+    group: 'kon tum',
+    cities: [
+      { value: '82', label: 'Kon Tum' },
+    ],
+  },
+  {
+    group: 'sóc trăng',
+    cities: [
+      { value: '83', label: 'Sóc Trăng' },
+    ],
+  },
+  {
+    group: 'trà vinh',
+    cities: [
+      { value: '84', label: 'Trà Vinh' },
+    ],
+  },
+  {
+    group: 'ninh thuận',
+    cities: [
+      { value: '85', label: 'Ninh Thuận' },
+    ],
+  },
+  {
+    group: 'bình thuận',
+    cities: [
+      { value: '86', label: 'Bình Thuận' },
+    ],
+  },
+  {
+    group: 'vĩnh phúc',
+    cities: [
+      { value: '88', label: 'Vĩnh Phúc' },
+    ],
+  },
+  {
+    group: 'hưng yên',
+    cities: [
+      { value: '89', label: 'Hưng Yên' },
+    ],
+  },
+  {
+    group: 'hà nam',
+    cities: [
+      { value: '90', label: 'Hà Nam' },
+    ],
+  },
+  {
+    group: 'quảng nam',
+    cities: [
+      { value: '92', label: 'Quảng Nam' },
+    ],
+  },
+  {
+    group: 'bình phước',
+    cities: [
+      { value: '93', label: 'Bình Phước' },
+    ],
+  },
+  {
+    group: 'bạc liêu',
+    cities: [
+      { value: '94', label: 'Bạc Liêu' },
+    ],
+  },
+  {
+    group: 'hậu giang',
+    cities: [
+      { value: '95', label: 'Hậu Giang' },
+    ],
+  },
+  {
+    group: 'bắc cạn',
+    cities: [
+      { value: '97', label: 'Bắc Cạn' },
+    ],
+  },
+  {
+    group: 'bắc giang',
+    cities: [
+      { value: '13', label: 'Bắc Giang' },
+      { value: '98', label: 'Bắc Giang' },
+    ],
+  },
+  {
+    group: 'bắc ninh',
+    cities: [
+      { value: '99', label: 'Bắc Ninh' },
+    ],
+  },
+];
+
+export default { cities, cities2, cities3 };
