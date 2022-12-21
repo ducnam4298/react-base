@@ -20,7 +20,6 @@ import {
   UploadFileField,
 } from 'components/material-ui';
 import './index.css';
-import AutocompleteVirtualizeField from '../AutocompleteVirtualizeField';
 interface UIProps {
   form: IForm;
   numberBox?: number;
@@ -124,18 +123,8 @@ const FormLayout = (props: UIProps) => {
                     );
                   } else if (c.choiceDisplay === ChoiceType.Autocomplete) {
                     return (
-                      <Stack spacing={2} key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
+                      <Stack key={'c' + c.id} width={100 / (r.controls?.length ?? 1) + '%'}>
                         <AutocompleteFieldMui
-                          fullWidth={c.fullWidth}
-                          formik={formik}
-                          control={c}
-                          optionLabel="label"
-                          optionValue="value"
-                          onChange={value => formik.setFieldValue(c.id, value)}
-                          error={errorMessage(c.id)?.touched}
-                          helperText={errorMessage(c.id)?.error}
-                        />
-                        <AutocompleteVirtualizeField
                           fullWidth={c.fullWidth}
                           formik={formik}
                           control={c}

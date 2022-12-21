@@ -23,6 +23,8 @@ export interface IFormControl {
   variant?: 'outlined' | 'standard' | 'filled';
   size?: 'small' | 'medium';
   limitTags?: number;
+  group?: boolean;
+  groupValue?: string;
 
   choiceDisplay?: ChoiceType;
   required?: boolean;

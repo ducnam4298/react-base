@@ -45,9 +45,6 @@ const Input = (theme: Theme) => {
           '&:hover': {
             backgroundColor: theme.palette.grey[500_16],
           },
-          // '&.Mui-focused': {
-          //   backgroundColor: theme.palette.action.focus,
-          // },
           '&.Mui-disabled': {
             backgroundColor: theme.palette.action.disabledBackground,
           },
