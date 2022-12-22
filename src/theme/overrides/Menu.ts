@@ -6,7 +6,7 @@ const Menu = (theme: Theme) => {
       styleOverrides: {
         paper: {
           borderRadius: 16,
-          padding: '16px 12px',
+          padding: `${theme.spacing(2)} ${theme.spacing(1.5)}`,
           maxHeight: 300,
         },
       },
