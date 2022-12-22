@@ -31,6 +31,16 @@ export const FlexBoxRight = styled.div`
   align-items: flex-end;
 `;
 
+export const Title = styled(FlexBoxCenter)`
+  height: 32px;
+  background: #434853;
+  width: 100%;
+  color: #ffffff;
+  font-size: 16px;
+  text-transform: uppercase;
+  border-radius: 5px;
+`;
+
 export const SideContent = styled(FlexBoxLeft)`
   grid-gap: 5px;
   width: 100%;
