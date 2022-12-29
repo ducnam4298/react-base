@@ -15,6 +15,7 @@ import CalendarPicker from './CalendarPicker';
 import SvgIcon from './SvgIcon';
 import Chip from './Chip';
 import Menu from './Menu';
+import Table from './Table';
 
 // ----------------------------------------------------------------------
 
@@ -34,7 +35,8 @@ const ComponentsOverrides = (theme: Theme) => {
     CalendarPicker(theme),
     SvgIcon(theme),
     Chip(theme),
-    Menu(theme)
+    Menu(theme),
+    Table(theme)
   );
 };
 
