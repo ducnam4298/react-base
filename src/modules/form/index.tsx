@@ -6,7 +6,7 @@ import { GenderType, RightOption } from 'common/models/enum';
 import { useState } from 'react';
 import { Moment } from 'common/utils/moment';
 import { IOption } from 'common/utils/optionMirror';
-import { ButtonMui } from 'components/material-ui';
+import { ButtonMui } from 'components';
 
 const listRightOptions: RightOption[] = [
   {
