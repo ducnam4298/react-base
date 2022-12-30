@@ -1,7 +1,7 @@
 import Router from 'routes';
 import ThemeConfig from 'theme';
 import GlobalStyles from 'theme/globalStyles';
-import ScrollToTop from 'components/ScrollToTop';
+import { ScrollToTop } from 'components/scroll';
 import { BaseOptionChartStyle } from 'components/BaseOptionChart';
 
 const App = () => {
@@ -9,7 +9,7 @@ const App = () => {
     <ThemeConfig>
       <ScrollToTop />
       <GlobalStyles />
-      <BaseOptionChartStyle/>
+      <BaseOptionChartStyle />
       <Router />
     </ThemeConfig>
   );

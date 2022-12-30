@@ -1,6 +1,7 @@
 import { Helmet } from 'react-helmet-async';
 import { forwardRef } from 'react';
 import { Box } from '@mui/material';
+import { ScrollTopButton } from './scroll';
 
 interface UIProps {
   children: React.ReactNode;
@@ -15,6 +16,7 @@ const Page = forwardRef((props: UIProps, ref) => {
         <title>{props.title}</title>
       </Helmet>
       {props.children}
+      <ScrollTopButton />
     </Box>
   );
 });
