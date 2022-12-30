@@ -15,24 +15,24 @@ import {
   Container,
   Typography,
   TableContainer,
-  TablePagination,
 } from '@mui/material';
+import { Add } from '@mui/icons-material';
 import Page from 'components/Page';
 import Label from 'components/Label';
 import Scrollbar from 'components/Scrollbar';
-import Iconify from 'components/Iconify';
-import SearchNotFound from 'components/SearchNotFound';
 import UserListHead from './userListHead';
 import UserListToolbar from './userListToolbar';
 import UserMoreMenu from './userMoreMenu';
 import USER_LIST from '../../_mocks_/user';
+import { PaginationMui } from 'components';
+import { TableMui, TableNotFound, TableEmpty } from 'components/table';
 
 const TABLE_HEAD = [
-  { id: 'name', label: 'Name', alignRight: false },
-  { id: 'company', label: 'Company', alignRight: false },
-  { id: 'role', label: 'Role', alignRight: false },
-  { id: 'isVerified', label: 'Verified', alignRight: false },
-  { id: 'status', label: 'Status', alignRight: false },
+  { id: 'name', label: 'Name', align: false },
+  { id: 'company', label: 'Company', align: false },
+  { id: 'role', label: 'Role', align: false },
+  { id: 'isVerified', label: 'Verified', align: false },
+  { id: 'status', label: 'Status', align: false },
   { id: '' },
 ];
 
@@ -69,7 +69,7 @@ const User = () => {
   const [page, setPage] = useState(0);
   const [order, setOrder] = useState<'asc' | 'desc'>('asc');
   const [selected, setSelected] = useState<any>([]);
-  const [orderBy, setOrderBy] = useState('name');
+  const [orderBy, setOrderBy] = useState('company');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
 
@@ -106,20 +106,18 @@ const User = () => {
     setSelected(newSelected);
   };
 
-  const handleChangePage = (event, newPage) => {
-    setPage(newPage);
+  const handleChangePage = (page: number) => {
+    setPage(page);
   };
 
-  const handleChangeRowsPerPage = event => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+  const handleChangeRowsPerPage = (per: number) => {
+    setRowsPerPage(per);
     setPage(0);
   };
 
-  const handleFilterByName = event => {
-    setFilterName(event.target.value);
+  const handleFilterByName = (value: string) => {
+    setFilterName(value);
   };
-
-  const emptyRows = page > 0 ? Math.max(0, (1 + page) * rowsPerPage - USER_LIST.length) : 0;
 
   const filteredUsers = applySortFilter(USER_LIST, getComparator(order, orderBy), filterName);
 
@@ -136,19 +134,18 @@ const User = () => {
             variant="contained"
             component={RouterLink}
             to="#"
-            startIcon={<Iconify icon="eva:plus-fill" />}
+            startIcon={<Add sx={{ color: '#ffffff' }} />}
           >
             New User
           </Button>
         </Stack>
-
+        <TableMui minWidth={800} />
         <Card>
           <UserListToolbar
             numSelected={selected.length}
             filterName={filterName}
             onFilterName={handleFilterByName}
           />
-
           <Scrollbar>
             <TableContainer sx={{ minWidth: 800 }}>
               <Table>
@@ -209,28 +206,19 @@ const User = () => {
                         </TableRow>
                       );
                     })}
-                  {emptyRows > 0 && (
-                    <TableRow style={{ height: 53 * emptyRows }}>
-                      <TableCell colSpan={6} />
-                    </TableRow>
-                  )}
+                  <TableEmpty
+                    count={USER_LIST.length}
+                    rowsPerPage={rowsPerPage}
+                    page={page}
+                    cell={TABLE_HEAD.length + 1}
+                  />
                 </TableBody>
-                {isUserNotFound && (
-                  <TableBody>
-                    <TableRow>
-                      <TableCell align="center" colSpan={6} sx={{ py: 3 }}>
-                        <SearchNotFound searchQuery={filterName} />
-                      </TableCell>
-                    </TableRow>
-                  </TableBody>
-                )}
+                {isUserNotFound && <TableNotFound searchQuery={filterName} />}
               </Table>
             </TableContainer>
           </Scrollbar>
-
-          <TablePagination
+          <PaginationMui
             rowsPerPageOptions={[5, 10, 25]}
-            component="div"
             count={USER_LIST.length}
             rowsPerPage={rowsPerPage}
             page={page}

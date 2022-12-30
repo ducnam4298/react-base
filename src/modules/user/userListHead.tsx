@@ -1,18 +1,22 @@
 import { visuallyHidden } from '@mui/utils';
 import { Box, Checkbox, TableRow, TableCell, TableHead, TableSortLabel } from '@mui/material';
-
+interface headLabel {
+  id: string;
+  label?: string;
+  align?: boolean;
+}
 interface UIProps {
   order: 'asc' | 'desc';
   orderBy: string;
   rowCount: number;
-  headLabel: any[];
+  headLabel: headLabel[];
   numSelected: number;
   onRequestSort: Function;
-  onSelectAllClick: Function;
+  onSelectAllClick: (e: any) => void;
 }
 
 const UserListHead = (props: UIProps) => {
-  const createSortHandler = property => event => {
+  const createSortHandler = (event, property) => {
     props.onRequestSort(event, property);
   };
 
@@ -23,20 +27,20 @@ const UserListHead = (props: UIProps) => {
           <Checkbox
             indeterminate={props.numSelected > 0 && props.numSelected < props.rowCount}
             checked={props.rowCount > 0 && props.numSelected === props.rowCount}
-            onChange={() => props.onSelectAllClick()}
+            onChange={e => props.onSelectAllClick(e)}
           />
         </TableCell>
         {props.headLabel.map(headCell => (
           <TableCell
             key={headCell.id}
-            align={headCell.alignRight ? 'right' : 'left'}
+            align={headCell.align ? 'right' : 'left'}
             sortDirection={props.orderBy === headCell.id ? props.order : false}
           >
             <TableSortLabel
               hideSortIcon
               active={props.orderBy === headCell.id}
               direction={props.orderBy === headCell.id ? props.order : 'asc'}
-              onClick={createSortHandler(headCell.id)}
+              onClick={e => createSortHandler(e, headCell.id)}
             >
               {headCell.label}
               {props.orderBy === headCell.id ? (
