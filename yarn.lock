@@ -8318,6 +8318,11 @@ react-is@^18.0.0, react-is@^18.2.0:
   resolved "https://registry.yarnpkg.com/react-is/-/react-is-18.2.0.tgz#199431eeaaa2e09f86427efbb4f1473edb47609b"
   integrity sha512-xWGDIW6x921xtzPkhiULtthJHoJvBbF3q26fzloPCK0hsvxtPVelvftw3zjbHWSkR2km9Z+4uxbDDK/6Zw9B8w==
 
+react-lazyload@^3.2.0:
+  version "3.2.0"
+  resolved "https://registry.yarnpkg.com/react-lazyload/-/react-lazyload-3.2.0.tgz#497bd06a6dbd7015e3376e1137a67dc47d2dd021"
+  integrity sha512-zJlrG8QyVZz4+xkYZH5v1w3YaP5wEFaYSUWC4CT9UXfK75IfRAIEdnyIUF+dXr3kX2MOtL1lUaZmaQZqrETwgw==
+
 react-property@2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/react-property/-/react-property-2.0.0.tgz#2156ba9d85fa4741faf1918b38efc1eae3c6a136"
