@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, Stack } from '@mui/material';
-import { LoadingButton } from '@mui/lab';
 import { Expand as ExpandIcon, Compress as CompressIcon } from '@mui/icons-material';
+import { ButtonMui } from 'components';
 import './index.css';
-import ButtonMui from '../ButtonMui';
 
 interface UIProps {
   title?: string;

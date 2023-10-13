@@ -19,15 +19,13 @@ interface UIProps {
 }
 
 const ProductCard = (props: UIProps) => {
-  const { name, cover, price, colors, status, priceSale } = props.product;
-
   return (
     <Card>
       <Box sx={{ pt: '100%', position: 'relative' }}>
-        {status && (
+        {props.product?.status && (
           <Label
             variant="filled"
-            color={(status === 'sale' && 'error') || 'info'}
+            color={(props.product.status === 'sale' && 'error') || 'info'}
             sx={{
               zIndex: 9,
               top: 16,
@@ -36,21 +34,19 @@ const ProductCard = (props: UIProps) => {
               textTransform: 'uppercase',
             }}
           >
-            {status}
+            {props.product.status}
           </Label>
         )}
-        <ProductImgStyle alt={name} src={cover} />
+        <ProductImgStyle alt={props.product.name} src={props.product.cover} />
       </Box>
-
       <Stack spacing={2} sx={{ p: 3 }}>
         <Link to="#" color="inherit" underline="hover" component={RouterLink}>
           <Typography variant="subtitle2" noWrap>
-            {name}
+            {props.product.name}
           </Typography>
         </Link>
-
         <Stack direction="row" alignItems="center" justifyContent="space-between">
-          <ColorPreview colors={colors} />
+          <ColorPreview colors={props.product.colors} />
           <Typography variant="subtitle1">
             <Typography
               component="span"
@@ -60,10 +56,10 @@ const ProductCard = (props: UIProps) => {
                 textDecoration: 'line-through',
               }}
             >
-              {priceSale && fCurrency(priceSale)}
+              {props.product.priceSale && fCurrency(props.product.priceSale)}
             </Typography>
             &nbsp;
-            {fCurrency(price)}
+            {fCurrency(props.product.price)}
           </Typography>
         </Stack>
       </Stack>

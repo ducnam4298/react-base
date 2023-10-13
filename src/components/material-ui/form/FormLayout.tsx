@@ -9,7 +9,6 @@ import { RightOption, FileType } from 'common/models/enum';
 import FormBoxLayout from './FormBoxLayout';
 import { isArray } from 'lodash';
 import {
-  ButtonMui,
   TextFieldMui,
   SelectFieldMui,
   DatePickerFieldMui,
@@ -19,6 +18,7 @@ import {
   EditorField,
   UploadFileField,
 } from 'components/material-ui';
+import { ButtonMui } from 'components';
 import './index.css';
 interface UIProps {
   form: IForm;
