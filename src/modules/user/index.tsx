@@ -1,31 +1,28 @@
 import { filter } from 'lodash';
 import { sentenceCase } from 'change-case';
-import { useState } from 'react';
-import { Link as RouterLink } from 'react-router-dom';
+import {  useState } from 'react';
 import {
-  Card,
-  Table,
   Stack,
   Avatar,
-  Button,
   Checkbox,
   TableRow,
-  TableBody,
   TableCell,
   Container,
   Typography,
-  TableContainer,
 } from '@mui/material';
 import { Add } from '@mui/icons-material';
 import Page from 'components/Page';
 import Label from 'components/Label';
-import Scrollbar from 'components/Scrollbar';
 import UserListHead from './userListHead';
 import UserListToolbar from './userListToolbar';
 import UserMoreMenu from './userMoreMenu';
 import USER_LIST from '../../_mocks_/user';
-import { PaginationMui } from 'components';
-import { TableMui, TableNotFound, TableEmpty } from 'components/table';
+import { ButtonMui, ModalMui, PaginationMui } from 'components';
+import { TableMui } from 'components/table';
+import { FormLayout } from 'components/material-ui/form/FormLayout';
+import { useAppDispatch, useAppSelector } from 'store';
+import { Forms, validationSchema } from './form/config';
+import { UserAction } from 'store/user';
 
 const TABLE_HEAD = [
   { id: 'name', label: 'Name', align: false },
@@ -72,6 +69,9 @@ const User = () => {
   const [orderBy, setOrderBy] = useState('company');
   const [filterName, setFilterName] = useState('');
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [openModal, onChangeModal] = useState(false);
+  const userState = useAppSelector(state => state.user);
+  const dispatch = useAppDispatch();
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
@@ -123,21 +123,30 @@ const User = () => {
 
   const isUserNotFound = filteredUsers.length === 0;
 
+  const onSave = (values: any) => {
+    dispatch(UserAction.fieldChange({ fieldName: 'createNewUser', fieldValue: values }));
+  };
+
   return (
     <Page title="User | Minimal-UI">
+      <ModalMui open={openModal} height={400} onClose={() => onChangeModal(false)}>
+        <FormLayout
+          form={Forms[0]}
+          initialValues={userState.createNewUser}
+          validationSchema={validationSchema}
+          onSave={onSave}
+        />
+      </ModalMui>
       <Container>
         <Stack direction="row" alignItems="center" justifyContent="space-between" mb={5}>
           <Typography variant="h4" gutterBottom>
             User
           </Typography>
-          <Button
-            variant="contained"
-            component={RouterLink}
-            to="#"
+          <ButtonMui
+            label="New User"
             startIcon={<Add sx={{ color: '#ffffff' }} />}
-          >
-            New User
-          </Button>
+            onClick={() => onChangeModal(true)}
+          />
         </Stack>
         <TableMui
           minWidth={800}
