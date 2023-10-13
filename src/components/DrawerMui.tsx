@@ -33,7 +33,7 @@ const DrawerMui = (props: UIProps) => {
       onClose={props.onClose}
       anchor={props.anchor ?? 'bottom'}
       ModalProps={{ style: { height: 0 } }}
-      BackdropProps={{ style: { background: 'none' } }}
+      slotProps={{ backdrop: { style: { background: 'none' } } }}
       PaperProps={{ elevation: 0, style: { backgroundColor: 'transparent', overflow: 'hidden' } }}
     >
       {props.tinyBox ? (

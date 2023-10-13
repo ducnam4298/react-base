@@ -24,7 +24,7 @@ const ModalMui = (props: UIProps) => {
     float: 'left',
     width: props.width ?? 400,
     height: props.height,
-    background: props.background ?? '#292b30',
+    background: props.background ?? '#ffffff',
     boxShadow: 24,
     p: props.p ?? 4,
     borderRadius: props.borderRadius ?? 5,
